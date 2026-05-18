@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: pastel --default;
+}
+
+@theme inline {
+  --font-sans: var(--font-cantarell);
+  --font-cantarell: var(--font-cantarell);
+  --font-the-nautigal: var(--font-the-nautigal);
+}

@@ -1,0 +1,21 @@
+---
+import { Font } from "astro:assets";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="m-0 size-screen">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-cantarell" />
+    <Font cssVariable="--font-the-nautigal" />
+    <title>Burns-Konkle Blog</title>
+  </head>
+  <body class="m-0 size-screen">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,19 @@
+---
+import Card from "@/components/card.astro";
+
+interface Props {
+  title: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  description: string;
+}
+const { title, image, description } = Astro.props;
+---
+
+<li>
+  <Card image={image} title={title}>
+    {description}
+  </Card>
+</li>

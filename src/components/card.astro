@@ -1,0 +1,29 @@
+---
+interface Props {
+  title?: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+}
+const { title, image } = Astro.props;
+---
+
+<div class="card bg-base-100 w-64 shadow-sm overflow-hidden">
+  {image && <div id="bg" class="h-32 w-full bg-cover bg-center" />}
+  <div class="card-body">
+    {title && <h2 class="card-title">{title}</h2>}
+    <p>
+      <slot />
+    </p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Open</button>
+    </div>
+  </div>
+</div>
+
+<style define:vars={{ image: `url("${image?.src}")` }}>
+  #bg {
+    background-image: var(--image);
+  }
+</style>

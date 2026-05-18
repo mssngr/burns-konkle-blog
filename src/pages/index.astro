@@ -1,11 +1,39 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import background from "@/assets/background.svg";
+import Post from "@/components/post.astro";
+import Layout from "@/layouts/layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts: ExportedMarkdownModuleEntities[] = Object.values(
+  import.meta.glob("../posts/*.md", { eager: true }),
+);
 ---
 
 <Layout>
-	<Welcome />
+  <img
+    class="fixed top-0 left-0 size-full -z-10 blur-3xl"
+    src={background.src}
+    alt=""
+    fetchpriority="high"
+  />
+  <div class="mt-6 w-full flex flex-col gap-8 items-center">
+    <h1 class="font-the-nautigal text-5xl text-center">The Burns-Konkles</h1>
+    <p class="px-4 max-w-3xl text-center">
+      Our timeline, from when we met, to updates on the newest member of our
+      family.
+    </p>
+  </div>
+  <ul class="mt-12 flex flex-col items-center justify-center gap-8">
+    {
+      posts.reverse().map((post) => (
+        <Post
+          image={{
+            src: post.frontmatter.imageSrc,
+            alt: post.frontmatter.imageAlt,
+          }}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+        />
+      ))
+    }
+  </ul>
 </Layout>
