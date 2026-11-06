@@ -193,10 +193,10 @@ export const stages: Stage[] = [
             name: 'Baby monitors',
             qty: '2',
             options: [
-              "Two Nanit Pro cameras on one app (home and the nanny's house)",
-              'Miku or Cubo Ai',
-              'Infant Optics DXR-8 Pro (no wifi, home only)',
+              'eufy Baby Monitor C10 (works without Wi-Fi)',
+              'Infant Optics DXR-8 Pro (no Wi-Fi)',
             ],
+            note: 'Please skip AI or app-based monitors.',
           },
         ],
         goodToKnow:

@@ -138,15 +138,11 @@ export const links: Record<string, ShopLink[]> = {
   'humidifier/canopy': [l('Canopy', 'https://getcanopy.co/')],
   'humidifier/levoit': [l('Levoit', 'https://levoit.com/')],
   'humidifier/crane': [l('Crane', 'https://www.crane-usa.com/')],
-  'monitors/two-nanit-pro-cameras-on-one-app': [
-    l('Nanit', 'https://www.nanit.com/'),
-  ],
-  'monitors/miku-or-cubo-ai': [
-    l('Miku', 'https://mikucare.com/'),
-    l('Cubo Ai', 'https://us.getcubo.com/'),
+  'monitors/eufy-baby-monitor-c10': [
+    l('eufy', 'https://www.eufy.com/products/e6310121?variant=45728177225914'),
   ],
   'monitors/infant-optics-dxr-8-pro': [
-    l('Infant Optics', 'https://www.infantoptics.com/'),
+    l('Infant Optics', 'https://www.infantoptics.com/product/dxr-8-pro'),
   ],
 
   // ----- Diapering -----
