@@ -4,7 +4,9 @@ import micala from '@/assets/micala.jpg'
 import ultrasound from '@/assets/ultrasound.jpg'
 import ItemCard from '@/components/item-card.astro'
 import Mobile from '@/components/mobile.astro'
+import ShopLinks from '@/components/shop-links.astro'
 import { help, stages } from '@/data/registry'
+import { localByCategory, shopById, shops } from '@/data/shops'
 import Layout from '@/layouts/layout.astro'
 
 const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
@@ -55,7 +57,7 @@ const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
         </li>
         <li>
           <span class="step-n">3</span>
-          <p><strong>Buy it anywhere.</strong> Target, Amazon, a brand site or Etsy. Changed your mind? Tap “Undo.”</p>
+          <p><strong>Shop small if you can.</strong> Each option links to the maker or a small shop, and many are at <a href="#local">Denver shops</a>. Changed your mind? Tap “Undo.”</p>
         </li>
       </ol>
       <details class="safety">
@@ -122,6 +124,14 @@ const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
                   <ItemCard item={item} />
                 ))}
               </div>
+              {localByCategory[cat.id] && (
+                <p class="local-line">
+                  <ShopLinks
+                    label="Shop local in Denver"
+                    links={localByCategory[cat.id].map(id => ({ shop: shopById[id].name, href: shopById[id].href }))}
+                  />
+                </p>
+              )}
               {cat.goodToKnow && (
                 <p class="good-to-know">
                   <strong>Good to know.</strong> {cat.goodToKnow}
@@ -150,6 +160,11 @@ const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
                 {h.goal && <span class="qty">Goal: {h.goal}</span>}
               </header>
               <p class="help-desc">{h.description}</p>
+              {h.link && (
+                <p class="help-link">
+                  <ShopLinks links={[h.link]} />
+                </p>
+              )}
               <div class="help-foot">
                 <p class="pledgers" data-pledgers>
                   Be the first to sign up.
@@ -162,6 +177,33 @@ const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
           ))
         }
       </div>
+    </section>
+
+    <section class="local" id="local" aria-labelledby="local-title">
+      <h2 id="local-title">Shop local in Denver</h2>
+      <p>
+        Independent shops around town. Stock changes, so call ahead for a specific item. Most ship if you’re out of
+        town.
+      </p>
+      <ul class="shop-grid">
+        {
+          shops.map(shop => (
+            <li class="shop">
+              <a href={shop.href} target="_blank" rel="noopener" class="shop-name">
+                {shop.name}
+                <span class="sr-only"> (opens in a new tab)</span>
+              </a>
+              <span class="shop-where">{shop.where}</span>
+              <span class="shop-carries">{shop.carries}</span>
+              {shop.ships && <span class="ships">Ships</span>}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="local-note">
+        No independent Denver shop we found sells new car seats or strollers. For those, the maker’s site lists
+        authorized local retailers.
+      </p>
     </section>
 
     <p class="empty" data-empty hidden>Nothing matches. Try another word, or switch back to “All.”</p>

@@ -35,6 +35,7 @@ export interface HelpItem {
   name: string
   description: string
   goal?: string
+  link?: { shop: string; href: string }
 }
 
 export const stages: Stage[] = [
@@ -227,7 +228,7 @@ export const stages: Stage[] = [
             id: 'wool-covers',
             name: 'Wool diaper covers (plastic-free)',
             qty: '3–4',
-            options: ['Disana', 'Sloomb', 'Imse Vimse'],
+            options: ['Disana', 'Sloomb'],
             make: 'Upcycled wool sweater "soakers"',
           },
           {
@@ -246,7 +247,7 @@ export const stages: Stage[] = [
             id: 'cloth-wipes',
             name: 'Cloth wipes',
             qty: '48–60',
-            options: ['Esembly', 'Thirsties', 'Imse Vimse'],
+            options: ['Esembly', 'Thirsties'],
             make: 'Flannel squares, the easiest first sewing project',
           },
           {
@@ -485,7 +486,7 @@ export const stages: Stage[] = [
           },
         ],
         goodToKnow:
-          'For formula, Kendamil and Bobbie are FDA-approved and sold at Target and Amazon. Please skip imported HiPP or Holle. Nursing pillows are for awake, supervised time only.',
+          'For formula, Kendamil and Bobbie are FDA-approved and sold at natural grocers and baby shops. Please skip imported HiPP or Holle. Nursing pillows are for awake, supervised time only.',
       },
       {
         id: 'health',
@@ -512,7 +513,7 @@ export const stages: Stage[] = [
           {
             id: 'nose-aspirator',
             name: 'Booger sucker',
-            options: ['NoseFrida', 'Oogiebear scoop', 'Hydrasense bulb'],
+            options: ['NoseFrida', 'Oogiebear scoop'],
           },
           {
             id: 'thermometer',
@@ -667,11 +668,7 @@ export const stages: Stage[] = [
             id: 'nursing-cover',
             name: 'Nursing cover or cape',
             qty: '1–2',
-            options: [
-              'Bebe au Lait muslin',
-              'Udder Covers',
-              'Organic cotton poncho',
-            ],
+            options: ['Udder Covers', 'Organic cotton poncho'],
             make: 'Muslin rectangle with a neck strap',
           },
           {
@@ -1017,6 +1014,10 @@ export const help: HelpItem[] = [
     id: 'lactation',
     name: 'Lactation consultant visit',
     description: 'An IBCLC who comes to the house in our first week home.',
+    link: {
+      shop: "The Mama 'Hood gift card",
+      href: 'https://www.themamahood.com/',
+    },
   },
   {
     id: 'doula',
@@ -1041,6 +1042,10 @@ export const help: HelpItem[] = [
     name: 'Sew or knit something',
     description:
       'Many items above have a handmade option. Pledge here if you want to make something not on the list.',
+    link: {
+      shop: 'LambShoppe (Denver yarn)',
+      href: 'https://www.thelambshoppe.com/',
+    },
   },
 ]
 

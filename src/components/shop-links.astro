@@ -1,0 +1,26 @@
+---
+import type { ShopLink } from '@/data/links'
+
+interface Props {
+  links?: ShopLink[]
+  label?: string
+}
+const { links, label = 'Shop' } = Astro.props
+---
+
+{
+  links && links.length > 0 && (
+    <span class="shop-links">
+      <span class="shop-links-label">{label}:</span>
+      {links.map((link, i) => (
+        <>
+          {i > 0 && <span aria-hidden="true"> · </span>}
+          <a href={link.href} target="_blank" rel="noopener">
+            {link.shop}
+            <span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </>
+      ))}
+    </span>
+  )
+}

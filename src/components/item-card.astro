@@ -1,4 +1,6 @@
 ---
+import ShopLinks from '@/components/shop-links.astro'
+import { links } from '@/data/links'
 import { handmadeKey, type Item, optionKey, splitOption } from '@/data/registry'
 
 interface Props {
@@ -8,6 +10,7 @@ const { item } = Astro.props
 const search = [item.name, ...item.options, item.make ?? '']
   .join(' ')
   .toLowerCase()
+const makeKey = handmadeKey(item.id)
 ---
 
 <article class="item" data-item={item.id} data-one={item.one ? '' : undefined} data-search={search}>
@@ -21,11 +24,13 @@ const search = [item.name, ...item.options, item.make ?? '']
     {
       item.options.map(option => {
         const { label, detail } = splitOption(option)
+        const key = optionKey(item.id, option)
         return (
-          <li class="opt" data-key={optionKey(item.id, option)} data-item={item.id} data-label={label}>
+          <li class="opt" data-key={key} data-item={item.id} data-label={label}>
             <div class="opt-text">
               <span class="opt-label">{label}</span>
               {detail && <span class="opt-detail">{detail}</span>}
+              <ShopLinks links={links[key]} />
             </div>
             <div class="opt-action" data-action-slot>
               <span class="skeleton" aria-hidden="true" />
@@ -36,10 +41,11 @@ const search = [item.name, ...item.options, item.make ?? '']
     }
     {
       item.make && (
-        <li class="opt opt-make" data-key={handmadeKey(item.id)} data-item={item.id} data-label={`Handmade: ${item.make}`}>
+        <li class="opt opt-make" data-key={makeKey} data-item={item.id} data-label={`Handmade: ${item.make}`}>
           <div class="opt-text">
             <span class="make-tag">Make it</span>
             <span class="opt-label">{item.make}</span>
+            <ShopLinks links={links[makeKey]} />
           </div>
           <div class="opt-action" data-action-slot>
             <span class="skeleton" aria-hidden="true" />
