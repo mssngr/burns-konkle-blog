@@ -1,39 +1,205 @@
 ---
-import background from "@/assets/background.svg";
-import Post from "@/components/post.astro";
-import Layout from "@/layouts/layout.astro";
+import { Image } from 'astro:assets'
+import micala from '@/assets/micala.jpg'
+import ultrasound from '@/assets/ultrasound.jpg'
+import ItemCard from '@/components/item-card.astro'
+import Mobile from '@/components/mobile.astro'
+import { help, stages } from '@/data/registry'
+import Layout from '@/layouts/layout.astro'
 
-const posts: ExportedMarkdownModuleEntities[] = Object.values(
-  import.meta.glob("../posts/*.md", { eager: true }),
-);
+const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
 ---
 
-<Layout>
-  <img
-    class="fixed top-0 left-0 size-full -z-10 blur-3xl"
-    src={background.src}
-    alt=""
-    fetchpriority="high"
-  />
-  <div class="mt-6 w-full flex flex-col gap-8 items-center">
-    <h1 class="font-the-nautigal text-5xl text-center">The Burns-Konkles</h1>
-    <p class="px-4 max-w-3xl text-center">
-      Our timeline, from when we met, to updates on the newest member of our
-      family.
-    </p>
-  </div>
-  <ul class="mt-12 flex flex-col items-center justify-center gap-8">
-    {
-      posts.reverse().map((post) => (
-        <Post
-          image={{
-            src: post.frontmatter.imageSrc,
-            alt: post.frontmatter.imageAlt,
-          }}
-          title={post.frontmatter.title}
-          description={post.frontmatter.description}
+<Layout
+  title="Baby Burns-Konkle · Shower Registry"
+  description="Micala and Gabriel's baby shower registry. Pick a gift, mark it, and everyone else will see it's covered."
+>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <Mobile />
+        <p class="eyebrow">Baby shower registry</p>
+        <h1>Baby <em>Burns-Konkle</em></h1>
+        <p class="lede">Arriving mid-December 2026. Thank you for celebrating with Micala and Gabriel.</p>
+        <div class="progress" data-progress>
+          <div class="progress-bar"><span data-progress-fill></span></div>
+          <p class="progress-text">
+            <strong data-progress-count>–</strong> of {itemCount} things have a gift on the way
+          </p>
+        </div>
+      </div>
+      <figure class="portrait">
+        <Image
+          src={micala}
+          alt="Micala smiling in a park, holding her pregnant belly"
+          widths={[360, 560, 840]}
+          sizes="(max-width: 760px) 70vw, 380px"
+          loading="eager"
+          fetchpriority="high"
         />
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section class="how" aria-labelledby="how-title">
+      <h2 id="how-title" class="sr-only">How this works</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-n">1</span>
+          <p><strong>Pick an option.</strong> Most items list a few brands. Any of them is great, and so is the handmade one.</p>
+        </li>
+        <li>
+          <span class="step-n">2</span>
+          <p><strong>Tap “I’ll get this.”</strong> It’s marked for everyone right away, so nobody doubles up.</p>
+        </li>
+        <li>
+          <span class="step-n">3</span>
+          <p><strong>Buy it anywhere.</strong> Target, Amazon, a brand site or Etsy. Changed your mind? Tap “Undo.”</p>
+        </li>
+      </ol>
+      <details class="safety">
+        <summary>A few safety notes before you shop</summary>
+        <ul>
+          <li>Babies sleep on a firm, flat, bare surface: no weighted sleep sacks, pillows, positioners, bumpers or loose blankets.</li>
+          <li>Nursing pillows, loungers and diaper-bag “bassinets” are for awake, supervised time only.</li>
+          <li>Car seats, bassinets and cribs should be new and meet federal safety standards; no secondhand or handmade.</li>
+          <li>No essential oils, camphor or menthol products for baby, and never homemade formula.</li>
+          <li>Car seat covers go over the canopy, never between baby and the harness.</li>
+        </ul>
+      </details>
+    </section>
+
+    <div class="toolbar" data-toolbar>
+      <div class="toolbar-inner">
+        <nav class="tabs" aria-label="Registry sections">
+          {
+            stages.map((s, i) => (
+              <a href={`#${s.id}`} class="tab" data-tab={s.id} aria-current={i === 0 ? 'true' : undefined}>
+                {s.tab}
+              </a>
+            ))
+          }
+          <a href="#help" class="tab" data-tab="help">Gifts of help</a>
+        </nav>
+        <div class="filters">
+          <label class="search">
+            <span class="sr-only">Search the registry</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" /><path d="M13 13l4 4" /></svg>
+            <input type="search" placeholder="Search" data-search-input autocomplete="off" />
+          </label>
+          <div class="seg" role="radiogroup" aria-label="Show">
+            <button type="button" role="radio" aria-checked="true" data-filter="all">All</button>
+            <button type="button" role="radio" aria-checked="false" data-filter="open">Still needed</button>
+            <button type="button" role="radio" aria-checked="false" data-filter="mine">
+              Your picks <span class="mine-count" data-mine-count hidden></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="sync" data-sync aria-live="polite">Loading claims…</p>
+    </div>
+
+    {
+      stages.map(stage => (
+        <section class="stage" id={stage.id} data-stage={stage.id}>
+          <header class="stage-head">
+            <h2>{stage.title}</h2>
+            <p>{stage.intro}</p>
+            <nav class="chips" aria-label={`${stage.title} categories`}>
+              {stage.categories.map(c => (
+                <a href={`#${c.id}`} class="chip" data-chip={c.id}>
+                  {c.title}
+                </a>
+              ))}
+            </nav>
+          </header>
+          {stage.categories.map(cat => (
+            <section class="category" id={cat.id} data-category>
+              <h3>{cat.title}</h3>
+              <div class="items">
+                {cat.items.map(item => (
+                  <ItemCard item={item} />
+                ))}
+              </div>
+              {cat.goodToKnow && (
+                <p class="good-to-know">
+                  <strong>Good to know.</strong> {cat.goodToKnow}
+                </p>
+              )}
+            </section>
+          ))}
+        </section>
       ))
     }
-  </ul>
+
+    <section class="stage" id="help" data-stage="help">
+      <header class="stage-head">
+        <h2>Gifts of help</h2>
+        <p>
+          The most valuable things in the first weeks aren’t things at all. Anyone can pitch in on these, so sign up
+          even if others already have.
+        </p>
+      </header>
+      <div class="items help-items">
+        {
+          help.map(h => (
+            <article class="item help" data-help={h.id} data-search={`${h.name} ${h.description}`.toLowerCase()}>
+              <header class="item-head">
+                <h4 class="item-name">{h.name}</h4>
+                {h.goal && <span class="qty">Goal: {h.goal}</span>}
+              </header>
+              <p class="help-desc">{h.description}</p>
+              <div class="help-foot">
+                <p class="pledgers" data-pledgers>
+                  Be the first to sign up.
+                </p>
+                <div class="opt-action" data-help-action>
+                  <span class="skeleton" aria-hidden="true" />
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <p class="empty" data-empty hidden>Nothing matches. Try another word, or switch back to “All.”</p>
+  </main>
+
+  <footer class="foot">
+    <figure class="polaroid">
+      <Image src={ultrasound} alt="Ultrasound of Baby Burns-Konkle" widths={[280, 560]} sizes="280px" />
+      <figcaption>First hello · May 2026</figcaption>
+    </figure>
+    <p class="foot-thanks">With love and gratitude,<br /><em>Micala &amp; Gabriel</em></p>
+    <p class="foot-small">
+      Claiming as <span data-whoami>a guest</span> · <button type="button" class="linklike" data-change-name>change name</button>
+    </p>
+  </footer>
+
+  <dialog class="dialog" data-name-dialog>
+    <form method="dialog" data-name-form>
+      <h2>Who’s this gift from?</h2>
+      <p>So Micala and Gabriel know who to thank. We’ll remember it on this device.</p>
+      <label class="field">
+        <span>Your name</span>
+        <input name="name" required maxlength="60" autocomplete="name" placeholder="e.g. Aunt Rosa" />
+      </label>
+      <label class="check">
+        <input type="checkbox" name="anon" />
+        <span>Show other guests “Someone” instead of my name</span>
+      </label>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-ghost" data-dialog-cancel>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toasts" data-toasts aria-live="polite"></div>
+
+  <script>
+    import '@/scripts/registry'
+  </script>
 </Layout>

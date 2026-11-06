@@ -11,13 +11,16 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Cantarell',
-      cssVariable: '--font-cantarell',
+      name: 'Fraunces',
+      cssVariable: '--font-fraunces',
+      weights: [400, 500, 600],
+      styles: ['normal', 'italic'],
     },
     {
       provider: fontProviders.google(),
-      name: 'The Nautigal',
-      cssVariable: '--font-the-nautigal',
+      name: 'Figtree',
+      cssVariable: '--font-figtree',
+      weights: [400, 500, 600, 700],
     },
   ],
 })

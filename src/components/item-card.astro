@@ -1,0 +1,52 @@
+---
+import { handmadeKey, type Item, optionKey, splitOption } from '@/data/registry'
+
+interface Props {
+  item: Item
+}
+const { item } = Astro.props
+const search = [item.name, ...item.options, item.make ?? '']
+  .join(' ')
+  .toLowerCase()
+---
+
+<article class="item" data-item={item.id} data-one={item.one ? '' : undefined} data-search={search}>
+  <header class="item-head">
+    <h4 class="item-name">{item.name}</h4>
+    {item.qty && <span class="qty">Need {item.qty}</span>}
+    <span class="item-status" data-status hidden></span>
+  </header>
+  {item.note && <p class="item-note">{item.note}</p>}
+  <ul class="opts">
+    {
+      item.options.map(option => {
+        const { label, detail } = splitOption(option)
+        return (
+          <li class="opt" data-key={optionKey(item.id, option)} data-item={item.id} data-label={label}>
+            <div class="opt-text">
+              <span class="opt-label">{label}</span>
+              {detail && <span class="opt-detail">{detail}</span>}
+            </div>
+            <div class="opt-action" data-action-slot>
+              <span class="skeleton" aria-hidden="true" />
+            </div>
+          </li>
+        )
+      })
+    }
+    {
+      item.make && (
+        <li class="opt opt-make" data-key={handmadeKey(item.id)} data-item={item.id} data-label={`Handmade: ${item.make}`}>
+          <div class="opt-text">
+            <span class="make-tag">Make it</span>
+            <span class="opt-label">{item.make}</span>
+          </div>
+          <div class="opt-action" data-action-slot>
+            <span class="skeleton" aria-hidden="true" />
+          </div>
+        </li>
+      )
+    }
+  </ul>
+  {item.restriction && <p class="restriction">{item.restriction}</p>}
+</article>
