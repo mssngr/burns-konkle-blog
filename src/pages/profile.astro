@@ -1,0 +1,19 @@
+---
+import { Profile } from '@/components/auth/profile'
+import AppLayout from '@/layouts/app.astro'
+---
+
+<AppLayout active="profile" title="Your profile · Baby Burns-Konkle" description="Your saved details for the Burns-Konkle family site." noindex>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <h1>Your profile</h1>
+      <div class="page-lede">
+        <p>
+          Optional. For 15 days after an approved visit, you won’t need to agree to the rules again unless they change.
+          Booking details (times and everyone coming) are always needed.
+        </p>
+      </div>
+    </header>
+    <Profile client:only="preact" />
+  </main>
+</AppLayout>

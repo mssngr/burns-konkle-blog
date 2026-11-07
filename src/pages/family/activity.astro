@@ -1,0 +1,23 @@
+---
+import { ActivityApp } from '@/components/activity/activity-page'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/settings.css'
+---
+
+<AppLayout
+  active="family-activity"
+  title="Activity log · Baby Burns-Konkle"
+  description="Every approval, change, flag, pause, and settings edit, with who and when."
+  noindex
+>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Gabriel and Micala</p>
+      <h1>Activity log</h1>
+      <div class="page-lede">
+        <p>Every approval, denial, cancellation, change, flag, published note, pause, and settings edit, with who did it and when. Times are Mountain Time.</p>
+      </div>
+    </header>
+    <ActivityApp client:only="preact" />
+  </main>
+</AppLayout>

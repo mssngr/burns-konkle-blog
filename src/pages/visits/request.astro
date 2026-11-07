@@ -1,0 +1,17 @@
+---
+import { VisitRequestPage } from '@/components/visits/visit-request'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/visits.css'
+---
+
+<AppLayout
+  active="visits"
+  title="Your request · Baby Burns-Konkle"
+  description="Check on your visit request, finish the steps, or make a change."
+  noindex
+  photoNotice
+>
+  <main class="page page-narrow vreq-page">
+    <VisitRequestPage client:only="preact" />
+  </main>
+</AppLayout>

@@ -1,0 +1,18 @@
+---
+import { Schedule } from '@/components/schedule/schedule'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/schedule.css'
+---
+
+<AppLayout active="family-schedule" title="Family schedule · Baby Burns-Konkle" description="The family's events, appointments, and help requests." noindex>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Family</p>
+      <h1>Family schedule</h1>
+      <div class="page-lede">
+        <p>Events, appointments, chances to see family, and needs. Only the four of us can see this page.</p>
+      </div>
+    </header>
+    <Schedule client:only="preact" />
+  </main>
+</AppLayout>

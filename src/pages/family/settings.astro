@@ -1,0 +1,23 @@
+---
+import { SettingsApp } from '@/components/settings/settings-page'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/settings.css'
+---
+
+<AppLayout
+  active="family-settings"
+  title="Settings · Baby Burns-Konkle"
+  description="Hours, rules, booking types, Meal Train, messages, and family accounts."
+  noindex
+>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Gabriel and Micala</p>
+      <h1>Settings</h1>
+      <div class="page-lede">
+        <p>Change how the site works without a developer. Each section saves on its own, and every change is recorded in the activity log.</p>
+      </div>
+    </header>
+    <SettingsApp client:only="preact" />
+  </main>
+</AppLayout>

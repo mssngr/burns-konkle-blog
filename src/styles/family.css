@@ -1,0 +1,639 @@
+/* Family dashboard, visits admin, and visitors. Builds on app.css; theme tokens only. */
+
+/* ---------- Sections ---------- */
+
+.fam-section {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+  scroll-margin-top: 72px;
+}
+
+.fam-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+
+.fam-section-head h2 {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fam-section-head a {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--clay);
+}
+
+.fam-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 99px;
+  background: var(--st-orange);
+  color: var(--st-orange-ink);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.fam-h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* ---------- At a glance ---------- */
+
+.fam-glance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fam-glance a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.fam-glance a strong {
+  color: var(--ink);
+}
+
+.fam-glance a.has {
+  background: var(--st-orange);
+  border-color: transparent;
+  color: var(--st-orange-ink);
+}
+
+.fam-glance a.has strong {
+  color: inherit;
+}
+
+.fam-glance a.flag {
+  background: var(--st-red);
+  color: var(--st-red-ink);
+}
+
+/* ---------- Cards ---------- */
+
+.fam-card {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  min-width: 0;
+}
+
+.fam-card p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.fam-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+
+.fam-card-head .card-title {
+  margin: 0;
+}
+
+.fam-card-head .card-title a {
+  color: inherit;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+}
+
+.fam-card-actions {
+  margin-top: 4px;
+}
+
+.fam-when-line {
+  font-size: 0.95rem;
+}
+
+.fam-missing {
+  color: var(--st-yellow-ink);
+  background: var(--st-yellow);
+  border-radius: 8px;
+  padding: 4px 8px;
+  justify-self: start;
+}
+
+.fam-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-line;
+}
+
+.fam-inline-form {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  background: var(--paper);
+}
+
+.fam-compare {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.fam-compare div {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 8px;
+}
+
+.fam-compare dt {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.fam-compare dd {
+  margin: 0;
+}
+
+.fam-compare div:last-child dd {
+  font-weight: 600;
+}
+
+.fam-big {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.fam-meter {
+  height: 10px;
+  border-radius: 99px;
+  background: var(--st-green);
+  overflow: hidden;
+}
+
+.fam-meter span {
+  display: block;
+  height: 100%;
+  background: var(--st-blue-ink);
+  border-radius: inherit;
+}
+
+.fam-meter.full span {
+  background: var(--danger);
+}
+
+.fam-paused {
+  border-color: var(--st-red);
+  box-shadow: inset 0 0 0 2px var(--st-red);
+}
+
+/* ---------- Lists ---------- */
+
+.fam-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fam-list.card {
+  padding: 0;
+}
+
+.fam-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.fam-list li:last-child {
+  border-bottom: 0;
+}
+
+.fam-list li > a {
+  font-weight: 600;
+}
+
+.fam-list-main {
+  flex: 1 1 200px;
+  display: grid;
+  min-width: 0;
+}
+
+.fam-list-main a {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.fam-list-side {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.fam-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  flex: none;
+}
+
+.fam-plain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.fam-plain > li {
+  display: grid;
+  gap: 4px;
+}
+
+.fam-plain > li.spread {
+  display: flex;
+}
+
+.fam-plain p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.fam-changes > li {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.fam-changes > li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.fam-removed {
+  opacity: 0.6;
+}
+
+.fam-removed > p:first-child {
+  text-decoration: line-through;
+}
+
+/* ---------- Details ---------- */
+
+.fam-detail {
+  gap: 16px;
+}
+
+.fam-box {
+  display: grid;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.fam-facts {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.fam-facts > div {
+  display: grid;
+  grid-template-columns: minmax(96px, 34%) 1fr;
+  gap: 10px;
+}
+
+.fam-facts dt {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.fam-facts dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.fam-people-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  font-size: 0.92rem;
+}
+
+.fam-rules {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.fam-rules li {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.fam-mark {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.fam-rules .ok .fam-mark {
+  background: var(--st-green);
+  color: var(--st-green-ink);
+}
+
+.fam-rules .no .fam-mark {
+  background: var(--st-yellow);
+  color: var(--st-yellow-ink);
+}
+
+.fam-flag-meanings {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.fam-flag-meanings .is-next {
+  font-weight: 600;
+  color: var(--danger);
+}
+
+/* ---------- Forms ---------- */
+
+.fam-when {
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .fam-when {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fam-dt {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 8px;
+}
+
+.fam-person {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.fam-person > :first-child {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 640px) {
+  .fam-person {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 0.8fr) minmax(0, 1.4fr) auto;
+  }
+  .fam-person > :first-child {
+    grid-column: auto;
+  }
+}
+
+.fam-suggest {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px dashed var(--line);
+}
+
+.fam-suggest .input[type="date"] {
+  width: auto;
+  flex: 1 1 140px;
+}
+
+.fam-chip {
+  border: 0;
+  border-radius: 99px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fam-chip:hover {
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
+/* ---------- Filters & tables ---------- */
+
+.fam-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+}
+
+.fam-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 99px;
+  background: var(--line);
+}
+
+.fam-tab {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 99px;
+  cursor: pointer;
+}
+
+.fam-tab[aria-pressed="true"] {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.fam-type-filter,
+.fam-search {
+  flex: 1 1 200px;
+  max-width: 340px;
+}
+
+.fam-table td {
+  min-width: 0;
+}
+
+.fam-link.linklike {
+  font-size: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: left;
+}
+
+.fam-link.linklike:hover {
+  color: var(--clay);
+}
+
+.fam-flag-pill {
+  margin-left: 6px;
+}
+
+.fam-nowrap-sm {
+  white-space: nowrap;
+}
+
+.fam-contact a {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Week calendar ---------- */
+
+.fam-week {
+  display: grid;
+  gap: 8px;
+}
+
+@media (min-width: 560px) {
+  .fam-week {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (min-width: 1240px) {
+  .fam-week {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+.fam-day {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 8px;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  min-width: 0;
+}
+
+.fam-day.is-today {
+  border-color: var(--clay);
+  box-shadow: inset 0 0 0 1px var(--clay);
+}
+
+.fam-day-head {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.fam-day.is-today .fam-day-head {
+  color: var(--clay);
+}
+
+.fam-day ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.fam-day-empty {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.fam-ev {
+  display: grid;
+  width: 100%;
+  gap: 1px;
+  text-align: left;
+  border: 0;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  min-width: 0;
+}
+
+button.fam-ev {
+  cursor: pointer;
+}
+
+button.fam-ev:hover,
+button.fam-ev:focus-visible {
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
+.fam-ev-time {
+  font-weight: 700;
+}
+
+.fam-ev-title {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.fam-ev-sub {
+  opacity: 0.85;
+  overflow-wrap: anywhere;
+}
+
+fieldset.fam-tabs {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+}

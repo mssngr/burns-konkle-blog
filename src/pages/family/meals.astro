@@ -1,0 +1,23 @@
+---
+import { FamilyMeals } from '@/components/meals/family-meals'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/meals.css'
+---
+
+<AppLayout
+  active="family-meals"
+  title="Meal Train · Family · Baby Burns-Konkle"
+  description="Approve Meal Train sign-ups and choose which dates are open."
+  noindex
+>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Family</p>
+      <h1>Meal Train</h1>
+      <div class="page-lede">
+        <p>Approve or deny sign-ups, cancel a drop-off if plans change, and choose which dates are open.</p>
+      </div>
+    </header>
+    <FamilyMeals client:only="preact" />
+  </main>
+</AppLayout>

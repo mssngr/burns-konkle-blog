@@ -1,0 +1,26 @@
+---
+import { BookVisit } from '@/components/visits/book-visit'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/visits.css'
+---
+
+<AppLayout
+  active="visits"
+  title="Book a visit · Baby Burns-Konkle"
+  description="Request a stay, a house visit, a Colorado trip, or time with Vincent. Micala or Gabriel review every request."
+  photoNotice
+>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Visit calendar</p>
+      <h1>Book a visit</h1>
+      <div class="page-lede">
+        <p>
+          Every request is reviewed by Micala or Gabriel before it’s confirmed. Pick a booking type, choose a time at least
+          3 hours ahead, then agree to the house rules and answer a few questions.
+        </p>
+      </div>
+    </header>
+    <BookVisit client:only="preact" />
+  </main>
+</AppLayout>

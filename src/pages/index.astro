@@ -1,44 +1,51 @@
 ---
 import { Image } from 'astro:assets'
 import micala from '@/assets/micala.jpg'
-import ultrasound from '@/assets/ultrasound.jpg'
-import ItemCard from '@/components/item-card.astro'
 import Mobile from '@/components/mobile.astro'
-import ShopLinks from '@/components/shop-links.astro'
-import { help, stages } from '@/data/registry'
-import { localByCategory, shopById, shops } from '@/data/shops'
-import { tutorialGroups, tutorials } from '@/data/tutorials'
-import Layout from '@/layouts/layout.astro'
+import { Icon } from '@/components/shell/family-nav'
+import { publicModules } from '@/data/modules'
+import AppLayout from '@/layouts/app.astro'
 
-const allItems = stages.flatMap(s => s.categories.flatMap(c => c.items))
-const itemCount = allItems.length
-const itemsById = Object.fromEntries(allItems.map(i => [i.id, i]))
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
+
+const blurbs: Record<string, string> = {
+  how: 'A quick guide to visiting, dropping off meals, and helping.',
+  visits:
+    'Request a stay, a house visit, or time with Vincent. Micala or Gabriel review every request.',
+  meals:
+    'Sign up to leave a meal in the cooler out front. A drop-off, not a visit.',
+  offer:
+    'Tell us how you’d like to help, and we’ll point you to the right place.',
+  registry: 'Things we’d love for the baby, with links to buy each one.',
+  updates: 'News, photos, and guessing games from the family.',
+  notes: 'Share a loving note, advice, or a picture with the family.',
+  rules: 'What we ask of everyone who visits.',
+}
+const cards = publicModules.filter(m => m.key in blurbs)
 ---
 
-<Layout
-  title="Baby Burns-Konkle · Shower Registry"
-  description="Micala and Gabriel's baby shower registry. Pick a gift, mark it, and everyone else will see it's covered."
+<AppLayout
+  active="home"
+  title="Baby Burns-Konkle · Family site"
+  description="Visits, meals, help, gifts, and updates around baby Burns-Konkle's arrival."
 >
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
+  <header class="home-hero">
+    <div class="home-hero-inner">
+      <div>
         <Mobile />
-        <p class="eyebrow">Baby shower registry</p>
+        <p class="eyebrow">Arriving mid-December 2026</p>
         <h1>Baby <em>Burns-Konkle</em></h1>
-        <p class="lede">Arriving mid-December 2026. Thank you for celebrating with Micala and Gabriel.</p>
-        <div class="progress" data-progress>
-          <div class="progress-bar"><span data-progress-fill></span></div>
-          <p class="progress-text">
-            <strong data-progress-count>–</strong> of {itemCount} things have a gift on the way
-          </p>
-        </div>
+        <p class="lede">
+          Thank you for loving Micala, Gabriel, Vincent, and the baby. This is where to plan a visit, drop off a meal, offer
+          help, and follow along while the family rests and bonds.
+        </p>
       </div>
       <figure class="portrait">
         <Image
           src={micala}
           alt="Micala smiling in a park, holding her pregnant belly"
-          widths={[360, 560, 840]}
-          sizes="(max-width: 760px) 70vw, 380px"
+          widths={[280, 560]}
+          sizes="280px"
           loading="eager"
           fetchpriority="high"
         />
@@ -46,273 +53,27 @@ const itemsById = Object.fromEntries(allItems.map(i => [i.id, i]))
     </div>
   </header>
 
-  <main>
-    <section class="how" aria-labelledby="how-title">
-      <h2 id="how-title" class="sr-only">How this works</h2>
-      <ol class="steps">
-        <li>
-          <span class="step-n">1</span>
-          <p><strong>Pick an option.</strong> Most items list a few brands. Any of them is great, and so is the handmade one.</p>
-        </li>
-        <li>
-          <span class="step-n">2</span>
-          <p><strong>Tap “I’ll get this.”</strong> It’s marked for everyone right away, so nobody doubles up.</p>
-        </li>
-        <li>
-          <span class="step-n">3</span>
-          <p><strong>Shop small if you can.</strong> Each option links to the maker or a small shop, and many are at <a href="#local">Denver shops</a>. Changed your mind? Tap “Undo.”</p>
-        </li>
-      </ol>
-      <p class="badge-legend">
-        Look for <span class="badge badge-black-owned">Black-owned</span> and
-        <span class="badge badge-colorado">Colorado</span> businesses. We love supporting them.
-      </p>
-      <details class="safety">
-        <summary>A few safety notes before you shop</summary>
-        <ul>
-          <li>Please skip weighted sleep sacks, pillows, positioners, bumpers and loose blankets.</li>
-          <li>Car seats, bassinets and cribs should be new and meet federal safety standards; no secondhand or handmade.</li>
-          <li>No essential oils, camphor or menthol products for baby, and never homemade formula.</li>
-          <li>Pick canopy-style car seat covers, never ones that go between baby and the harness.</li>
-        </ul>
-      </details>
-    </section>
-
-    <div class="toolbar" data-toolbar>
-      <div class="toolbar-inner">
-        <nav class="tabs" aria-label="Registry sections">
-          {
-            stages.map((s, i) => (
-              <a href={`#${s.id}`} class="tab" data-tab={s.id} aria-current={i === 0 ? 'true' : undefined}>
-                {s.tab}
-              </a>
-            ))
-          }
-          <a href="#make" class="tab" data-tab="make">Handmade &amp; funds</a>
-        </nav>
-        <div class="filters">
-          <label class="search">
-            <span class="sr-only">Search the registry</span>
-            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" /><path d="M13 13l4 4" /></svg>
-            <input type="search" placeholder="Search" data-search-input autocomplete="off" />
-          </label>
-          <div class="seg" role="radiogroup" aria-label="Show">
-            <button type="button" role="radio" aria-checked="true" data-filter="all">All</button>
-            <button type="button" role="radio" aria-checked="false" data-filter="open">Still needed</button>
-            <button type="button" role="radio" aria-checked="false" data-filter="mine">
-              Your picks <span class="mine-count" data-mine-count hidden></span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <p class="sync" data-sync aria-live="polite">Loading claims…</p>
-    </div>
-
-    {
-      stages.map(stage => (
-        <section class="stage" id={stage.id} data-stage={stage.id}>
-          <header class="stage-head">
-            <h2>{stage.title}</h2>
-            <p>{stage.intro}</p>
-            <nav class="chips" aria-label={`${stage.title} categories`}>
-              {stage.categories.map(c => (
-                <a href={`#${c.id}`} class="chip" data-chip={c.id}>
-                  {c.title}
-                </a>
-              ))}
-            </nav>
-          </header>
-          {stage.categories.map(cat => (
-            <section class="category" id={cat.id} data-category>
-              <h3>{cat.title}</h3>
-              <div class="items">
-                {cat.items.map(item => (
-                  <ItemCard item={item} />
-                ))}
-              </div>
-              {localByCategory[cat.id] && (
-                <p class="local-line">
-                  <ShopLinks
-                    label="Shop local in Denver"
-                    links={localByCategory[cat.id].map(id => ({ shop: shopById[id].name, href: shopById[id].href }))}
-                  />
-                </p>
-              )}
-              {cat.goodToKnow && (
-                <p class="good-to-know">
-                  <strong>Good to know.</strong> {cat.goodToKnow}
-                </p>
-              )}
-            </section>
-          ))}
-        </section>
-      ))
-    }
-
-    <section class="stage" id="make" data-stage="make">
-      <header class="stage-head">
-        <h2>Make it yourself</h2>
-        <p>
-          How-tos for the registry’s “Make it” options. Planning to make one? Claim its “Make it” option on the
-          registry so nobody doubles up.
-        </p>
-        <nav class="chips" aria-label="Handmade sections">
-          {
-            Object.entries(tutorialGroups).map(([id, g]) => (
-              <a href={`#make-${id}`} class="chip">
-                {g.title}
-              </a>
-            ))
-          }
-          <a href="#funds" class="chip">Chip in</a>
-        </nav>
-      </header>
+  <main class="page">
+    <ul class="cards cards-2" style="list-style:none;padding:0;margin:0">
       {
-        Object.entries(tutorialGroups).map(([groupId, group]) => (
-          <section class="category" id={`make-${groupId}`} data-category>
-            <h3>{group.title}</h3>
-            <p class="group-intro">{group.intro}</p>
-            <div class="items">
-              {tutorials
-                .filter(t => t.group === groupId)
-                .map(t => (
-                  <article
-                    class="item tutorial"
-                    id={`tut-${t.id}`}
-                    data-tutorial
-                    data-search={`${t.title} ${t.steps.join(' ')}`.toLowerCase()}
-                  >
-                    <header class="item-head">
-                      <h4 class="item-name">{t.title}</h4>
-                      {t.yields && <span class="qty">{t.yields}</span>}
-                    </header>
-                    <ol class="tut-steps">
-                      {t.steps.map(step => (
-                        <li>{step}</li>
-                      ))}
-                    </ol>
-                    {t.safety && (
-                      <p class="tut-safety">
-                        <strong>Safety:</strong> {t.safety}
-                      </p>
-                    )}
-                    {t.makes.length > 0 && (
-                      <p class="tut-makes">
-                        Claim it on the registry:{' '}
-                        {t.makes.map((itemId, i) => {
-                          const item = itemsById[itemId]
-                          return (
-                            <>
-                              {i > 0 && ' · '}
-                              <a href={`#item-${itemId}`}>{item?.name ?? itemId}</a>
-                            </>
-                          )
-                        })}
-                      </p>
-                    )}
-                  </article>
-                ))}
-            </div>
-          </section>
+        cards.map(m => (
+          <li>
+            <a class="card module-card" href={`${base}${m.href}`}>
+              <Icon name={m.icon} />
+              <h2>{m.label}</h2>
+              <p>{blurbs[m.key]}</p>
+            </a>
+          </li>
         ))
       }
-
-      <section class="category" id="funds" data-category>
-        <h3>Chip in</h3>
-        <p class="group-intro">
-          Gifts toward help we’ll hire. Mark it here so Micala and Gabriel know, and include your gift with your card.
-        </p>
-        <div class="items help-items">
-          {
-            help.map(h => (
-              <article class="item help" data-help={h.id} data-search={`${h.name} ${h.description}`.toLowerCase()}>
-                <header class="item-head">
-                  <h4 class="item-name">{h.name}</h4>
-                </header>
-                <p class="help-desc">{h.description}</p>
-                {h.link && (
-                  <p class="help-link">
-                    <ShopLinks label="Or give" links={[h.link]} />
-                  </p>
-                )}
-                <div class="help-foot">
-                  <p class="pledgers" data-pledgers>
-                    Be the first to chip in.
-                  </p>
-                  <div class="opt-action" data-help-action>
-                    <span class="skeleton" aria-hidden="true" />
-                  </div>
-                </div>
-              </article>
-            ))
-          }
-        </div>
-      </section>
-    </section>
-
-    <section class="local" id="local" aria-labelledby="local-title">
-      <h2 id="local-title">Shop local in Denver</h2>
-      <p>
-        Independent shops around town. Stock changes, so call ahead for a specific item. Most ship if you’re out of
-        town.
-      </p>
-      <ul class="shop-grid">
-        {
-          shops.map(shop => (
-            <li class="shop">
-              <a href={shop.href} target="_blank" rel="noopener" class="shop-name">
-                {shop.name}
-                <span class="sr-only"> (opens in a new tab)</span>
-              </a>
-              <span class="shop-where">{shop.where}</span>
-              <span class="shop-carries">{shop.carries}</span>
-              {shop.ships && <span class="ships">Ships</span>}
-            </li>
-          ))
-        }
-      </ul>
-      <p class="local-note">
-        No independent Denver shop we found sells new car seats or strollers. For those, the maker’s site lists
-        authorized local retailers.
-      </p>
-    </section>
-
-    <p class="empty" data-empty hidden>Nothing matches. Try another word, or switch back to “All.”</p>
+    </ul>
+    <p class="muted small" style="margin-top:24px">
+      The family’s address is only ever shared personally by the family, never on this site.
+    </p>
   </main>
 
-  <footer class="foot">
-    <figure class="polaroid">
-      <Image src={ultrasound} alt="Ultrasound of Baby Burns-Konkle" widths={[280, 560]} sizes="280px" />
-      <figcaption>First hello · May 2026</figcaption>
-    </figure>
-    <p class="foot-thanks">With love and gratitude,<br /><em>Micala &amp; Gabriel</em></p>
-    <p class="foot-small">
-      Claiming as <span data-whoami>a guest</span> · <button type="button" class="linklike" data-change-name>change name</button>
-    </p>
-  </footer>
-
-  <dialog class="dialog" data-name-dialog>
-    <form method="dialog" data-name-form>
-      <h2>Who’s this gift from?</h2>
-      <p>So Micala and Gabriel know who to thank. We’ll remember it on this device.</p>
-      <label class="field">
-        <span>Your name</span>
-        <input name="name" required maxlength="60" autocomplete="name" placeholder="e.g. Aunt Rosa" />
-      </label>
-      <label class="check">
-        <input type="checkbox" name="anon" />
-        <span>Show other guests “Someone” instead of my name</span>
-      </label>
-      <div class="dialog-actions">
-        <button type="button" class="btn btn-ghost" data-dialog-cancel>Cancel</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-      </div>
-    </form>
-  </dialog>
-
-  <div class="toasts" data-toasts aria-live="polite"></div>
-
   <script>
-    import '@/scripts/registry'
+    // Old registry links (burns-konkle.com/#item-…) moved to /registry/.
+    if (location.hash.length > 1) location.replace(`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}registry/${location.hash}`)
   </script>
-</Layout>
+</AppLayout>

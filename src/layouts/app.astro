@@ -1,0 +1,86 @@
+---
+// The family site shell: module sidebar, "How this works" link on every page, status banners.
+import {
+  FamilyNav,
+  Icon,
+  PhotoNotice,
+  SiteStatus,
+} from '@/components/shell/family-nav'
+import { publicModules } from '@/data/modules'
+import Layout from '@/layouts/layout.astro'
+import '@/styles/app.css'
+
+interface Props {
+  title: string
+  description: string
+  /** Module key from src/data/modules.ts, to highlight in the sidebar. */
+  active?: string
+  noindex?: boolean
+  /** Show the photos & privacy notice (every calendar page). */
+  photoNotice?: boolean
+}
+const { title, description, active, noindex, photoNotice } = Astro.props
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
+---
+
+<Layout title={title} description={description} noindex={noindex}>
+  <div class="app">
+    <header class="topbar">
+      <a href={base} class="brand">Baby <em>Burns-Konkle</em></a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="sidebar" data-menu>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        <span class="sr-only">Menu</span>
+      </button>
+    </header>
+
+    <aside class="sidebar" id="sidebar" data-sidebar>
+      <a href={base} class="brand brand-side">Baby <em>Burns-Konkle</em></a>
+      <nav class="nav-group" aria-label="Site">
+        <ul>
+          {
+            publicModules.map(m => (
+              <li>
+                <a href={`${base}${m.href}`} class="nav-link" aria-current={active === m.key ? 'page' : undefined}>
+                  <Icon name={m.icon} />
+                  {m.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <FamilyNav client:only="preact" active={active} />
+    </aside>
+    <div class="scrim" data-scrim hidden></div>
+
+    <div class="app-main">
+      <div class="app-strip">
+        <SiteStatus client:only="preact" />
+        {
+          active !== 'how' && (
+            <p class="howto-link">
+              New here? <a href={`${base}how-it-works/`}>How this works</a>
+            </p>
+          )
+        }
+      </div>
+      {photoNotice && <PhotoNotice client:only="preact" />}
+      <slot />
+    </div>
+  </div>
+
+  <script>
+    const btn = document.querySelector<HTMLButtonElement>('[data-menu]')!
+    const side = document.querySelector<HTMLElement>('[data-sidebar]')!
+    const scrim = document.querySelector<HTMLElement>('[data-scrim]')!
+    const set = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open))
+      side.classList.toggle('open', open)
+      scrim.hidden = !open
+      document.body.classList.toggle('menu-open', open)
+    }
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'))
+    scrim.addEventListener('click', () => set(false))
+    document.addEventListener('keydown', e => e.key === 'Escape' && set(false))
+  </script>
+</Layout>

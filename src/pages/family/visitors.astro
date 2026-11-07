@@ -1,0 +1,18 @@
+---
+import { Visitors } from '@/components/family/visitors'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/family.css'
+---
+
+<AppLayout active="family-visitors" title="Visitors & flags · Baby Burns-Konkle" description="Everyone who has asked for something, with their flags and bookings." noindex>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Family</p>
+      <h1>Visitors &amp; flags</h1>
+      <div class="page-lede">
+        <p>Everyone who has asked for something, known by name and email. Flags and their notes are only seen by the four of you.</p>
+      </div>
+    </header>
+    <Visitors client:only="preact" />
+  </main>
+</AppLayout>

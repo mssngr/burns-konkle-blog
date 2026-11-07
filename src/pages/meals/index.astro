@@ -1,0 +1,27 @@
+---
+import { MealTrain } from '@/components/meals/meal-train'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/meals.css'
+---
+
+<AppLayout
+  active="meals"
+  title="Meal Train · Baby Burns-Konkle"
+  description="Sign up to drop a meal in the cooler out front for the Burns-Konkles."
+  photoNotice
+>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Drop-offs only</p>
+      <h1>Meal Train</h1>
+      <div class="page-lede">
+        <p>
+          A separate calendar for dropping meals in the cooler out front. It’s for drop-offs only, not visits. Pick an
+          open (green) slot, then confirm what you’ll bring. One person per slot, and you’re welcome to sign up for as many
+          as you like.
+        </p>
+      </div>
+    </header>
+    <MealTrain client:only="preact" />
+  </main>
+</AppLayout>

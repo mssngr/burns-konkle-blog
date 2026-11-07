@@ -1,0 +1,138 @@
+/* Offerings: the public interest form and the family's replies. */
+
+.offer-checks {
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .offer-checks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.offer-choices {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.offer-choice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.offer-choice:last-child {
+  border-bottom: 0;
+}
+
+.offer-choice-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 200px;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Family page ---------- */
+
+.fo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.fo-card {
+  display: grid;
+  gap: 12px;
+  scroll-margin-top: 80px;
+}
+
+.fo-card .card-title,
+.fo-card .meta {
+  margin: 0;
+}
+
+.fo-card.is-focused {
+  outline: 2px solid var(--clay);
+  outline-offset: 2px;
+}
+
+.fo-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fo-options li {
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: var(--night-soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.fo-facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.fo-facts dt {
+  color: var(--muted);
+}
+
+.fo-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.fo-reply {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.fo-reply-pending {
+  border-left: 4px solid var(--clay);
+}
+
+.fo-reply-sent {
+  border-left: 4px solid var(--sage);
+}
+
+.fo-body {
+  margin: 0;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.fo-withdrawn summary {
+  cursor: pointer;
+}
+
+.fo-withdrawn .fo-reply {
+  margin-top: 8px;
+  opacity: 0.75;
+}
+
+.fo-draft {
+  padding-top: 4px;
+}

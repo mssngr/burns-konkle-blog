@@ -1,0 +1,19 @@
+---
+import { FamilyNotes } from '@/components/notes/family-notes'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/updates.css'
+import '@/styles/notes.css'
+---
+
+<AppLayout active="family-notes" title="Notes to publish · Baby Burns-Konkle" description="Family & friends notes waiting to be published." noindex>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <p class="page-eyebrow">Family</p>
+      <h1>Notes to publish</h1>
+      <div class="page-lede">
+        <p>Every note waits here until Micala or Gabriel publish it. Senders who agreed to emails hear from us once their note is on the site.</p>
+      </div>
+    </header>
+    <FamilyNotes client:only="preact" />
+  </main>
+</AppLayout>

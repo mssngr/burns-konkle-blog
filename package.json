@@ -12,8 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/preact": "5.1.5",
+    "@supabase/supabase-js": "^2.119.0",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.3",
+    "preact": "10",
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {

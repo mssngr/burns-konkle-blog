@@ -1,14 +1,76 @@
-# Baby Burns-Konkle shower registry
+# Burns-Konkle family site
 
-Astro site deployed to GitHub Pages (burns-konkle.com) on every push to `main`.
+A private-by-design site for coordinating visits, meals, help, gifts, and updates around baby Burns-Konkle's arrival. Astro (static, GitHub Pages at burns-konkle.com) with Preact islands, backed by Supabase. See [docs/architecture.md](docs/architecture.md) for how it fits together.
 
-- **Registry items:** `src/data/registry.ts`. Edit names/options there; a claim is keyed by item id + option name, so renaming an option orphans its claims.
-- **Shared claims:** stored in a [Pantry](https://getpantry.cloud) basket (`registry` in production, `registry-dev` under `bun dev`). Config in `src/config.ts`.
-- **Family view:** add `?family` to the URL to see names of guests who chose to stay anonymous.
-- **Thank-you list:** `/thanks/` (unlinked, not indexed) groups every claim by guest name, with shared “Arrived” and “Thank-you sent” checkmarks, printing and a CSV download. Checkmarks are stored under `thanks` in the same Pantry basket.
+## Modules
+
+Everyone: Home, How this works, Visit calendar, Meal Train, Offer help, Baby registry, Baby & Micala updates, Family & friends notes, House rules.
+
+Family (signed in with two-step verification): Dashboard, Visits & blocks, Meal Train, Family schedule, Offers of help, Notes to publish, Visitors & flags. Gabriel and Micala also get Registry thank-yous, Sent emails, Activity log, and Settings.
+
+## Local development
+
+Needs [Bun](https://bun.sh), Docker, and the [Supabase CLI](https://supabase.com/docs/guides/cli).
 
 ```sh
 bun install
-bun dev      # http://localhost:4321
-bun run build
+supabase start          # Postgres, Auth, Storage, Edge Functions, Mailpit
+supabase db reset       # apply migrations + supabase/seed.sql
+bun dev                 # http://localhost:4321
 ```
+
+- Sign-in emails and every site email land in Mailpit at http://127.0.0.1:54324 (emails are marked "logged" in the outbox when no Resend key is set).
+- Local family accounts are `gabriel@example.test`, `micala@example.test` (Admins), `vincent@example.test`, `samantha@example.test` (Elevated). Sign in with the emailed code, then set up an authenticator app.
+- Meal Train dates are open for the next 45 days locally.
+
+## The registry
+
+`/registry/` is the original shower registry, unchanged: items live in `src/data/registry.ts`, claims in a [Pantry](https://getpantry.cloud) basket (`registry` in production, `registry-dev` under `bun dev`, config in `src/config.ts`). Add `?family` to see anonymous guests' names. `/thanks/` is the registry thank-you list.
+
+## Production setup (one time)
+
+1. **Create a Supabase project** (free tier is fine). Then link and push the schema and the email function:
+
+   ```sh
+   supabase link --project-ref <project-ref>
+   supabase db push
+   supabase functions deploy send-outbox --no-verify-jwt
+   ```
+
+2. **Point the database at the email function** and set the site's address (SQL editor):
+
+   ```sql
+   update private.config set value = 'https://<project-ref>.supabase.co/functions/v1/send-outbox' where key = 'send_outbox_url';
+   update public.settings set value = '"https://burns-konkle.com"' where key = 'site_url';
+   ```
+
+3. **Family sign-in emails.** Set each person's sign-in email once (never commit them; this repo is public):
+
+   ```sql
+   update public.family set email = '…' where person = 'gabriel';
+   update public.family set email = '…' where person = 'micala';
+   update public.family set email = '…' where person = 'vincent';
+   update public.family set email = '…' where person = 'samantha';
+   ```
+
+   After that, Admins can change them in Settings → Family accounts.
+
+4. **Resend** (all site emails). Create an account, verify the `burns-konkle.com` domain, then:
+
+   ```sh
+   supabase secrets set RESEND_API_KEY=re_… MAIL_FROM="Burns-Konkle Family <family@burns-konkle.com>"
+   ```
+
+   Optional: `MAIL_REPLY_TO=…` so replies reach a family inbox.
+
+5. **Auth settings** in the Supabase dashboard:
+   - Authentication → URL Configuration: Site URL `https://burns-konkle.com`.
+   - Authentication → Emails → SMTP: use Resend's SMTP (`smtp.resend.com`, port 465, user `resend`, your API key as the password). The built-in sender is limited to a few emails an hour.
+   - Authentication → Emails → Templates → Magic Link: include `{{ .Token }}` (copy `supabase/templates/magic_link.html`); the site asks for the 6-digit code.
+   - Authentication → Multi-Factor: enable TOTP (authenticator app).
+
+6. **GitHub** → Settings → Secrets and variables → Actions → Variables: add `PUBLIC_SUPABASE_URL` (`https://<project-ref>.supabase.co`) and `PUBLIC_SUPABASE_ANON_KEY` (the project's anon/publishable key). Pushing to `main` deploys.
+
+7. **Open Meal Train dates** and turn off the test-mode banner (Settings → General) once the family is done testing. Settings → Test data clears practice bookings.
+
+Later schema changes: add a file to `supabase/migrations/` and run `supabase db push`.

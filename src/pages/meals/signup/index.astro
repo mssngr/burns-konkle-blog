@@ -1,0 +1,23 @@
+---
+import { MealSignup } from '@/components/meals/signup'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/meals.css'
+---
+
+<AppLayout
+  active="meals"
+  title="Your Meal Train sign-up · Baby Burns-Konkle"
+  description="Your private Meal Train sign-up page."
+  noindex
+>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <p class="page-eyebrow">Meal Train</p>
+      <h1>Your sign-up</h1>
+      <div class="page-lede">
+        <p>This page is private to you. Keep the link from your email to come back to it.</p>
+      </div>
+    </header>
+    <MealSignup client:only="preact" />
+  </main>
+</AppLayout>

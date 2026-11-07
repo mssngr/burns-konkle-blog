@@ -1,0 +1,22 @@
+---
+import { OfferPage } from '@/components/offers/offer-form'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/offers.css'
+---
+
+<AppLayout
+  active="offer"
+  title="Offer help · Baby Burns-Konkle"
+  description="Tell the Burns-Konkles how you'd like to help, and we'll point you to the right place."
+>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <p class="page-eyebrow">Offerings</p>
+      <h1>Offer help</h1>
+      <div class="page-lede">
+        <p>Fill out a quick checklist to tell us how you can help, and we’ll point you to the right place.</p>
+      </div>
+    </header>
+    <OfferPage client:only="preact" />
+  </main>
+</AppLayout>

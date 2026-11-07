@@ -1,0 +1,160 @@
+/* Family schedule. */
+
+.schedule-bar p {
+  max-width: 60ch;
+}
+
+.days {
+  gap: 22px;
+}
+
+.day {
+  display: grid;
+  gap: 10px;
+}
+
+.day-head {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.entry {
+  display: grid;
+  gap: 8px 18px;
+  padding: 16px;
+  min-width: 0;
+  scroll-margin-top: 80px;
+}
+
+@media (min-width: 640px) {
+  .entry {
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    padding: 18px 22px;
+  }
+}
+
+.entry-time {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--clay);
+}
+
+.entry-main {
+  gap: 8px;
+  min-width: 0;
+}
+
+.entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.entry-title {
+  font-size: 1.15rem;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.entry-line {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.entry-notes {
+  white-space: pre-line;
+  color: var(--muted);
+}
+
+.kind {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: var(--line);
+  color: var(--muted);
+}
+
+.kind-appointment {
+  background: var(--night-soft);
+  color: var(--ink);
+}
+
+.kind-family {
+  background: var(--sage-soft);
+  color: var(--sage);
+}
+
+.kind-need {
+  background: color-mix(in oklab, var(--clay) 18%, var(--card));
+  color: var(--clay);
+}
+
+.entry-help {
+  border-color: color-mix(in oklab, var(--clay) 55%, var(--line));
+}
+
+.help-box {
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--clay) 10%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--clay) 30%, transparent);
+}
+
+.help-title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.entry-admin {
+  border-top: 1px dashed var(--line);
+  padding-top: 10px;
+}
+
+.entry.focused {
+  border-color: var(--clay);
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--clay) 35%, transparent),
+    var(--shadow);
+}
+
+.days-past .entry {
+  opacity: 0.8;
+}
+
+.when-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.when-grid .when-date {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 480px) {
+  .when-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+  .when-grid .when-date {
+    grid-column: auto;
+  }
+}
+
+.when-grid .input {
+  min-width: 0;
+}

@@ -1,0 +1,18 @@
+---
+import { VisitsAdmin } from '@/components/family/visits-admin'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/family.css'
+---
+
+<AppLayout active="family-visits" title="Visits & blocks · Baby Burns-Konkle" description="Every visit booking, the family week calendar, and blocked time." noindex>
+  <main class="page page-wide">
+    <header class="page-head">
+      <p class="page-eyebrow">Family</p>
+      <h1>Visits &amp; blocks</h1>
+      <div class="page-lede">
+        <p>Every booking with its details and actions, a week at a glance, and blocked time. All times are Mountain Time.</p>
+      </div>
+    </header>
+    <VisitsAdmin client:only="preact" />
+  </main>
+</AppLayout>

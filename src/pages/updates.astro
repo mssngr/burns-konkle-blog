@@ -1,0 +1,24 @@
+---
+import { Updates } from '@/components/updates/updates'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/updates.css'
+---
+
+<AppLayout
+  active="updates"
+  title="Baby & Micala updates · Baby Burns-Konkle"
+  description="News, photos, polls, and guessing games from the Burns-Konkle family."
+  noindex
+>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <p class="page-eyebrow">From the family</p>
+      <h1>Baby &amp; Micala updates</h1>
+      <div class="page-lede">
+        <p>News, photos, and guessing games from Micala, Gabriel, Vincent, and Samantha. Answer a poll or make a guess, no sign-in needed.</p>
+        <p>Please keep these photos here: don’t save or share them anywhere else.</p>
+      </div>
+    </header>
+    <Updates client:only="preact" />
+  </main>
+</AppLayout>

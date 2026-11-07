@@ -1,0 +1,88 @@
+/* Family & friends notes, and the family's queue. Photo grid styles are in updates.css. */
+
+.note-list {
+  display: grid;
+  gap: 14px;
+}
+
+.note-card {
+  border-left: 4px solid var(--sage);
+}
+
+.note-sign {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.note-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+}
+
+.note-name::before {
+  content: "— ";
+  color: var(--muted);
+}
+
+.note-form .ff-label {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Family queue ---------- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--line);
+  overflow-x: auto;
+}
+
+.tab {
+  flex: 1 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab.on {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 1px;
+}
+
+.tab-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: var(--paper);
+  font-size: 0.75rem;
+}
+
+.queue-card .card-title {
+  overflow-wrap: anywhere;
+}
+
+.queue-card.focused {
+  border-color: var(--clay);
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--clay) 35%, transparent),
+    var(--shadow);
+  scroll-margin-top: 80px;
+}

@@ -6,7 +6,7 @@ import {
   splitOption,
   stages,
 } from '@/data/registry'
-import Layout from '@/layouts/layout.astro'
+import AppLayout from '@/layouts/app.astro'
 
 /** claim key → what it is, so the list reads as gifts rather than keys. */
 const labels: Record<string, { item: string; option: string; kind: string }> =
@@ -37,7 +37,8 @@ for (const h of help)
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
 ---
 
-<Layout
+<AppLayout
+  active="thanks"
   title="Thank-you list · Baby Burns-Konkle"
   description="Who's giving what, for Micala and Gabriel's thank-you notes."
   noindex
@@ -63,7 +64,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
       <div class="thanks-actions">
         <button type="button" class="btn btn-ghost" data-print>Print</button>
         <button type="button" class="btn btn-ghost" data-csv>Download spreadsheet</button>
-        <a class="btn btn-ghost" href={`${base}?family`}>Registry, family view</a>
+        <a class="btn btn-ghost" href={`${base}registry/?family`}>Registry, family view</a>
       </div>
     </div>
     <p class="sync" data-sync aria-live="polite">Loading claims…</p>
@@ -81,4 +82,4 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
   <script>
     import '@/scripts/thanks'
   </script>
-</Layout>
+</AppLayout>

@@ -1,0 +1,297 @@
+/* Meal Train: the public calendar, the private sign-up page, and the family page. */
+
+/* ---------- Dietary needs & drop-off note ---------- */
+
+.diet h2 {
+  margin-bottom: 8px;
+}
+
+.diet-list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+
+.diet-thanks {
+  margin: 10px 0 0;
+  font-weight: 600;
+  color: var(--sage);
+}
+
+.dropoff-note {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--night-soft);
+  font-size: 0.92rem;
+}
+
+/* ---------- Calendar ---------- */
+
+.mt-nav {
+  flex-wrap: nowrap;
+}
+
+.mt-range {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.mt-weeks {
+  display: grid;
+  gap: 22px;
+  transition: opacity 0.15s;
+}
+
+.mt-weeks.is-loading {
+  opacity: 0.55;
+}
+
+.mt-week-title {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.mt-grid {
+  display: grid;
+  grid-template-columns: 4.2rem repeat(var(--mt-cols, 3), minmax(0, 1fr));
+  gap: 4px;
+}
+
+.mt-head {
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+  padding: 0 2px 4px;
+  min-width: 0;
+}
+
+.mt-head span {
+  display: block;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.mt-day {
+  font-size: 0.78rem;
+  line-height: 1.2;
+  color: var(--muted);
+  align-self: center;
+  min-width: 0;
+}
+
+.mt-day strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.85rem;
+}
+
+.mt-day.is-today strong {
+  color: var(--clay);
+}
+
+.mt-cell {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.mt-cell > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+button.mt-cell {
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px
+    color-mix(in oklab, var(--st-green-ink) 35%, transparent);
+  transition: box-shadow 0.12s;
+}
+
+button.mt-cell:hover {
+  box-shadow: inset 0 0 0 2px var(--st-green-ink);
+}
+
+button.mt-cell:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 2px;
+}
+
+@media (min-width: 760px) {
+  .mt-grid {
+    grid-template-columns: 7.5rem repeat(var(--mt-cols, 3), minmax(0, 1fr));
+    gap: 6px;
+  }
+  .mt-head {
+    font-size: 0.8rem;
+  }
+  .mt-cell {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+  .mt-day {
+    font-size: 0.85rem;
+  }
+  .mt-day strong {
+    display: inline;
+    margin-right: 4px;
+  }
+}
+
+.mt-picked {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+/* ---------- Sign-up page ---------- */
+
+.ms-slot {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* ---------- Family page ---------- */
+
+.fm-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.fm-item {
+  display: grid;
+  gap: 10px;
+  scroll-margin-top: 80px;
+}
+
+.fm-item .card-title,
+.fm-item .meta {
+  margin: 0;
+}
+
+.is-focused {
+  outline: 2px solid var(--clay);
+  outline-offset: 2px;
+}
+
+.fm-facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.fm-facts dt {
+  color: var(--muted);
+}
+
+.fm-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.fm-closed summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.mc-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.mc-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.mc-dow {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.mc-day {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  min-width: 0;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+button.mc-day {
+  cursor: pointer;
+}
+
+button.mc-day:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
+button.mc-day:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 2px;
+}
+
+button.mc-day:disabled {
+  cursor: progress;
+}
+
+.mc-day.is-past {
+  color: var(--muted);
+  opacity: 0.55;
+}
+
+.mc-day.is-today .mc-num {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mc-count {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  min-width: 16px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border-radius: 99px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.65rem;
+  line-height: 16px;
+  text-align: center;
+}
+
+@media (min-width: 760px) {
+  .mc-day {
+    min-height: 56px;
+  }
+}

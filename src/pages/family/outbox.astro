@@ -1,0 +1,23 @@
+---
+import { OutboxApp } from '@/components/outbox/outbox-page'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/settings.css'
+---
+
+<AppLayout
+  active="family-outbox"
+  title="Sent emails · Baby Burns-Konkle"
+  description="Every email the site has sent or queued."
+  noindex
+>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Gabriel and Micala</p>
+      <h1>Sent emails</h1>
+      <div class="page-lede">
+        <p>Every email the site sends, newest first. Open one to read it in full.</p>
+      </div>
+    </header>
+    <OutboxApp client:only="preact" />
+  </main>
+</AppLayout>

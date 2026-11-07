@@ -1,0 +1,137 @@
+---
+import { Icon } from '@/components/shell/family-nav'
+import type { IconName } from '@/data/modules'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/visits.css'
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
+
+const ways: {
+  icon: IconName
+  title: string
+  text: string
+  href: string
+  cta: string
+}[] = [
+  {
+    icon: 'calendar',
+    title: 'Visit',
+    text: 'Book a time on the calendar to stay, visit the house, or spend time with Vincent. Every request is reviewed by Micala or Gabriel.',
+    href: 'visits/',
+    cta: 'Book a visit',
+  },
+  {
+    icon: 'meal',
+    title: 'Drop off a meal',
+    text: 'Sign up for a Meal Train slot and leave food in the cooler out front. It’s a drop-off, not a visit.',
+    href: 'meals/',
+    cta: 'See the Meal Train',
+  },
+  {
+    icon: 'hand',
+    title: 'Offer help',
+    text: 'Fill out a quick checklist to tell us how you can help, and we’ll point you to the right place.',
+    href: 'offer/',
+    cta: 'Offer help',
+  },
+]
+
+const steps = [
+  'Pick a booking type and an open (green) time, at least 3 hours ahead.',
+  'Read and agree to each house rule, and answer a few questions, including everyone who’s coming.',
+  'Micala or Gabriel review your request. They may approve it or suggest another time.',
+  'You’ll get an email. Please don’t plan on it until you’re approved.',
+]
+
+const colors: { s: string; name: string; text: string }[] = [
+  { s: 'green', name: 'Green', text: 'open' },
+  { s: 'yellow', name: 'Yellow', text: 'requested, not finished' },
+  { s: 'orange', name: 'Orange', text: 'waiting for approval' },
+  { s: 'blue', name: 'Blue', text: 'approved, with room left' },
+  { s: 'purple', name: 'Purple', text: 'full' },
+  { s: 'red', name: 'Red', text: 'not available' },
+]
+
+const goodToKnow = [
+  'Visiting hours are 9 AM to 7 PM.',
+  'Booking is closed from midnight to 4 AM so the family can rest.',
+  'House visits are up to 2 hours and stays up to 48 hours. For longer, send another request.',
+  'Please stay home if anyone in your group has been sick in the last 72 hours, even with a cold.',
+  'No pictures without permission, and nothing posted to social media.',
+  'A Meal Train drop-off is not an invitation inside.',
+  'The family’s address is only ever shared personally by the family, never on this site.',
+]
+---
+
+<AppLayout
+  active="how"
+  title="How this works · Baby Burns-Konkle"
+  description="A quick guide to visiting, dropping off meals, and helping the Burns-Konkles while they rest and bond with baby."
+>
+  <main class="page how">
+    <header class="page-head">
+      <p class="page-eyebrow">Start here</p>
+      <h1>How this works</h1>
+      <div class="page-lede">
+        <p>A quick guide to visiting, dropping off meals, and helping the Burns-Konkles while they rest and bond with baby.</p>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="how-ways">
+      <h2 id="how-ways">Three ways to show up</h2>
+      <ul class="cards cards-3 how-ways">
+        {
+          ways.map(w => (
+            <li>
+              <a class="card how-way" href={`${base}${w.href}`}>
+                <Icon name={w.icon} />
+                <h3>{w.title}</h3>
+                <p>{w.text}</p>
+                <span class="how-cta">{w.cta} →</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="how-booking">
+      <h2 id="how-booking">How booking works</h2>
+      <ol class="how-steps">
+        {
+          steps.map((s, i) => (
+            <li>
+              <span class="how-step-n" aria-hidden="true">{i + 1}</span>
+              <p>{s}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="how-colors">
+      <h2 id="how-colors">What the colors mean</h2>
+      <p class="muted">The same six colors on every calendar on the site.</p>
+      <ul class="how-colors">
+        {
+          colors.map(c => (
+            <li class={`how-color st-${c.s}`}>
+              <strong>{c.name}</strong>
+              <span>{c.text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="how-good">
+      <h2 id="how-good">Good to know</h2>
+      <ul class="card how-good">
+        {goodToKnow.map(g => <li>{g}</li>)}
+      </ul>
+      <p class="muted small how-more">
+        Read the full <a href={`${base}rules/`}>house rules</a>, or <a href={`${base}visits/`}>book a visit</a>.
+      </p>
+    </section>
+  </main>
+</AppLayout>

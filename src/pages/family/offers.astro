@@ -1,0 +1,26 @@
+---
+import { FamilyOffers } from '@/components/offers/family-offers'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/offers.css'
+---
+
+<AppLayout
+  active="family-offers"
+  title="Offers of help · Family · Baby Burns-Konkle"
+  description="Read offers of help and reply on Micala and Gabriel's behalf."
+  noindex
+>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Family</p>
+      <h1>Offers of help</h1>
+      <div class="page-lede">
+        <p>
+          Draft a reply on Micala and Gabriel’s behalf, explaining how the offer can best be fulfilled. A reply is sent
+          once 2 of the others approve it.
+        </p>
+      </div>
+    </header>
+    <FamilyOffers client:only="preact" />
+  </main>
+</AppLayout>

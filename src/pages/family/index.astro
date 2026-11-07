@@ -1,0 +1,18 @@
+---
+import { Dashboard } from '@/components/family/dashboard'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/family.css'
+---
+
+<AppLayout active="family" title="Dashboard · Baby Burns-Konkle" description="Everything waiting for the family, in one place." noindex>
+  <main class="page">
+    <header class="page-head">
+      <p class="page-eyebrow">Family</p>
+      <h1>Dashboard</h1>
+      <div class="page-lede">
+        <p>Everything waiting for you, with the buttons right on each card. All times are Mountain Time.</p>
+      </div>
+    </header>
+    <Dashboard client:only="preact" />
+  </main>
+</AppLayout>

@@ -1,0 +1,24 @@
+---
+import { Notes } from '@/components/notes/notes'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/updates.css'
+import '@/styles/notes.css'
+---
+
+<AppLayout
+  active="notes"
+  title="Family & friends notes · Baby Burns-Konkle"
+  description="Loving notes, advice, supportive words, and pictures for the Burns-Konkle family."
+  noindex
+>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <p class="page-eyebrow">For the family</p>
+      <h1>Family &amp; friends notes</h1>
+      <div class="page-lede">
+        <p>A place to share loving notes, advice, supportive words, and pictures with Micala, Gabriel, Vincent, and baby.</p>
+      </div>
+    </header>
+    <Notes client:only="preact" />
+  </main>
+</AppLayout>

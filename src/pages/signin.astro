@@ -1,0 +1,19 @@
+---
+import { SignIn } from '@/components/auth/sign-in'
+import AppLayout from '@/layouts/app.astro'
+---
+
+<AppLayout active="signin" title="Sign in · Baby Burns-Konkle" description="Sign in to the Burns-Konkle family site." noindex>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <h1>Sign in</h1>
+      <div class="page-lede">
+        <p>
+          Family members sign in here. Guests can also make an optional profile to save their details and skip the rules
+          for 15 days after an approved visit. You never need an account to book.
+        </p>
+      </div>
+    </header>
+    <SignIn client:only="preact" />
+  </main>
+</AppLayout>

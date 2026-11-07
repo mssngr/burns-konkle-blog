@@ -1,0 +1,26 @@
+---
+import { RulesList } from '@/components/visits/rules-list'
+import AppLayout from '@/layouts/app.astro'
+import '@/styles/visits.css'
+---
+
+<AppLayout
+  active="rules"
+  title="House rules · Baby Burns-Konkle"
+  description="The house rules every guest agrees to before visiting the Burns-Konkles."
+>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <p class="page-eyebrow">Visitation rules</p>
+      <h1>House rules</h1>
+      <div class="page-lede">
+        <p>
+          These apply to every stay, house visit, Colorado trip, and outing with Vincent. When you book, you’ll agree to
+          each rule one at a time, with its own “Yes, I agree” box. Meal Train drop-offs don’t need them, since drop-offs
+          aren’t visits.
+        </p>
+      </div>
+    </header>
+    <RulesList client:only="preact" />
+  </main>
+</AppLayout>
