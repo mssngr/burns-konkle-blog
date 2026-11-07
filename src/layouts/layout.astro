@@ -27,6 +27,25 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
     <Font cssVariable="--font-fraunces" preload />
     <Font cssVariable="--font-figtree" preload />
     <title>{title}</title>
+    <script is:inline>
+      // GitHub Pages caches HTML for 10 minutes, so right after a deploy a
+      // cached page can point at script files that no longer exist and its
+      // islands never start. Reload once to pick up the fresh page.
+      addEventListener('load', function () {
+        setTimeout(function () {
+          if (!navigator.onLine || !document.querySelector('astro-island[ssr]'))
+            return
+          try {
+            if (sessionStorage.getItem('stale-reload') === location.pathname)
+              return
+            sessionStorage.setItem('stale-reload', location.pathname)
+          } catch (e) {
+            return
+          }
+          location.reload()
+        }, 6000)
+      })
+    </script>
   </head>
   <body>
     <slot />

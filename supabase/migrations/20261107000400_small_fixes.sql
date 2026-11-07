@@ -46,3 +46,18 @@ begin
   perform private.log('note.submitted', format('%s sent a note', n.name), jsonb_build_object('note_id', n.id), 'guest: ' || n.name);
   return jsonb_build_object('id', n.id, 'upload_token', n.upload_token);
 end $$;
+
+-- Applying a change that only moves the time used to wipe the attendee list:
+-- clean_attendees(null) is '[]', so the coalesce never fell back to the old list.
+create or replace function private.apply_change(c public.booking_changes) returns public.bookings
+language plpgsql volatile security definer set search_path = '' as $$
+declare b public.bookings;
+begin
+  update public.bookings set starts_at = c.starts_at, ends_at = c.ends_at,
+         attendees = case when c.attendees is null then attendees else private.clean_attendees(c.attendees) end,
+         reminders_sent = '{}'
+   where id = c.booking_id returning * into b;
+  -- Re-check against the actual new state; any overflow rolls the whole thing back.
+  if b.status = 'approved' then perform private.check_room(b); end if;
+  return b;
+end $$;
