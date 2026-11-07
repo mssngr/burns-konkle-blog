@@ -103,8 +103,16 @@ export function RulesFlow({
         <div class={`rule-check${checked ? ' is-checked' : ''}`}>
           <Check
             checked={checked}
-            disabled={checked || save.busy}
-            onChange={v => v && agree(rule)}
+            disabled={save.busy}
+            onChange={v =>
+              v
+                ? agree(rule)
+                : setAgreed(s => {
+                    const n = new Set(s)
+                    n.delete(rule.id)
+                    return n
+                  })
+            }
           >
             {isConfirm ? rule.body : 'Yes, I agree'}
           </Check>
