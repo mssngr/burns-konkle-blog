@@ -1172,3 +1172,113 @@ p.local-note {
   font-size: 0.85rem;
   margin-top: 14px;
 }
+
+/* ---------- Tutorials ---------- */
+
+.item {
+  scroll-margin-top: 140px;
+}
+
+.group-intro {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: -4px 0 14px;
+  max-width: 70ch;
+}
+
+.tut-steps {
+  list-style: decimal;
+  margin: 10px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.tut-steps li::marker {
+  color: var(--clay);
+  font-weight: 700;
+}
+
+.tut-safety {
+  margin: 12px 0 0;
+  font-size: 0.88rem;
+  background: var(--gold-soft);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.tut-makes {
+  margin: auto 0 4px;
+  padding-top: 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.tut-makes a,
+.how-to {
+  color: var(--clay);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--clay) 35%, transparent);
+  text-underline-offset: 2px;
+}
+
+.how-to {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.item:target {
+  border-color: var(--clay);
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--clay) 25%, transparent),
+    var(--shadow);
+}
+
+/* ---------- Ownership badges ---------- */
+
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 99px;
+  vertical-align: 2px;
+  white-space: nowrap;
+}
+
+.badge-black-owned {
+  background: #2a211c;
+  color: #f2d48a;
+}
+
+.badge-colorado {
+  background: #26304a;
+  color: #f6efe4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .badge-black-owned {
+    background: #f2d48a;
+    color: #2a211c;
+  }
+  :root:not([data-theme="light"]) .badge-colorado {
+    background: #c9d4ef;
+    color: #1a2136;
+  }
+}
+
+.badge-legend {
+  margin: 16px 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.badge-legend .badge {
+  margin-left: 0;
+}

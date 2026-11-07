@@ -2,6 +2,8 @@
 // Preference order: local Denver shops (see shops.ts) > the maker's own store > small independent
 // retailers > Etsy makers. Never Amazon or Walmart; Target only as a last resort.
 
+import productLinks from './product-links.json'
+
 export interface ShopLink {
   shop: string
   href: string
@@ -38,30 +40,22 @@ const GMD = (q: string) =>
     'Green Mountain Diapers',
     `https://www.greenmountaindiapers.com/search?q=${encodeURIComponent(q)}`,
   )
-const TATTERED = (q: string) =>
+const BOOKSHOP = (q: string) =>
   l(
-    'Tattered Cover (Denver)',
-    `https://www.tatteredcover.com/search/site/${encodeURIComponent(q)}`,
+    'Bookshop.org (supports indie bookstores)',
+    `https://bookshop.org/search?keywords=${encodeURIComponent(q)}`,
   )
 
-export const links: Record<string, ShopLink[]> = {
+const baseLinks: Record<string, ShopLink[]> = {
   // ----- Carrying & travel -----
-  'stretchy-wraps/moby-hybrid': [l('Moby', 'https://mobywrap.com/')],
   'stretchy-wraps/solly-baby': [l('Solly Baby', 'https://sollybaby.com/')],
   'stretchy-wraps/boba-wrap': [l('Boba', 'https://boba.com/')],
   'stretchy-wraps/handmade': [TREELOTTA, OCP('cotton jersey')],
   'ring-sling/ergobaby-embrace': [l('Ergobaby', 'https://ergobaby.com/')],
   'ring-sling/baby-tula-explore': [l('Baby Tula', 'https://babytula.com/')],
-  'ring-sling/sakura-bloom-or-wildbird-linen-ring-slin': [
-    l('Sakura Bloom', 'https://www.sakurabloom.com/'),
-    l('Wildbird', 'https://wildbird.co/'),
-  ],
   'ring-sling/handmade': [SLING_RINGS, etsy('linen ring sling')],
   'travel-system/chicco-keyfit-35-cleartex-corso-or-bravo': [
     l('Chicco', 'https://www.chiccousa.com/'),
-  ],
-  'travel-system/uppababy-mesa-max-vista-or-cruz': [
-    l('UPPAbaby', 'https://uppababy.com/'),
   ],
   'travel-system/nuna-pipa-mixx-or-trvl': [
     l('Nuna', 'https://nunababy.com/usa/'),
@@ -79,9 +73,6 @@ export const links: Record<string, ShopLink[]> = {
   'diaper-backpacks/itzy-ritzy-boss-plus': [
     l('Itzy Ritzy', 'https://itzyritzy.com/'),
   ],
-  'diaper-backpacks/freshly-picked-city-pack': [
-    l('Freshly Picked', 'https://freshlypicked.com/'),
-  ],
   'diaper-backpacks/a-fold-out-changing-station-backpack': [
     etsy('diaper backpack changing station'),
   ],
@@ -95,12 +86,6 @@ export const links: Record<string, ShopLink[]> = {
     l('Chicco', 'https://www.chiccousa.com/'),
   ],
   'wheeled-bassinet/halo-bassinest-swivel': [
-    l('HALO', 'https://www.halosleep.com/'),
-  ],
-  'stationary-bassinet/moses-basket-with-stand': [
-    l('Badger Basket', 'https://badgerbasket.com/'),
-  ],
-  'stationary-bassinet/halo-bassinest-essentia': [
     l('HALO', 'https://www.halosleep.com/'),
   ],
   'bassinet-pad/naturepedic-organic-bassinet-pad': [
@@ -132,8 +117,6 @@ export const links: Record<string, ShopLink[]> = {
   ],
   'muslin-swaddles/kyte-baby': [l('Kyte Baby', 'https://kytebaby.com/')],
   'muslin-swaddles/handmade': [OCP('double gauze')],
-  'sound-machine/hatch-rest': [l('Hatch', 'https://www.hatch.co/')],
-  'sound-machine/hatch-rest-go': [l('Hatch', 'https://www.hatch.co/')],
   'sound-machine/yogasleep-hushh': [l('Yogasleep', 'https://yogasleep.com/')],
   'humidifier/canopy': [l('Canopy', 'https://getcanopy.co/')],
   'humidifier/levoit': [l('Levoit', 'https://levoit.com/')],
@@ -173,7 +156,6 @@ export const links: Record<string, ShopLink[]> = {
   'wet-bags/thirsties': [l('Thirsties', 'https://www.thirstiesbaby.com/')],
   'wet-bags/handmade': [etsy('handmade wet bag cloth diaper')],
   'disposables/kudos': [l('Kudos', 'https://mykudos.com/')],
-  'disposables/eco-by-naty': [l('Eco by Naty', 'https://naty.com/')],
   'disposables/dyper': [l('Dyper', 'https://dyper.com/')],
   'cloth-wipes/esembly': [l('Esembly', 'https://esemblybaby.com/')],
   'cloth-wipes/thirsties': [l('Thirsties', 'https://www.thirstiesbaby.com/')],
@@ -191,9 +173,6 @@ export const links: Record<string, ShopLink[]> = {
   ],
   'diaper-balm/earth-mama-organic-diaper-balm': [
     l('Earth Mama', 'https://earthmamaorganics.com/'),
-  ],
-  'diaper-balm/weleda-calendula-diaper-care': [
-    l('Weleda', 'https://www.weleda.com/'),
   ],
   'diaper-balm/badger-zinc-oxide': [l('Badger', 'https://www.badgerbalm.com/')],
   'diaper-balm/handmade': [BALANCED, MRH],
@@ -226,9 +205,6 @@ export const links: Record<string, ShopLink[]> = {
   'cleanser/medline-remedy-essentials-no-rinse-foam': [
     l('Medline', 'https://athome.medline.com/'),
   ],
-  'cleanser/earth-mama-calendula-baby-wash': [
-    l('Earth Mama', 'https://earthmamaorganics.com/'),
-  ],
   'cleanser/dr-bronner-s-unscented': [
     l("Dr. Bronner's", 'https://www.drbronner.com/'),
   ],
@@ -237,9 +213,6 @@ export const links: Record<string, ShopLink[]> = {
     l('Tubby Todd', 'https://tubbytodd.com/'),
   ],
   'ointment/badger-baby-balm': [l('Badger', 'https://www.badgerbalm.com/')],
-  'ointment/weleda-calendula-baby-cream': [
-    l('Weleda', 'https://www.weleda.com/'),
-  ],
   'ointment/handmade': [BALANCED, MRH],
   'hooded-towels/burt-s-bees-baby-organic': [
     l("Burt's Bees Baby", 'https://www.burtsbeesbaby.com/'),
@@ -304,9 +277,6 @@ export const links: Record<string, ShopLink[]> = {
   'brushes/full-circle-bamboo-brush': [
     l('Full Circle', 'https://fullcirclehome.com/'),
   ],
-  'brushes/small-nipple-and-straw-brushes': [
-    l('Full Circle', 'https://fullcirclehome.com/'),
-  ],
   'drying-rack/bamboo-or-stainless-dish-rack': [
     etsy('bamboo dish drying rack'),
   ],
@@ -316,7 +286,6 @@ export const links: Record<string, ShopLink[]> = {
   'nursing-pillows/boppy-with-organic-cover': [
     l('Boppy', 'https://www.boppy.com/'),
   ],
-  'nursing-pillows/frida-mom-adjustable': [l('Frida', 'https://frida.com/')],
   'nursing-pillows/handmade': [TREELOTTA, OCP('jersey')],
   'burp-cloths/organic-cotton-prefolds': [GMD('prefold')],
   'burp-cloths/aden-anais-muslin': [
@@ -335,7 +304,6 @@ export const links: Record<string, ShopLink[]> = {
   ],
   'cloth-bibs/handmade': [TREELOTTA, OCP('jersey')],
   'silicone-bibs/bumkins': [l('Bumkins', 'https://bumkins.com/')],
-  'silicone-bibs/ezpz': [l('ezpz', 'https://ezpzfun.com/')],
   'silicone-bibs/haakaa': [l('Haakaa', 'https://haakaausa.com/')],
   'pacifiers/natursutten-or-hevea-natural-rubber-paci': [
     l(
@@ -357,18 +325,11 @@ export const links: Record<string, ShopLink[]> = {
     l('Little Remedies', 'https://www.littleremedies.com/'),
   ],
   'congestion/boogie-wipes': [l('Boogie Wipes', 'https://boogiewipes.com/')],
-  'congestion/frida-baby-saline-wipes': [l('Frida', 'https://frida.com/')],
   'nose-aspirator/nosefrida': [l('Frida', 'https://frida.com/')],
   'nose-aspirator/oogiebear-scoop': [l('oogiebear', 'https://oogiebear.com/')],
-  'thermometer/braun-rectal-digital': [
-    l('Braun', 'https://www.braunhealthcare.com/us_en/'),
-  ],
   'thermometer/frida-baby-rectal-digital': [l('Frida', 'https://frida.com/')],
   'nail-care/glass-baby-nail-file': [etsy('glass baby nail file')],
   'nail-care/frida-baby-nailfrida': [l('Frida', 'https://frida.com/')],
-  'vitamin-d/carlson-baby-s-d-drops': [
-    l('Carlson', 'https://carlsonlabs.com/'),
-  ],
   'vitamin-d/mommy-s-bliss': [l("Mommy's Bliss", 'https://mommysbliss.com/')],
 
   // ----- Clothing -----
@@ -382,7 +343,6 @@ export const links: Record<string, ShopLink[]> = {
   'kimono-tops/colored-organics': [
     l('Colored Organics', 'https://coloredorganics.com/'),
   ],
-  'kimono-tops/pact': [l('Pact', 'https://wearpact.com/')],
   'kimono-tops/monica-andy': [
     l('Monica + Andy', 'https://www.monicaandandy.com/'),
   ],
@@ -484,7 +444,6 @@ export const links: Record<string, ShopLink[]> = {
   'disposable-pads/bamboobies-disposable': [
     l('Bamboobies', 'https://bamboobies.com/'),
   ],
-  'pump/spectra-s1-or-s2': [l('Spectra', 'https://www.spectrababyusa.com/')],
   'pump/haakaa-silicone-collector': [l('Haakaa', 'https://haakaausa.com/')],
 
   // ----- 6 weeks – 6 months -----
@@ -503,16 +462,12 @@ export const links: Record<string, ShopLink[]> = {
   'crib-mattress/avocado-green': [
     l('Avocado', 'https://www.avocadogreenmattress.com/'),
   ],
-  'crib-mattress/nook': [l('Nook', 'https://nooksleep.com/')],
   'crib-sheets/burt-s-bees-baby-organic': [
     l("Burt's Bees Baby", 'https://www.burtsbeesbaby.com/'),
   ],
   'crib-sheets/kyte-baby': [l('Kyte Baby', 'https://kytebaby.com/')],
   'crib-sheets/mulberry-silk-fitted-sheet': [etsy('silk crib sheet')],
   'crib-sheets/handmade': [TREELOTTA, OCP('flannel')],
-  'bigger-carrier/ergobaby-omni-breeze': [
-    l('Ergobaby', 'https://ergobaby.com/'),
-  ],
   'bigger-carrier/baby-tula-explore': [l('Baby Tula', 'https://babytula.com/')],
   'bigger-carrier/beco-gemini': [l('Beco', 'https://becobabycarrier.com/')],
   'bigger-carrier/handmade': [SLING_RINGS, etsy('linen ring sling')],
@@ -537,9 +492,9 @@ export const links: Record<string, ShopLink[]> = {
   'books-cards/wee-gallery-art-cards': [
     l('Wee Gallery', 'https://weegallery.com/'),
   ],
-  'books-cards/global-babies': [TATTERED('Global Babies')],
-  'books-cards/whose-toes-are-those': [TATTERED('Whose Toes Are Those')],
-  'books-cards/please-baby-please': [TATTERED('Please Baby Please')],
+  'books-cards/global-babies': [BOOKSHOP('Global Babies')],
+  'books-cards/whose-toes-are-those': [BOOKSHOP('Whose Toes Are Those')],
+  'books-cards/please-baby-please': [BOOKSHOP('Please Baby Please')],
   'books-cards/handmade': [etsy('high contrast baby cards printable')],
   'rattles/haba-or-grimm-s-wooden-rattles': [
     l('HABA', 'https://www.habausa.com/'),
@@ -565,7 +520,6 @@ export const links: Record<string, ShopLink[]> = {
   'bouncer/babybj-rn-bouncer-bliss': [
     l('BabyBjörn', 'https://www.babybjorn.com/'),
   ],
-  'bouncer/nuna-leaf': [l('Nuna', 'https://nunababy.com/usa/')],
   'tag-blanket/organic-tag-blanket-from-etsy': [etsy('organic tag blanket')],
   'tag-blanket/handmade': [TREELOTTA, OCP('flannel')],
   'next-nipples/matched-to-our-bottles': [
@@ -602,7 +556,6 @@ export const links: Record<string, ShopLink[]> = {
   'bigger-clothes/hanna-andersson': [
     l('Hanna Andersson', 'https://www.hannaandersson.com/'),
   ],
-  'bigger-clothes/pact': [l('Pact', 'https://wearpact.com/')],
   'bigger-clothes/handmade': [LAMB, etsy('hand knit baby longies')],
   'next-bonnets/grace-eleyae-kids-satin-lined-cap': [
     l('Grace Eleyae', 'https://graceeleyae.com/'),
@@ -640,4 +593,10 @@ export const links: Record<string, ShopLink[]> = {
   'work-tops/button-front-linen-shirts': [
     etsy('linen button front shirt women'),
   ],
+}
+
+/** Product-page links (researched Nov 2026) override the base links above. */
+export const links: Record<string, ShopLink[]> = {
+  ...baseLinks,
+  ...productLinks,
 }

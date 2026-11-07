@@ -300,7 +300,7 @@ async function claim(key: string, label: string, item?: string) {
     } else {
       toast(
         isHelp
-          ? 'Thank you for signing up!'
+          ? 'Thank you for chipping in!'
           : `Thank you! “${label}” is marked as yours.`,
       )
     }
@@ -415,8 +415,8 @@ function render() {
     if (list) {
       const names = pledges.map(c => (c.t === token ? 'you' : displayName(c)))
       list.textContent = names.length
-        ? `${names.length} signed up: ${names.slice(0, 6).join(', ')}${names.length > 6 ? ` and ${names.length - 6} more` : ''}`
-        : 'Be the first to sign up.'
+        ? `${names.length} chipping in: ${names.slice(0, 6).join(', ')}${names.length > 6 ? ` and ${names.length - 6} more` : ''}`
+        : 'Be the first to chip in.'
     }
     const state = pending.has(key) ? 'pending' : iAmIn ? 'mine' : 'open'
     setSlot($('[data-help-action]', helpEl), `help|${state}`, () =>
@@ -424,7 +424,7 @@ function render() {
         ? BUTTON_PENDING
         : state === 'mine'
           ? `<span class="tag tag-mine">✓ You’re in</span>${undo}`
-          : '<button type="button" class="btn btn-claim" data-claim>Count me in</button>',
+          : '<button type="button" class="btn btn-claim" data-claim>I’ll chip in</button>',
     )
   }
 
@@ -481,7 +481,8 @@ function applyFilters() {
   for (const stage of stageEls) {
     const items = $$<HTMLElement>('.item', stage)
     for (const item of items) {
-      const isHelp = item.hasAttribute('data-help')
+      const isHelp =
+        item.hasAttribute('data-help') || item.hasAttribute('data-tutorial')
       const matches = !query || (item.dataset.search ?? '').includes(query)
       const passes =
         filter === 'all' ||

@@ -7,9 +7,12 @@ import Mobile from '@/components/mobile.astro'
 import ShopLinks from '@/components/shop-links.astro'
 import { help, stages } from '@/data/registry'
 import { localByCategory, shopById, shops } from '@/data/shops'
+import { tutorialGroups, tutorials } from '@/data/tutorials'
 import Layout from '@/layouts/layout.astro'
 
-const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
+const allItems = stages.flatMap(s => s.categories.flatMap(c => c.items))
+const itemCount = allItems.length
+const itemsById = Object.fromEntries(allItems.map(i => [i.id, i]))
 ---
 
 <Layout
@@ -60,14 +63,17 @@ const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
           <p><strong>Shop small if you can.</strong> Each option links to the maker or a small shop, and many are at <a href="#local">Denver shops</a>. Changed your mind? Tap “Undo.”</p>
         </li>
       </ol>
+      <p class="badge-legend">
+        Look for <span class="badge badge-black-owned">Black-owned</span> and
+        <span class="badge badge-colorado">Colorado</span> businesses. We love supporting them.
+      </p>
       <details class="safety">
         <summary>A few safety notes before you shop</summary>
         <ul>
-          <li>Babies sleep on a firm, flat, bare surface: no weighted sleep sacks, pillows, positioners, bumpers or loose blankets.</li>
-          <li>Nursing pillows, loungers and diaper-bag “bassinets” are for awake, supervised time only.</li>
+          <li>Please skip weighted sleep sacks, pillows, positioners, bumpers and loose blankets.</li>
           <li>Car seats, bassinets and cribs should be new and meet federal safety standards; no secondhand or handmade.</li>
           <li>No essential oils, camphor or menthol products for baby, and never homemade formula.</li>
-          <li>Car seat covers go over the canopy, never between baby and the harness.</li>
+          <li>Pick canopy-style car seat covers, never ones that go between baby and the harness.</li>
         </ul>
       </details>
     </section>
@@ -82,7 +88,7 @@ const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
               </a>
             ))
           }
-          <a href="#help" class="tab" data-tab="help">Gifts of help</a>
+          <a href="#make" class="tab" data-tab="make">Handmade &amp; funds</a>
         </nav>
         <div class="filters">
           <label class="search">
@@ -143,40 +149,105 @@ const itemCount = stages.flatMap(s => s.categories.flatMap(c => c.items)).length
       ))
     }
 
-    <section class="stage" id="help" data-stage="help">
+    <section class="stage" id="make" data-stage="make">
       <header class="stage-head">
-        <h2>Gifts of help</h2>
+        <h2>Make it yourself</h2>
         <p>
-          The most valuable things in the first weeks aren’t things at all. Anyone can pitch in on these, so sign up
-          even if others already have.
+          How-tos for the registry’s “Make it” options. Planning to make one? Claim its “Make it” option on the
+          registry so nobody doubles up.
         </p>
+        <nav class="chips" aria-label="Handmade sections">
+          {
+            Object.entries(tutorialGroups).map(([id, g]) => (
+              <a href={`#make-${id}`} class="chip">
+                {g.title}
+              </a>
+            ))
+          }
+          <a href="#funds" class="chip">Chip in</a>
+        </nav>
       </header>
-      <div class="items help-items">
-        {
-          help.map(h => (
-            <article class="item help" data-help={h.id} data-search={`${h.name} ${h.description}`.toLowerCase()}>
-              <header class="item-head">
-                <h4 class="item-name">{h.name}</h4>
-                {h.goal && <span class="qty">Goal: {h.goal}</span>}
-              </header>
-              <p class="help-desc">{h.description}</p>
-              {h.link && (
-                <p class="help-link">
-                  <ShopLinks links={[h.link]} />
-                </p>
-              )}
-              <div class="help-foot">
-                <p class="pledgers" data-pledgers>
-                  Be the first to sign up.
-                </p>
-                <div class="opt-action" data-help-action>
-                  <span class="skeleton" aria-hidden="true" />
+      {
+        Object.entries(tutorialGroups).map(([groupId, group]) => (
+          <section class="category" id={`make-${groupId}`} data-category>
+            <h3>{group.title}</h3>
+            <p class="group-intro">{group.intro}</p>
+            <div class="items">
+              {tutorials
+                .filter(t => t.group === groupId)
+                .map(t => (
+                  <article
+                    class="item tutorial"
+                    id={`tut-${t.id}`}
+                    data-tutorial
+                    data-search={`${t.title} ${t.steps.join(' ')}`.toLowerCase()}
+                  >
+                    <header class="item-head">
+                      <h4 class="item-name">{t.title}</h4>
+                      {t.yields && <span class="qty">{t.yields}</span>}
+                    </header>
+                    <ol class="tut-steps">
+                      {t.steps.map(step => (
+                        <li>{step}</li>
+                      ))}
+                    </ol>
+                    {t.safety && (
+                      <p class="tut-safety">
+                        <strong>Safety:</strong> {t.safety}
+                      </p>
+                    )}
+                    {t.makes.length > 0 && (
+                      <p class="tut-makes">
+                        Claim it on the registry:{' '}
+                        {t.makes.map((itemId, i) => {
+                          const item = itemsById[itemId]
+                          return (
+                            <>
+                              {i > 0 && ' · '}
+                              <a href={`#item-${itemId}`}>{item?.name ?? itemId}</a>
+                            </>
+                          )
+                        })}
+                      </p>
+                    )}
+                  </article>
+                ))}
+            </div>
+          </section>
+        ))
+      }
+
+      <section class="category" id="funds" data-category>
+        <h3>Chip in</h3>
+        <p class="group-intro">
+          Gifts toward help we’ll hire. Mark it here so Micala and Gabriel know, and include your gift with your card.
+        </p>
+        <div class="items help-items">
+          {
+            help.map(h => (
+              <article class="item help" data-help={h.id} data-search={`${h.name} ${h.description}`.toLowerCase()}>
+                <header class="item-head">
+                  <h4 class="item-name">{h.name}</h4>
+                </header>
+                <p class="help-desc">{h.description}</p>
+                {h.link && (
+                  <p class="help-link">
+                    <ShopLinks label="Or give" links={[h.link]} />
+                  </p>
+                )}
+                <div class="help-foot">
+                  <p class="pledgers" data-pledgers>
+                    Be the first to chip in.
+                  </p>
+                  <div class="opt-action" data-help-action>
+                    <span class="skeleton" aria-hidden="true" />
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
     </section>
 
     <section class="local" id="local" aria-labelledby="local-title">

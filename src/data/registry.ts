@@ -55,7 +55,7 @@ export const stages: Stage[] = [
             name: 'Stretchy wraps',
             qty: '2',
             options: [
-              'Moby Hybrid',
+              'Moby Fit Hybrid',
               'Solly Baby (lyocell, thin and cool)',
               'Boba Wrap',
             ],
@@ -68,7 +68,7 @@ export const stages: Stage[] = [
             options: [
               'Ergobaby Embrace (newborn soft carrier)',
               'Baby Tula Explore',
-              'Sakura Bloom or Wildbird linen ring sling',
+              'Wildbird linen ring sling',
             ],
             make: 'Linen ring sling from Etsy, or sewn with certified sling rings',
           },
@@ -79,7 +79,7 @@ export const stages: Stage[] = [
             one: true,
             options: [
               'Chicco KeyFit 35 ClearTex + Corso or Bravo (no added flame-retardant chemicals)',
-              'UPPAbaby Mesa Max + Vista or Cruz (merino wool)',
+              'UPPAbaby Mesa V3 + Vista V3 or Cruz V3',
               'Nuna Pipa + Mixx or TRVL',
             ],
             restriction: 'Buy new only, never secondhand or handmade.',
@@ -102,14 +102,15 @@ export const stages: Stage[] = [
             qty: '2–3',
             options: [
               'Itzy Ritzy Boss Plus (built-in changing pad)',
-              'Freshly Picked City Pack',
+              'Freshly Picked Classic City Diaper Bag',
               'A fold-out changing-station backpack',
+              'WSEL Kobe Expandable Diaper Backpack (Built for dads; insulated bottle pockets)',
             ],
             make: 'Waxed canvas or leather backpack from Etsy',
           },
         ],
         goodToKnow:
-          'Car seat covers go over the canopy, shower-cap style, never between baby and the harness. Fold-out backpack beds are for changes only, not sleep.',
+          'Please pick canopy-style car seat covers that stretch over the top of the seat. Covers that go between baby and the harness aren’t safe.',
       },
       {
         id: 'sleep',
@@ -132,12 +133,8 @@ export const stages: Stage[] = [
             name: 'Stationary bassinet',
             qty: '1',
             one: true,
-            options: [
-              'Moses basket with stand (labeled as meeting the bassinet standard)',
-              'Halo BassiNest Essentia',
-            ],
-            restriction:
-              'Handmade baskets only if certified to the bassinet standard.',
+            options: ['HALO BassiNest Essential Sleeper'],
+            restriction: 'Buy only: must meet the federal bassinet standard.',
           },
           {
             id: 'bassinet-pad',
@@ -172,14 +169,19 @@ export const stages: Stage[] = [
             id: 'muslin-swaddles',
             name: 'Muslin swaddle blankets',
             qty: '4–6',
-            options: ['aden + anais organic', "Burt's Bees Baby", 'Kyte Baby'],
+            options: [
+              'aden + anais organic',
+              "Burt's Bees Baby",
+              'Kyte Baby',
+              'Ade + Ayo Bògò muslin swaddle (Bamboo-cotton muslin, mud-cloth print)',
+            ],
             make: '47-inch organic muslin squares, hemmed',
           },
           {
             id: 'sound-machine',
             name: 'Sound machines',
             qty: '1 home, 1 portable',
-            options: ['Hatch Rest', 'Hatch Rest Go', 'Yogasleep Hushh'],
+            options: ['Hatch Baby', 'Hatch Go', 'Yogasleep Hushh'],
           },
           {
             id: 'humidifier',
@@ -196,11 +198,11 @@ export const stages: Stage[] = [
               'eufy Baby Monitor C10 (works without Wi-Fi)',
               'Infant Optics DXR-8 Pro (no Wi-Fi)',
             ],
-            note: 'Please skip AI or app-based monitors.',
+            note: 'Please skip monitors with AI features. App-connected is fine.',
           },
         ],
         goodToKnow:
-          'Babies sleep on a firm, flat, bare surface, so please skip weighted sleep sacks, pillows, positioners, bumpers and loungers.',
+          'Please skip weighted sleep sacks, pillows, positioners, bumpers and loungers. They aren’t safe for infant sleep.',
       },
       {
         id: 'diapering',
@@ -214,6 +216,7 @@ export const stages: Stage[] = [
               'Green Mountain Diapers organic Cloth-eez',
               'Esembly organic system',
               'Thirsties newborn',
+              'Kanga Care Rumparooz Newborn Cover (4–15 lb, over prefolds)',
             ],
             make: 'Flat diapers hemmed from organic birdseye cotton',
           },
@@ -221,7 +224,13 @@ export const stages: Stage[] = [
             id: 'onesize-cloth',
             name: 'One-size or sized-up cloth diapers',
             qty: '18–24 + 6 covers',
-            options: ['GroVia', 'Esembly', 'Sloomb fitteds'],
+            options: [
+              'GroVia',
+              'Esembly',
+              'Sloomb fitteds',
+              'Kanga Care Rumparooz OBV One Size Pocket Diaper (Organic cotton-bamboo velour, Aspenglow print)',
+              'Cultured Diapers The Cultured Diaper (Kente cover + bamboo insert; newborn or one size)',
+            ],
             make: 'Fitted diapers from a free pattern in hemp and cotton',
           },
           {
@@ -235,13 +244,22 @@ export const stages: Stage[] = [
             id: 'wet-bags',
             name: 'Wet bags, clean and dirty',
             qty: '4 small, 2 large',
-            options: ['Planet Wise', 'Esembly', 'Thirsties'],
+            options: [
+              'Planet Wise',
+              'Esembly',
+              'Thirsties',
+              'Kanga Care Wet Bag (Holds 15–18 diapers)',
+            ],
             make: 'Handmade wet bags from Etsy',
           },
           {
             id: 'disposables',
             name: 'Disposable diapers for outings',
-            options: ['Kudos (cotton liner)', 'Eco by Naty', 'Dyper'],
+            options: [
+              'Kudos (cotton liner)',
+              'Eco by Naty BioEmbrace',
+              'Dyper',
+            ],
           },
           {
             id: 'cloth-wipes',
@@ -258,7 +276,11 @@ export const stages: Stage[] = [
           {
             id: 'sensitive-wipes',
             name: 'Sensitive-skin wipes',
-            options: ['Huggies Natural Care Sensitive', 'Pampers Sensitive'],
+            options: [
+              'Huggies Natural Care Sensitive',
+              'Pampers Sensitive',
+              'Proudly Gentle Touch Baby Wipes (98% water, fragrance-free)',
+            ],
           },
           {
             id: 'diaper-balm',
@@ -266,8 +288,9 @@ export const stages: Stage[] = [
             qty: '2–3 to test',
             options: [
               'Earth Mama Organic Diaper Balm',
-              'Weleda Calendula Diaper Care',
+              'Weleda Calendula Diaper Cream',
               'Badger Zinc Oxide',
+              'Motherlove Diaper Balm (Zinc-free, cloth-diaper safe)',
             ],
             make: 'Zinc and shea balm (no essential oils)',
           },
@@ -301,7 +324,7 @@ export const stages: Stage[] = [
           },
         ],
         goodToKnow:
-          "We're mostly cloth diapering. Most covers and wet bags use PUL, a plastic laminate; wool covers are the main plastic-free option.",
+          "We're mostly cloth diapering. Wool covers are the plastic-free choice; most other covers and wet bags use PUL, a plastic laminate.",
       },
       {
         id: 'bath',
@@ -323,8 +346,9 @@ export const stages: Stage[] = [
             name: 'Gentle or no-rinse cleanser',
             options: [
               'Medline Remedy Essentials no-rinse foam',
-              'Earth Mama Calendula Baby Wash',
+              'Earth Mama Simply Non-Scents Castile Baby Wash',
               "Dr. Bronner's unscented (diluted)",
+              'Motherlove Baby & All Soap, Simply Unscented (Organic foaming castile)',
             ],
             make: 'Oat bath sachets in muslin',
           },
@@ -334,7 +358,8 @@ export const stages: Stage[] = [
             options: [
               'Tubby Todd All Over Ointment',
               'Badger Baby Balm (unscented)',
-              'Weleda Calendula baby cream',
+              'Weleda Calendula body cream',
+              'Proudly All Over Balm (Fragrance-free, mango butter + plant oils)',
             ],
             make: 'Calendula oil balm',
           },
@@ -366,8 +391,7 @@ export const stages: Stage[] = [
             ],
           },
         ],
-        goodToKnow:
-          'Fragrance-free everything, please: no essential oils near baby. Newborn skin (especially melanin-rich skin) runs dry, so ointments get used daily.',
+        goodToKnow: 'Fragrance-free, please, with no essential oils.',
       },
       {
         id: 'feeding',
@@ -429,7 +453,7 @@ export const stages: Stage[] = [
             options: [
               'Redecker natural-bristle bottle brush',
               'Full Circle bamboo brush',
-              'Small nipple and straw brushes',
+              'Straw and lid cleaning brush',
             ],
           },
           {
@@ -446,7 +470,6 @@ export const stages: Stage[] = [
             options: [
               'My Brest Friend (firm, good for petite torsos)',
               'Boppy with organic cover',
-              'Frida Mom adjustable',
             ],
             make: 'Covers sewn from organic jersey',
           },
@@ -472,7 +495,7 @@ export const stages: Stage[] = [
             id: 'silicone-bibs',
             name: 'Silicone bibs, for solids later',
             qty: '2',
-            options: ['Bumkins', 'ezpz', 'Haakaa'],
+            options: ['Bumkins', 'Haakaa'],
           },
           {
             id: 'pacifiers',
@@ -486,7 +509,7 @@ export const stages: Stage[] = [
           },
         ],
         goodToKnow:
-          'For formula, Kendamil and Bobbie are FDA-approved and sold at natural grocers and baby shops. Please skip imported HiPP or Holle. Nursing pillows are for awake, supervised time only.',
+          'For formula, please choose an FDA-approved brand like Kendamil, Bobbie or Kabrita, and skip imported HiPP or Holle.',
       },
       {
         id: 'health',
@@ -504,11 +527,7 @@ export const stages: Stage[] = [
           {
             id: 'congestion',
             name: 'Congestion',
-            options: [
-              'Little Remedies saline spray',
-              'Boogie Wipes',
-              'Frida Baby saline wipes',
-            ],
+            options: ['Little Remedies saline spray', 'Boogie Wipes'],
           },
           {
             id: 'nose-aspirator',
@@ -520,7 +539,7 @@ export const stages: Stage[] = [
             name: 'Thermometer',
             qty: '1',
             one: true,
-            options: ['Braun rectal digital', 'Frida Baby rectal digital'],
+            options: ['Vicks ComfortFlex digital', 'Frida Baby rectal digital'],
           },
           {
             id: 'nail-care',
@@ -530,11 +549,11 @@ export const stages: Stage[] = [
           {
             id: 'vitamin-d',
             name: 'Vitamin D drops',
-            options: ["Carlson Baby's D Drops", "Mommy's Bliss"],
+            options: ["Carlson Baby's Super Daily D3", "Mommy's Bliss"],
           },
         ],
         goodToKnow:
-          'No essential oils, camphor or menthol rubs for newborns, please.',
+          'Please skip anything with essential oils, camphor or menthol. They aren’t safe for newborns.',
       },
       {
         id: 'clothing',
@@ -548,27 +567,39 @@ export const stages: Stage[] = [
               "Burt's Bees Baby organic",
               'Kyte Baby bamboo',
               'Hanna Andersson',
+              'Lucy Lue Organics waffle 2-way zip romper (Organic cotton waffle; fold-over feet and mitts)',
             ],
           },
           {
             id: 'kimono-tops',
             name: 'Side-snap kimono tops and bodysuits',
             qty: '6 + 6',
-            options: ['Colored Organics', 'Pact', 'Monica + Andy'],
+            options: [
+              'Colored Organics',
+              'Monica + Andy',
+              'Lucy Lue Organics newborn kimono set with footed pants (GOTS organic cotton, undyed, NB–3 mo)',
+            ],
             make: 'Kimono top from a free pattern',
           },
           {
             id: 'merino-layer',
             name: 'Merino layers for December',
             qty: '2',
-            options: ['Woolino sleeper', 'Ruskovilla or Reima merino'],
+            options: [
+              'Woolino sleeper',
+              'Ruskovilla or Reima merino',
+              'Morrison Outdoors Baby Merino Bodysuit (100% merino, 0–18 mo)',
+            ],
             make: 'Hand-knit wool soakers and longies',
           },
           {
             id: 'hats-mitts',
             name: 'Hats and mitts',
             qty: '4 + 4',
-            options: ['Organic cotton hat-and-mitt sets'],
+            options: [
+              'Organic cotton hat-and-mitt sets',
+              'Lucy Lue Organics organic baby hat (Organic cotton, 0–3 mo)',
+            ],
             make: 'Hand-knit or sewn',
           },
           {
@@ -591,7 +622,7 @@ export const stages: Stage[] = [
           },
         ],
         goodToKnow:
-          'Bonnets are for awake time and outings only; a snug silk fitted sheet protects hair overnight instead. No puffy snowsuits: they aren’t safe in the car seat.',
+          'Please skip puffy snowsuits. They aren’t safe in a car seat.',
       },
       {
         id: 'home',
@@ -632,6 +663,7 @@ export const stages: Stage[] = [
             name: 'Nursing station basket',
             options: [
               'Basket with a straw water bottle, snacks, burp cloths, nipple butter and a charger',
+              'Milky Mama Oatmeal Lactation Cookies (Fenugreek-free, 12 individually wrapped)',
             ],
           },
         ],
@@ -661,6 +693,7 @@ export const stages: Stage[] = [
               'Seraphine',
               'Boob Design',
               'Nom Maternity',
+              'Morrison Outdoors Merino Nursing Long Sleeve (100% merino, XS–XXL)',
             ],
             make: 'Button-front linen dresses or wrap dresses',
           },
@@ -706,7 +739,10 @@ export const stages: Stage[] = [
           {
             id: 'pump',
             name: 'Breast pump',
-            options: ['Spectra S1 or S2', 'Haakaa silicone collector'],
+            options: [
+              'Spectra S1 Plus or S2 Plus',
+              'Haakaa silicone collector',
+            ],
             note: 'Insurance usually covers one pump.',
           },
         ],
@@ -750,7 +786,7 @@ export const stages: Stage[] = [
             name: 'Organic crib mattress',
             qty: '1',
             one: true,
-            options: ['Naturepedic', 'Avocado Green', 'Nook'],
+            options: ['Naturepedic', 'Avocado Green'],
           },
           {
             id: 'crib-sheets',
@@ -760,12 +796,12 @@ export const stages: Stage[] = [
               "Burt's Bees Baby organic",
               'Kyte Baby',
               'Mulberry silk fitted sheet (for hair)',
+              'The Rooted Baby Co. Mali crib sheet (100% organic cotton muslin)',
             ],
             make: 'Sewn fitted sheet',
           },
         ],
-        goodToKnow:
-          'Nothing goes in the crib for sleep: no bumpers, pillows or loose blankets.',
+        goodToKnow: 'Please skip crib bumpers, pillows and loose blankets.',
       },
       {
         id: 'later-outings',
@@ -776,9 +812,10 @@ export const stages: Stage[] = [
             name: 'Bigger soft carrier',
             qty: '1–2',
             options: [
-              'Ergobaby Omni Breeze',
+              'Ergobaby Omni Deluxe (mesh)',
               'Baby Tula Explore',
               'Beco Gemini',
+              'Boba X Linen Carrier (7–45 lb, adjustable panel)',
             ],
             make: 'Linen ring sling',
           },
@@ -829,6 +866,7 @@ export const stages: Stage[] = [
               'Global Babies',
               'Whose Toes Are Those? (Jabari Asim)',
               'Please, Baby, Please (Spike Lee and Tonya Lewis Lee)',
+              'Bright Brown Baby by Andrea Davis Pinkney and Brian Pinkney (from Shop at MATTER, Denver)',
             ],
             make: 'Black-and-white cards printed on cardstock',
           },
@@ -850,6 +888,7 @@ export const stages: Stage[] = [
               'Sophie la girafe (natural rubber)',
               'Natursutten natural rubber teether',
               'Untreated maple teething ring',
+              'The Rooted Baby Co. Esono the Elephant teether (Food-grade silicone + beechwood)',
             ],
           },
           {
@@ -858,8 +897,8 @@ export const stages: Stage[] = [
             qty: '1',
             one: true,
             options: [
-              'BabyBjörn Bouncer Bliss (organic cotton option)',
-              'Nuna Leaf',
+              'BabyBjörn Bouncer Bliss (woven cotton)',
+              'Nuna LEAF Grow',
             ],
           },
           {
@@ -936,7 +975,7 @@ export const stages: Stage[] = [
               "Burt's Bees Baby",
               'Kyte Baby',
               'Hanna Andersson',
-              'Pact',
+              'Kaba Baby Zip-Up Sleep & Play One-Piece (GOTS organic cotton, 3–18 mo)',
             ],
             make: 'Hand-knit wool longies',
           },
@@ -957,6 +996,8 @@ export const stages: Stage[] = [
               'Wide-tooth wooden comb',
               'Redecker goat-hair brush',
               'Unscented jojoba oil',
+              'Proudly Nourishing Hair & Body Oil (5 ingredients, fragrance-free)',
+              'Alaffia Pure Unrefined Shea Butter, Unscented (Single ingredient, fair trade)',
             ],
             make: 'Whipped shea and jojoba hair butter',
           },
@@ -1012,40 +1053,18 @@ export const stages: Stage[] = [
 export const help: HelpItem[] = [
   {
     id: 'lactation',
-    name: 'Lactation consultant visit',
-    description: 'An IBCLC who comes to the house in our first week home.',
+    name: 'Lactation consultant fund',
+    description:
+      'Chip in toward a home visit from a lactation consultant in our first weeks.',
     link: {
-      shop: "The Mama 'Hood gift card",
+      shop: "The Mama 'Hood gift card (Denver)",
       href: 'https://www.themamahood.com/',
     },
   },
   {
     id: 'doula',
-    name: 'Postpartum doula hours',
-    description: 'Overnight help, or a few daytime hours so Micala can rest.',
-  },
-  {
-    id: 'freezer-meals',
-    name: 'Freezer meals',
-    description:
-      'A meal we can reheat on a tired night. Label it with the date and reheating directions.',
-    goal: '10–14 meals',
-  },
-  {
-    id: 'meal-drop',
-    name: 'Bring a meal after we’re home',
-    description:
-      'A warm dinner dropped at the door in the first few weeks. We’ll text a schedule to everyone who signs up.',
-  },
-  {
-    id: 'handmade-help',
-    name: 'Sew or knit something',
-    description:
-      'Many items above have a handmade option. Pledge here if you want to make something not on the list.',
-    link: {
-      shop: 'LambShoppe (Denver yarn)',
-      href: 'https://www.thelambshoppe.com/',
-    },
+    name: 'Postpartum doula fund',
+    description: 'Chip in toward a few hours of postpartum doula support.',
   },
 ]
 
