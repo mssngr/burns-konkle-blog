@@ -35,7 +35,6 @@
   align-items: center;
   gap: 6px;
   padding: 6px 8px;
-  border-radius: 10px;
   font-size: 0.78rem;
   color: var(--muted);
   border-bottom: 3px solid var(--line);
