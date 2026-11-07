@@ -28,6 +28,7 @@ import {
   TextArea,
   useAction,
   useAsync,
+  useConfirm,
 } from '@/lib/ui'
 
 // ------------------------------------------------------------------ types
@@ -245,6 +246,7 @@ function PostCard({
   onDeleted: () => void
 }) {
   const del = useAction()
+  const confirm = useConfirm('Delete it')
   const manage = canManage(post, family)
   const edited =
     toDate(post.updated_at).getTime() - toDate(post.created_at).getTime() >
@@ -257,7 +259,7 @@ function PostCard({
         : null
 
   async function remove() {
-    if (!confirm('Delete this post? This can’t be undone.')) return
+    if (!(await confirm.ask('Delete this post? This can’t be undone.'))) return
     const ok = await del.run(async () => {
       const rows = await query(
         supabase.from('posts').delete().eq('id', post.id).select('id'),
@@ -273,6 +275,7 @@ function PostCard({
 
   return (
     <article class="card stack post" id={`post-${post.id}`}>
+      {confirm.dialog}
       <header class="post-head">
         <p class="meta">
           {label && <span class="post-kind">{label}</span>}

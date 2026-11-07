@@ -22,6 +22,7 @@ import {
   TextArea,
   useAction,
   useAsync,
+  useConfirm,
 } from '@/lib/ui'
 import { type When, WhenFields, whenEnd, whenStart } from './visit-kit'
 
@@ -199,9 +200,25 @@ function AddBlock({
   const [until, setUntil] = useState(addDays(today, 14))
   const [note, setNote] = useState('')
   const act = useAction()
+  const confirm = useConfirm('Block it anyway')
 
   async function submit(e: Event) {
     e.preventDefault()
+    // Blocking never cancels anything, so warn when it covers live bookings.
+    const clashes = await supabase
+      .from('bookings')
+      .select('name')
+      .in('status', ['submitted', 'approved'])
+      .lt('starts_at', whenEnd(when))
+      .gt('ends_at', whenStart(when))
+    const names = [...new Set((clashes.data ?? []).map(b => b.name))]
+    if (
+      names.length &&
+      !(await confirm.ask(
+        `This overlaps ${names.join(', ')}. Blocking won’t cancel their booking.`,
+      ))
+    )
+      return
     const r = await act.run(async () => {
       await query(
         supabase.from('blocks').insert({
@@ -221,6 +238,7 @@ function AddBlock({
 
   return (
     <form class="fam-inline-form stack" onSubmit={submit}>
+      {confirm.dialog}
       <h3 class="fam-h3">Block time</h3>
       <p class="small">
         Blocked time shows red to guests. Only Gabriel and Micala see the note.

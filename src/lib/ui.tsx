@@ -245,6 +245,43 @@ export function StatusPill({
 
 // ----------------------------------------------------------------- dialog
 
+/**
+ * An in-page replacement for window.confirm (which some browsers and webviews
+ * suppress). Call `ask(message)`, await the boolean, and render `dialog`.
+ */
+export function useConfirm(confirmLabel = 'Yes') {
+  const [message, setMessage] = useState<string | null>(null)
+  const resolver = useRef<((ok: boolean) => void) | null>(null)
+  const settle = (ok: boolean) => {
+    resolver.current?.(ok)
+    resolver.current = null
+    setMessage(null)
+  }
+  const ask = (text: string) =>
+    new Promise<boolean>(resolve => {
+      resolver.current = resolve
+      setMessage(text)
+    })
+  const dialog = (
+    <Modal
+      open={message !== null}
+      onClose={() => settle(false)}
+      title="Are you sure?"
+    >
+      <p>{message}</p>
+      <div class="actions">
+        <Button variant="danger" onClick={() => settle(true)}>
+          {confirmLabel}
+        </Button>
+        <Button variant="ghost" onClick={() => settle(false)}>
+          Keep it
+        </Button>
+      </div>
+    </Modal>
+  )
+  return { ask, dialog }
+}
+
 export function Modal({
   open,
   onClose,

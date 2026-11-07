@@ -14,6 +14,7 @@ import {
   toast,
   useAction,
   useAsync,
+  useConfirm,
   useQueryParam,
 } from '@/lib/ui'
 
@@ -342,6 +343,7 @@ function PendingReply({
   const mine = r.drafted_by === family.person
   const approved = who.includes(family.person)
   const act = useAction()
+  const confirm = useConfirm('Withdraw it')
 
   async function approve() {
     const out = await act.run(() =>
@@ -356,7 +358,7 @@ function PendingReply({
   }
 
   async function withdraw() {
-    if (!confirm('Withdraw this draft? It won’t be sent.')) return
+    if (!(await confirm.ask('Withdraw this draft? It won’t be sent.'))) return
     const ok = await act.run(
       () => rpc('withdraw_offer_reply', { p_reply: r.id }).then(() => true),
       'Draft withdrawn.',
@@ -366,6 +368,7 @@ function PendingReply({
 
   return (
     <div class="fo-reply fo-reply-pending">
+      {confirm.dialog}
       <p class="meta">
         Drafted by {mine ? 'you' : nameOf(r.drafted_by)},{' '}
         {timeAgo(r.created_at)} · Approvals: {Math.min(who.length, NEEDED)} of{' '}

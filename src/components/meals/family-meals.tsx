@@ -29,6 +29,7 @@ import {
   TextArea,
   useAction,
   useAsync,
+  useConfirm,
   useQueryParam,
 } from '@/lib/ui'
 
@@ -453,6 +454,8 @@ function OpenDates({
     return new Set(((rows ?? []) as { date: string }[]).map(r => r.date))
   }, [month])
   const act = useAction()
+  const bulk = useAction()
+  const confirm = useConfirm('Close it anyway')
 
   const counts = useMemo(() => {
     const c: Record<string, number> = {}
@@ -471,7 +474,7 @@ function OpenDates({
   async function toggle(date: string) {
     const open = dates.data?.has(date)
     if (open && counts[date]) {
-      const ok = confirm(
+      const ok = await confirm.ask(
         `${fmtDay(date)} has ${counts[date]} active sign-up${counts[date] > 1 ? 's' : ''}. Closing the date won’t cancel ${counts[date] > 1 ? 'them' : 'it'}. Close it anyway?`,
       )
       if (!ok) return
@@ -498,7 +501,7 @@ function OpenDates({
       date: addDays(today, i),
       created_by: family.person,
     }))
-    const done = await act.run(async () => {
+    const done = await bulk.run(async () => {
       await query(
         supabase
           .from('meal_dates')
@@ -512,13 +515,15 @@ function OpenDates({
 
   return (
     <section class="section stack" aria-labelledby="fm-dates">
+      {confirm.dialog}
       <div class="spread">
         <h2 id="fm-dates">Open dates</h2>
         {admin && (
           <Button
             size="sm"
             variant="primary"
-            busy={act.busy}
+            busy={bulk.busy}
+            disabled={act.busy}
             onClick={openNext14}
           >
             Open the next 14 days
@@ -534,7 +539,7 @@ function OpenDates({
         states={['green', 'red']}
         labels={{ green: 'Open for meals', red: 'Not open' }}
       />
-      <ErrorText error={act.error ?? dates.error} />
+      <ErrorText error={act.error ?? bulk.error ?? dates.error} />
       <div class="card stack">
         <div class="spread">
           <Button
@@ -585,7 +590,7 @@ function OpenDates({
                 class={cls}
                 aria-label={`${label}. ${open ? 'Close' : 'Open'} this date`}
                 aria-pressed={open}
-                disabled={act.busy || dates.loading}
+                disabled={act.busy || bulk.busy || dates.loading}
                 onClick={() => toggle(d)}
               >
                 {body}

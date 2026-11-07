@@ -27,6 +27,7 @@ import {
   TextArea,
   useAction,
   useAsync,
+  useConfirm,
   useQueryParam,
 } from '@/lib/ui'
 
@@ -301,6 +302,7 @@ function EntryCard({
 }) {
   const admin = family.role === 'admin'
   const act = useAction()
+  const confirm = useConfirm('Yes, continue')
   const [busy, setBusy] = useState<string | null>(null)
   const mine = e.claimed_by === family.person
 
@@ -356,9 +358,9 @@ function EntryCard({
 
   const cancelHelp = async () => {
     if (
-      !confirm(
+      !(await confirm.ask(
         'Take down this help request? Anyone who claimed it is released.',
-      )
+      ))
     )
       return
     const out = await go(
@@ -387,7 +389,8 @@ function EntryCard({
   }
 
   const remove = async () => {
-    if (!confirm(`Delete “${e.title}”? This can’t be undone.`)) return
+    if (!(await confirm.ask(`Delete “${e.title}”? This can’t be undone.`)))
+      return
     const out = await go(
       'delete',
       async () => {
@@ -412,6 +415,7 @@ function EntryCard({
       id={`entry-${e.id}`}
       class={`card entry${e.help_needed ? ' entry-help' : ''}${focus === e.id ? ' focused' : ''}`}
     >
+      {confirm.dialog}
       <div class="entry-time">{time}</div>
       <div class="stack entry-main">
         <header class="entry-head">
