@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useEffect, useRef, useState } from 'preact/hooks'
 import { rpc } from '@/lib/supabase'
 import { addDays, fmtDay, mtDate, todayMT, weekStart } from '@/lib/time'
 import {
@@ -58,6 +58,9 @@ export function BookVisit() {
   const [contact, setContact] = useContact()
   const [tried, setTried] = useState(false)
   const create = useAction()
+  // Stays true once a request is created, until the page navigates away.
+  const submitted = useRef(false)
+  const [redirecting, setRedirecting] = useState(false)
 
   const type = types.data?.find(t => t.id === typeId) ?? null
 
@@ -149,8 +152,10 @@ export function BookVisit() {
 
   async function submit(e: Event) {
     e.preventDefault()
+    if (submitted.current) return
     setTried(true)
     if (!type || !picked || !contact.consent || blackout) return
+    submitted.current = true
     const r = await create.run(() =>
       rpc<{ token: string; skipped_rules: boolean }>('create_visit_request', {
         p_type: type.id,
@@ -163,12 +168,15 @@ export function BookVisit() {
         p_offer_token: offerToken || null,
       }),
     )
-    if (r?.token) {
-      saveContact(contact)
-      location.assign(
-        `${site('visits/request/')}?t=${encodeURIComponent(r.token)}${r.skipped_rules ? '&skipped=1' : ''}`,
-      )
+    if (!r?.token) {
+      submitted.current = false
+      return
     }
+    setRedirecting(true)
+    saveContact(contact)
+    location.assign(
+      `${site('visits/request/')}?t=${encodeURIComponent(r.token)}${r.skipped_rules ? '&skipped=1' : ''}`,
+    )
   }
 
   const minDate = type ? firstOpenDate(type, limits, todayMT()) : todayMT()
@@ -350,7 +358,7 @@ export function BookVisit() {
             <Button
               type="submit"
               variant="primary"
-              busy={create.busy}
+              busy={create.busy || redirecting}
               disabled={blackout || paused}
             >
               Save and continue
