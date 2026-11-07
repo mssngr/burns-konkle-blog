@@ -568,7 +568,10 @@ function OpenDates({
             const past = d < today
             const n = counts[d] ?? 0
             const label = `${fmtDay(d)}: ${open ? 'open' : 'not open'}${n ? `, ${n} sign-up${n > 1 ? 's' : ''}` : ''}`
-            const cls = `mc-day ${past ? 'is-past' : open ? 'st-green' : 'st-red'}${d === today ? ' is-today' : ''}`
+            // Grey while a month loads, so open dates don't flash red.
+            const tone =
+              past || dates.loading ? 'is-past' : open ? 'st-green' : 'st-red'
+            const cls = `mc-day ${tone}${d === today ? ' is-today' : ''}`
             const body = (
               <>
                 <span class="mc-num">{Number(d.slice(8))}</span>
