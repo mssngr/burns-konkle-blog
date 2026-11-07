@@ -251,9 +251,8 @@ export function BookVisit() {
           </h2>
           <p class="muted small">
             The colors show openings for this booking type. Tap an open time to
-            set your {type.start_label.toLowerCase()}, then choose your{' '}
-            {type.end_label.toLowerCase()}. Requests start at least{' '}
-            {s.cutoffHours} hours ahead, on 15-minute steps.
+            set “{type.start_label}”, then choose “{type.end_label}”. Requests
+            start at least {s.cutoffHours} hours ahead, on 15-minute steps.
             {type.hours_rule === 'none' &&
               ' Trips can start and end at any hour; the calendar shows visiting hours.'}
           </p>

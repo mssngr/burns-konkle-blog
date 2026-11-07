@@ -147,6 +147,10 @@ function NoteForm() {
     if (!contact.email.trim())
       return send.setError(new AppError('Please enter your email.'))
     if (!body.trim()) return send.setError(new AppError('Please write a note.'))
+    if (!contact.consent)
+      return send.setError(
+        new AppError('Please agree to receive emails about your note.'),
+      )
     const out = await send.run(async () => {
       const r = await rpc<{ id: string; upload_token: string }>('submit_note', {
         p_name: contact.name.trim(),

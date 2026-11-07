@@ -876,7 +876,17 @@ function ChangeForm({
   const peopleOk =
     !changePeople ||
     (attendeesComplete(clean) && clean.length <= req.max_people)
-  const nothing = sameTimes && !changePeople
+  const samePeople =
+    clean.length === req.attendees.length &&
+    clean.every((p, i) => {
+      const a = req.attendees[i]
+      return (
+        p.name.trim() === a.name.trim() &&
+        String(p.age ?? '') === String(a.age ?? '') &&
+        (p.relationship ?? '').trim() === (a.relationship ?? '').trim()
+      )
+    })
+  const nothing = sameTimes && (!changePeople || samePeople)
 
   async function submit(e: Event) {
     e.preventDefault()

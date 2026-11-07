@@ -109,7 +109,7 @@ export function TimePicker({
             >
               <option value="">
                 {!start
-                  ? `Pick the ${type.start_label.toLowerCase()} first`
+                  ? `Pick “${type.start_label}” first`
                   : ends.length
                     ? 'Choose…'
                     : 'No times work'}

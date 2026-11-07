@@ -65,7 +65,7 @@ export function SignIn() {
     <form class="card stack" onSubmit={sendCode}>
       <Field
         label="Email"
-        hint="We’ll email you a 6-digit code. No password needed."
+        hint="We’ll email you a sign-in code. No password needed."
       >
         <Input
           type="email"
@@ -88,12 +88,12 @@ export function SignIn() {
         We sent a code to <strong>{email}</strong>. It can take a minute to
         arrive.
       </p>
-      <Field label="6-digit code">
+      <Field label="Code from the email">
         <Input
           inputMode="numeric"
           autocomplete="one-time-code"
-          pattern="[0-9]{6}"
-          maxLength={6}
+          pattern="[0-9]{6,8}"
+          maxLength={8}
           required
           value={code}
           onInput={e => setCode(e.currentTarget.value.replace(/\D/g, ''))}
