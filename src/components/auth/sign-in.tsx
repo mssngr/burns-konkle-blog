@@ -151,16 +151,29 @@ export function TwoStep() {
     e.preventDefault()
     setBusy(true)
     setError(null)
-    const { error } = await supabase.auth.mfa.challengeAndVerify({
+    // Challenge and verify separately so a server problem isn't reported as a wrong code.
+    const ch = await supabase.auth.mfa.challenge({ factorId })
+    if (ch.error) {
+      setBusy(false)
+      console.error('MFA challenge failed', ch.error)
+      setError(`Couldn’t start verification: ${ch.error.message}`)
+      return
+    }
+    const { error } = await supabase.auth.mfa.verify({
       factorId,
+      challengeId: ch.data.id,
       code: code.trim(),
     })
     setBusy(false)
-    if (error)
+    if (error) {
+      console.error('MFA verify failed', error)
       setError(
-        'That code didn’t match. Codes change every 30 seconds; try the newest one.',
+        error.code === 'mfa_verification_failed' ||
+          /invalid|match/i.test(error.message)
+          ? 'That code didn’t match. Codes change every 30 seconds; try the newest one.'
+          : `Couldn’t verify: ${error.message}`,
       )
-    else await reloadAuth()
+    } else await reloadAuth()
   }
 
   if (mode === 'loading')
