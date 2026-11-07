@@ -1,0 +1,84 @@
+---
+import {
+  handmadeKey,
+  help,
+  optionKey,
+  splitOption,
+  stages,
+} from '@/data/registry'
+import Layout from '@/layouts/layout.astro'
+
+/** claim key → what it is, so the list reads as gifts rather than keys. */
+const labels: Record<string, { item: string; option: string; kind: string }> =
+  {}
+for (const stage of stages) {
+  for (const cat of stage.categories) {
+    for (const item of cat.items) {
+      for (const option of item.options) {
+        labels[optionKey(item.id, option)] = {
+          item: item.name,
+          option: splitOption(option).label,
+          kind: stage.tab,
+        }
+      }
+      if (item.make) {
+        labels[handmadeKey(item.id)] = {
+          item: item.name,
+          option: item.make,
+          kind: 'Handmade',
+        }
+      }
+    }
+  }
+}
+for (const h of help)
+  labels[`help:${h.id}`] = { item: h.name, option: 'Chipping in', kind: 'Fund' }
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
+---
+
+<Layout
+  title="Thank-you list · Baby Burns-Konkle"
+  description="Who's giving what, for Micala and Gabriel's thank-you notes."
+  noindex
+>
+  <header class="thanks-head">
+    <div class="thanks-head-inner">
+      <p class="eyebrow">For Micala &amp; Gabriel</p>
+      <h1>Thank-you list</h1>
+      <p class="lede">
+        Everyone who’s claimed a gift, with the names they entered, including guests who chose to show as “Someone.”
+        Check things off as gifts arrive and notes go out. Your checkmarks are shared between your devices.
+      </p>
+      <p class="thanks-summary" data-summary>Loading…</p>
+    </div>
+  </header>
+
+  <main class="thanks-main">
+    <div class="thanks-bar">
+      <div class="seg" role="radiogroup" aria-label="Show">
+        <button type="button" role="radio" aria-checked="true" data-show="all">Everyone</button>
+        <button type="button" role="radio" aria-checked="false" data-show="todo">Still to thank</button>
+      </div>
+      <div class="thanks-actions">
+        <button type="button" class="btn btn-ghost" data-print>Print</button>
+        <button type="button" class="btn btn-ghost" data-csv>Download spreadsheet</button>
+        <a class="btn btn-ghost" href={`${base}?family`}>Registry, family view</a>
+      </div>
+    </div>
+    <p class="sync" data-sync aria-live="polite">Loading claims…</p>
+
+    <ul class="guests" data-guests></ul>
+    <p class="empty" data-empty hidden></p>
+
+    <p class="thanks-note">
+      Names are whatever guests typed, and a claim means they planned to give it, so check “Arrived” when it does.
+      This page isn’t linked from the registry, but it isn’t password-protected either.
+    </p>
+  </main>
+
+  <script type="application/json" id="labels" set:html={JSON.stringify(labels)} />
+  <script>
+    import '@/scripts/thanks'
+  </script>
+</Layout>

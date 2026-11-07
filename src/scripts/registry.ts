@@ -1,28 +1,9 @@
-import { BASKET, PANTRY_ID } from '@/config'
+import { BASKET } from '@/config'
+import { type Claim, type Claims, isActive, request } from '@/scripts/pantry'
 
-// ---------- Types & storage ----------
+// ---------- Storage ----------
 
-interface Claim {
-  by: string
-  anon?: boolean
-  /** Random per-browser token, so the claimer (and only them) sees "Undo". */
-  t: string
-  at: number
-  released?: boolean
-}
-
-/**
- * claim key → claimer token → claim. Each guest only ever writes under their own token,
- * and Pantry's PUT deep-merges, so simultaneous writes never clobber each other.
- * The earliest active claim on a key wins.
- */
-type Claims = Record<string, Record<string, Claim>>
-
-const ENDPOINT = `https://getpantry.cloud/apiv1/pantry/${PANTRY_ID}/basket/${BASKET}`
 const POLL_MS = 75_000
-/** Pantry allows ~2 requests before a ~10s lockout, so space ours out. */
-const REQUEST_GAP_MS = 3_000
-const RETRY_DELAYS_MS = [4_000, 8_000, 12_000, 16_000, 24_000, 30_000]
 const KEYS = {
   token: 'bk.token',
   name: 'bk.name',
@@ -63,9 +44,6 @@ try {
   claims = JSON.parse(local.get(KEYS.cache) ?? '{}')
 } catch {}
 
-const isActive = (c?: Claim): c is Claim =>
-  !!c && typeof c === 'object' && !!c.t && !c.released
-
 /** Active claims on a key, earliest first. */
 function holders(key: string): Claim[] {
   return Object.values(claims[key] ?? {})
@@ -81,60 +59,9 @@ const myClaim = (key: string) => {
 
 // ---------- Pantry API ----------
 
-class FatalError extends Error {}
-
-const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
-
-let nextSlot = 0
-let chain: Promise<unknown> = Promise.resolve()
-
-/** Run requests one at a time, at least REQUEST_GAP_MS apart. */
-function schedule<T>(job: () => Promise<T>): Promise<T> {
-  const run = chain.then(async () => {
-    const wait = nextSlot - Date.now()
-    if (wait > 0) await sleep(wait)
-    try {
-      return await job()
-    } finally {
-      nextSlot = Date.now() + REQUEST_GAP_MS
-    }
-  })
-  chain = run.catch(() => {})
-  return run
-}
-
-async function once(method: 'GET' | 'PUT', body?: unknown): Promise<Claims> {
-  const res = await fetch(ENDPOINT, {
-    method,
-    cache: 'no-store',
-    headers: body ? { 'Content-Type': 'application/json' } : undefined,
-    body: body ? JSON.stringify(body) : undefined,
-  })
-  if (res.ok) {
-    const data = (await res.json()) as { claims?: Claims }
-    return data.claims ?? {}
-  }
-  if (res.status !== 429 && res.status < 500)
-    throw new FatalError(`Registry error ${res.status}`)
-  throw new Error(`Registry busy (${res.status})`)
-}
-
-/**
- * Pantry answers rate-limited requests with a 429 that has no CORS headers, so the browser
- * reports it as a network error. Retry those with backoff.
- */
-async function request(method: 'GET' | 'PUT', body?: unknown): Promise<Claims> {
-  for (let attempt = 0; ; attempt++) {
-    try {
-      const result = await schedule(() => once(method, body))
-      return result
-    } catch (e) {
-      if (e instanceof FatalError || attempt >= RETRY_DELAYS_MS.length) throw e
-      syncState = 'busy'
-      renderSync()
-      await sleep(RETRY_DELAYS_MS[attempt])
-    }
-  }
+const onBusy = () => {
+  syncState = 'busy'
+  renderSync()
 }
 
 function accept(next: Claims) {
@@ -151,7 +78,7 @@ async function refresh() {
   if (refreshing || writes > 0) return
   refreshing = true
   try {
-    accept(await request('GET'))
+    accept((await request('GET', undefined, onBusy)).claims ?? {})
   } catch {
     syncState = 'error'
     renderSync()
@@ -163,7 +90,10 @@ async function refresh() {
 async function write(key: string, record: Claim) {
   writes++
   try {
-    accept(await request('PUT', { claims: { [key]: { [token]: record } } }))
+    accept(
+      (await request('PUT', { claims: { [key]: { [token]: record } } }, onBusy))
+        .claims ?? {},
+    )
   } finally {
     writes--
   }
@@ -370,7 +300,7 @@ function render() {
     let itemMine = false
     for (const opt of opts) {
       const key = opt.dataset.key ?? ''
-      let h = holder(key)
+      let h: Claim | undefined = holder(key)
       if (one && h && winner && winner.key !== key) h = undefined
       const state = pending.has(key)
         ? 'pending'
