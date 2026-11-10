@@ -24,6 +24,8 @@ export function NewPassword({
       if (password !== again) throw new AppError('The two passwords differ.')
       const { error } = await supabase.auth.updateUser({ password })
       if (error) throw error
+      // A changed password should end any other session that still has the old one.
+      await supabase.auth.signOut({ scope: 'others' })
       setPassword('')
       setAgain('')
       onDone?.()

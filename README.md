@@ -64,7 +64,8 @@ bun dev                 # http://localhost:4321
    Optional: `MAIL_REPLY_TO=…` so replies reach a family inbox.
 
 5. **Auth settings** in the Supabase dashboard:
-   - Authentication → URL Configuration: Site URL `https://burns-konkle.com`.
+   - Authentication → URL Configuration: Site URL `https://burns-konkle.com`, and add `https://burns-konkle.com/signin/` to Redirect URLs (the password-reset link returns there; without it people land on the home page and never see the new-password form).
+   - Existing accounts have no password yet: they use "Forgot password?" on the sign-in page to set one.
    - Authentication → Emails → SMTP: use Resend's SMTP (`smtp.resend.com`, port 465, user `resend`, your API key as the password). The built-in sender is limited to a few emails an hour.
    - Authentication → Sign In / Providers → Email: leave "Confirm email" **off**. The site tracks confirmation itself so people can look around before confirming; the confirmation link is sent through the outbox (Resend), not by Supabase. Keep the default password-reset email.
    - Authentication → Multi-Factor: turn TOTP off. The site no longer uses two-step verification.

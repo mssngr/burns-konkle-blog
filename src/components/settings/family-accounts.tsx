@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
 import { type FamilyStatus, reloadAuth } from '@/lib/auth'
 import { AppError, query, rpc, supabase } from '@/lib/supabase'
+import { fmtDate } from '@/lib/time'
 import {
   Button,
   ErrorText,
@@ -219,8 +220,7 @@ interface Account {
   last_sign_in_at: string | null
 }
 
-const day = (iso: string | null) =>
-  iso ? new Date(iso).toLocaleDateString() : 'never'
+const day = (iso: string | null) => (iso ? fmtDate(iso) : 'never')
 
 /** Every account on the site, family and guests, for Admins. */
 export function AllAccounts() {

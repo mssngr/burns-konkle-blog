@@ -53,7 +53,8 @@ async function refresh(session: Session | null) {
 }
 
 /** Set while the person is on a password-reset link and needs to choose a new password. */
-let recovering = false
+// Read the URL now: Supabase can fire PASSWORD_RECOVERY before our listener exists.
+let recovering = /type=recovery/.test(location.hash)
 
 let started = false
 function start() {

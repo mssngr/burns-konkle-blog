@@ -80,15 +80,45 @@ language sql stable security definer set search_path = '' as $$
   )
 $$;
 
-/** Open the link from the email. Works signed in or not. */
-create function public.confirm_email(p_token text) returns boolean
+/**
+ * Open the link from the email. Returns 'confirmed', 'invalid', or 'password_needed'.
+ *
+ * Someone could sign up with another person's email and their own password. The link
+ * goes to the real owner, so it must not hand that account over while the attacker
+ * still knows the password. It confirms directly only when the browser is already signed
+ * in as that account; otherwise the owner must choose a new password
+ * (confirm_email_with_password), which also signs out every other session.
+ */
+create function public.confirm_email(p_token text) returns text
 language plpgsql security definer set search_path = '' as $$
-declare n int;
+declare c private.email_confirmations;
 begin
-  update private.email_confirmations set confirmed_at = coalesce(confirmed_at, now())
-  where token = p_token and p_token <> '';
-  get diagnostics n = row_count;
-  return n > 0;
+  select * into c from private.email_confirmations where token = p_token and p_token <> '';
+  if not found then return 'invalid'; end if;
+  if c.confirmed_at is not null then return 'confirmed'; end if;
+  if auth.uid() is distinct from c.user_id then return 'password_needed'; end if;
+  update private.email_confirmations set confirmed_at = now() where user_id = c.user_id;
+  return 'confirmed';
+end $$;
+
+/** Confirm from the link by choosing a password. Returns the email so the site can sign in. */
+create function public.confirm_email_with_password(p_token text, p_password text) returns text
+language plpgsql security definer set search_path = '' as $$
+declare c private.email_confirmations;
+begin
+  if length(coalesce(p_password, '')) < 8 then
+    raise exception 'Use at least 8 characters.' using errcode = 'P0001';
+  end if;
+  select * into c from private.email_confirmations where token = p_token and p_token <> '';
+  if not found then
+    raise exception 'That link didn''t work. It may be old or mistyped.' using errcode = 'P0001';
+  end if;
+  update auth.users set encrypted_password = extensions.crypt(p_password, extensions.gen_salt('bf'))
+  where id = c.user_id;
+  -- Whoever was signed in before (possibly the person who made the account) is signed out.
+  delete from auth.sessions where user_id = c.user_id;
+  update private.email_confirmations set confirmed_at = coalesce(confirmed_at, now()) where user_id = c.user_id;
+  return c.email;
 end $$;
 
 /** Send the confirmation link again (at most once a minute). */
