@@ -15,6 +15,8 @@ import {
   useAction,
   useAsync,
 } from '@/lib/ui'
+import { ConfirmBanner } from './confirm-email'
+import { ChangePassword } from './password'
 
 interface Companion {
   name: string
@@ -41,17 +43,36 @@ export function Profile() {
   }
   if (auth.family) {
     return (
-      <Notice title={`You’re signed in as ${auth.family.display_name}`}>
-        <p>
-          Head to the <a href={site('family/')}>family dashboard</a>.
-        </p>
-      </Notice>
+      <div class="stack">
+        <ConfirmBanner />
+        <Notice title={`You’re signed in as ${auth.family.display_name}`}>
+          <p>
+            Head to the <a href={site('family/')}>family dashboard</a>.
+          </p>
+        </Notice>
+        <ChangePassword />
+      </div>
     )
   }
-  return <ProfileForm email={auth.session.user.email ?? ''} />
+  return (
+    <div class="stack">
+      <ConfirmBanner />
+      <ProfileForm
+        email={auth.session.user.email ?? ''}
+        confirmed={auth.confirmed}
+      />
+      <ChangePassword />
+    </div>
+  )
 }
 
-function ProfileForm({ email }: { email: string }) {
+function ProfileForm({
+  email,
+  confirmed,
+}: {
+  email: string
+  confirmed: boolean
+}) {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [companions, setCompanions] = useState<Companion[]>([])
@@ -176,7 +197,12 @@ function ProfileForm({ email }: { email: string }) {
         </fieldset>
         <ErrorText error={save.error} />
         <div class="actions">
-          <Button type="submit" variant="primary" busy={save.busy}>
+          <Button
+            type="submit"
+            variant="primary"
+            busy={save.busy}
+            disabled={!confirmed}
+          >
             Save profile
           </Button>
         </div>

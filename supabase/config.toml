@@ -161,7 +161,7 @@ site_url = "http://localhost:4321"
 # The public URL that Auth serves on. Defaults to the API external URL with `/auth/v1` appended.
 # external_url = ""
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
-additional_redirect_urls = ["http://localhost:4321", "https://burns-konkle.com"]
+additional_redirect_urls = ["http://localhost:4321", "http://localhost:4321/signin/", "https://burns-konkle.com", "https://burns-konkle.com/signin/"]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
 # JWT issuer URL. If not set, defaults to auth.external_url.
@@ -180,7 +180,7 @@ enable_anonymous_sign_ins = false
 # Allow/disallow testing manual linking of accounts
 enable_manual_linking = false
 # Passwords shorter than this value will be rejected as weak. Minimum 6, recommended 8 or more.
-minimum_password_length = 6
+minimum_password_length = 8
 # Passwords that do not meet the following requirements will be rejected as weak. Supported values
 # are: `letters_digits`, `lower_upper_letters_digits`, `lower_upper_letters_digits_symbols`
 password_requirements = ""
@@ -223,7 +223,9 @@ enable_signup = true
 # If enabled, a user will be required to confirm any email change on both the old, and new email
 # addresses. If disabled, only the new email is required to confirm.
 double_confirm_changes = true
-# If enabled, users need to confirm their email address before signing in.
+# Left off on purpose: Supabase's own confirmation blocks sign-in until confirmed. The site
+# tracks confirmation itself (see the password_auth_email_confirmation migration) so unconfirmed
+# people can still look around.
 enable_confirmations = false
 # If enabled, users will need to reauthenticate or have logged in recently to change their password.
 secure_password_change = false
@@ -302,8 +304,8 @@ max_enrolled_factors = 10
 
 # Control MFA via App Authenticator (TOTP)
 [auth.mfa.totp]
-enroll_enabled = true
-verify_enabled = true
+enroll_enabled = false
+verify_enabled = false
 
 [auth.mfa.phone]
 enroll_enabled = false
@@ -417,12 +419,3 @@ enabled = true
 # Called every minute by pg_cron; checks a shared secret instead of a user JWT.
 [functions.send-outbox]
 verify_jwt = false
-
-# Sign-in emails show a 6-digit code (the site asks for the code, not a link).
-[auth.email.template.magic_link]
-subject = "Your sign-in code"
-content_path = "./supabase/templates/magic_link.html"
-
-[auth.email.template.confirmation]
-subject = "Your sign-in code"
-content_path = "./supabase/templates/confirmation.html"

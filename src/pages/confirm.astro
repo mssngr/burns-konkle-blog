@@ -1,0 +1,13 @@
+---
+import { ConfirmEmail } from '@/components/auth/confirm-email'
+import AppLayout from '@/layouts/app.astro'
+---
+
+<AppLayout active="signin" title="Confirm your email · Baby Burns-Konkle" description="Confirm your email for the Burns-Konkle family site." noindex>
+  <main class="page page-narrow">
+    <header class="page-head">
+      <h1>Confirm your email</h1>
+    </header>
+    <ConfirmEmail client:only="preact" />
+  </main>
+</AppLayout>

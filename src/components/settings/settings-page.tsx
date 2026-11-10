@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'preact/hooks'
 import { FamilyGate } from '@/components/auth/family-gate'
 import type { FamilyStatus } from '@/lib/auth'
 import { BookingTypeSettings } from './booking-types'
-import { FamilySettings } from './family-accounts'
+import { AllAccounts, FamilySettings } from './family-accounts'
 import { GeneralSettings } from './general'
 import { MealSettings } from './meals'
 import { MessageSettings } from './messages'
@@ -83,7 +83,12 @@ function Settings({ me }: { me: FamilyStatus }) {
     'meal-train': () => <MealSettings onDirty={reporters['meal-train']} />,
     messages: () => <MessageSettings onDirty={reporters.messages} />,
     offerings: () => <OfferingSettings onDirty={reporters.offerings} />,
-    family: () => <FamilySettings me={me} />,
+    family: () => (
+      <>
+        <FamilySettings me={me} />
+        <AllAccounts />
+      </>
+    ),
     'test-data': () => <TestDataSettings />,
   }
 
