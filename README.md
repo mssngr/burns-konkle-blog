@@ -66,7 +66,7 @@ bun dev                 # http://localhost:4321
 5. **Auth settings** in the Supabase dashboard:
    - Authentication → URL Configuration: Site URL `https://burns-konkle.com`.
    - Authentication → Emails → SMTP: use Resend's SMTP (`smtp.resend.com`, port 465, user `resend`, your API key as the password). The built-in sender is limited to a few emails an hour.
-   - Authentication → Emails → Templates → Magic Link: include `{{ .Token }}` (copy `supabase/templates/magic_link.html`); the site asks for the 6-digit code.
+   - Sign-in email templates: the site asks for the emailed code, so both the Magic Link (returning guests) and Confirm signup (first-time guests) templates must show `{{ .Token }}`. Don't paste them by hand; run `SUPABASE_ACCESS_TOKEN=sbp_… scripts/push-auth-templates.sh` (token from supabase.com/dashboard/account/tokens) to copy `supabase/templates/*.html` and their subjects from `supabase/config.toml` to the project and verify them. Re-run it after editing a template. (Not `supabase config push`: it would also overwrite production's Site URL and other auth settings with the local-dev values.)
    - Authentication → Multi-Factor: enable TOTP (authenticator app).
 
 6. **GitHub** → Settings → Secrets and variables → Actions → Variables: add `PUBLIC_SUPABASE_URL` (`https://<project-ref>.supabase.co`) and `PUBLIC_SUPABASE_ANON_KEY` (the project's anon/publishable key). Pushing to `main` deploys.
