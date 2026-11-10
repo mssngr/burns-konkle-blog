@@ -144,8 +144,13 @@ begin
   if c.last_sent_at > now() - interval '1 minute' then
     raise exception 'We just sent a link. Please check your email, or try again in a minute.' using errcode = 'P0001';
   end if;
-  update private.email_confirmations set last_sent_at = now(), token = private.random_token()
-  where user_id = c.user_id returning * into c;
+  if (select count(*) from public.outbox
+      where template = 'email_confirmation' and to_email = c.email
+        and created_at > now() - interval '1 day') >= 5 then
+    raise exception 'We''ve sent a few links already today. Please check your email, including spam.' using errcode = 'P0001';
+  end if;
+  -- Keep the same token: rotating it would let anyone signed in as this account cancel the link the real owner is about to open.
+  update private.email_confirmations set last_sent_at = now() where user_id = c.user_id returning * into c;
   perform private.send_confirmation_email(c);
 end $$;
 
