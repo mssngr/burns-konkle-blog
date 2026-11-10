@@ -14,7 +14,11 @@ cd "$(dirname "$0")/.."
 PROJECT_REF="${SUPABASE_PROJECT_REF:-qtqbieoqddytzptofoil}"
 API="https://api.supabase.com/v1/projects/${PROJECT_REF}/config/auth"
 DRY_RUN=false
-[[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true
+case "${1:-}" in
+  "") ;;
+  --dry-run) DRY_RUN=true ;;
+  *) echo "Unknown argument: $1 (only --dry-run is supported)" >&2; exit 2 ;;
+esac
 
 # Reads `subject` from the [auth.email.template.<name>] section of config.toml.
 subject_of() {
@@ -56,10 +60,12 @@ curl -fsS -X PATCH "$API" \
   -H "Content-Type: application/json" \
   -d "$payload" > /dev/null
 
-# Verify: the hosted values must equal what we sent.
+# Verify: the hosted values must equal what we sent (ignoring trailing newlines,
+# which the API may trim).
 live="$(curl -fsS "$API" -H "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}")"
-if diff <(echo "$payload" | jq -S .) \
-  <(echo "$live" | jq -S '{mailer_subjects_magic_link, mailer_templates_magic_link_content, mailer_subjects_confirmation, mailer_templates_confirmation_content}'); then
+trim='map_values(rtrimstr("\n"))'
+if diff <(echo "$payload" | jq -S "$trim") \
+  <(echo "$live" | jq -S "{mailer_subjects_magic_link, mailer_templates_magic_link_content, mailer_subjects_confirmation, mailer_templates_confirmation_content} | $trim"); then
   echo "Hosted sign-in email templates match the repo."
 else
   echo "Hosted templates differ from the repo after push." >&2
