@@ -93,7 +93,7 @@ function responderId(): string {
 }
 
 const canManage = (post: Post, family: FamilyStatus | null) =>
-  !!family?.verified &&
+  !!family?.confirmed &&
   (post.author === family.person || family.role === 'admin')
 
 const withUnit = (answer: string, unit?: string | null) =>

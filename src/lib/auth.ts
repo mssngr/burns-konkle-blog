@@ -9,18 +9,28 @@ export interface FamilyStatus {
   person: Person
   display_name: string
   role: Role
-  /** Signed in with two-step verification (required to see private data). */
-  verified: boolean
+  /** Email confirmed. Until then the account is read-only and sees no private data. */
+  confirmed: boolean
 }
 
 export interface AuthState {
   loading: boolean
   session: Session | null
+  /** The signed-in email has been confirmed. Unconfirmed accounts can look but not change anything. */
+  confirmed: boolean
+  /** Arrived from a password-reset link: ask for a new password. */
+  recovering: boolean
   /** Set when the signed-in email belongs to Gabriel, Micala, Vincent or Samantha. */
   family: FamilyStatus | null
 }
 
-let state: AuthState = { loading: true, session: null, family: null }
+let state: AuthState = {
+  loading: true,
+  session: null,
+  confirmed: false,
+  recovering: false,
+  family: null,
+}
 const listeners = new Set<(s: AuthState) => void>()
 
 function emit(next: AuthState) {
@@ -30,24 +40,40 @@ function emit(next: AuthState) {
 
 async function refresh(session: Session | null) {
   let family: FamilyStatus | null = null
+  let confirmed = false
   if (session) {
-    const { data } = await supabase.rpc('my_family_status')
-    family = (data as FamilyStatus | null) ?? null
+    const [status, mine] = await Promise.all([
+      supabase.rpc('my_family_status'),
+      supabase.rpc('my_email_confirmed'),
+    ])
+    family = (status.data as FamilyStatus | null) ?? null
+    confirmed = mine.data === true
   }
-  emit({ loading: false, session, family })
+  emit({ loading: false, session, confirmed, recovering, family })
 }
+
+/** Set while the person is on a password-reset link and needs to choose a new password. */
+let recovering = false
 
 let started = false
 function start() {
   if (started) return
   started = true
   if (!configured) {
-    emit({ loading: false, session: null, family: null })
+    emit({
+      loading: false,
+      session: null,
+      confirmed: false,
+      recovering: false,
+      family: null,
+    })
     return
   }
   supabase.auth.getSession().then(({ data }) => refresh(data.session))
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === 'INITIAL_SESSION') return
+    if (event === 'PASSWORD_RECOVERY') recovering = true
+    if (event === 'SIGNED_OUT') recovering = false
     // Defer: calling Supabase inside this callback can deadlock the auth lock.
     setTimeout(() => refresh(session), 0)
   })
@@ -85,10 +111,16 @@ export function useAuth(): AuthState {
   return s
 }
 
-/** Re-check family status, e.g. after two-step verification raises the session to aal2. */
+/** Re-check family and confirmation status, e.g. after the email is confirmed. */
 export async function reloadAuth() {
   const { data } = await supabase.auth.getSession()
   await refresh(data.session)
+}
+
+/** Called once the new password is saved. */
+export function doneRecovering() {
+  recovering = false
+  emit({ ...state, recovering: false })
 }
 
 export async function signOut() {
@@ -97,8 +129,8 @@ export async function signOut() {
 }
 
 export const isAdmin = (f: FamilyStatus | null) =>
-  !!f?.verified && f.role === 'admin'
-export const isFamily = (f: FamilyStatus | null) => !!f?.verified
+  !!f?.confirmed && f.role === 'admin'
+export const isFamily = (f: FamilyStatus | null) => !!f?.confirmed
 
 export const FAMILY_NAMES: Record<Person, string> = {
   gabriel: 'Gabriel',

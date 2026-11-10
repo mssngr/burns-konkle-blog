@@ -14,10 +14,10 @@ Decisions that differ from the spec:
 | `src/layouts/app.astro` | Shell: sidebar of modules, "How this works" link, test-mode and pause banners, optional photo notice (`photoNotice` prop). Every page uses it. |
 | `src/data/modules.ts` | Sidebar entries and icons. |
 | `src/lib/supabase.ts` | Client, `rpc()`, `query()`, `errorMessage()`, photo URL helpers. |
-| `src/lib/auth.ts` | `useAuth()` → `{ loading, session, family }`; `family` is `{ person, display_name, role, verified }`. |
+| `src/lib/auth.ts` | `useAuth()` → `{ loading, session, family }`; `family` is `{ person, display_name, role, confirmed }`; `confirmed` is also on the state itself for guests. |
 | `src/lib/time.ts` | Mountain Time helpers. **Always** use these: `fromMT(date, time)` builds an instant; `mtDate`, `mtTime`, `fmtDate`, `fmtTime`, `fmtRange`, `addDays`, `weekStart`, `clockSteps`. |
 | `src/lib/ui.tsx` | `Button`, `Field`, `Input`, `TextArea`, `Select`, `Check`, `Notice`, `ErrorText`, `Loading`, `Empty`, `toast`, `Legend`, `StatusPill`, `Modal`, `useAsync`, `useAction`, `useQueryParam`, `ContactFields` + `useContact`, `PageHead`, `site(path)`. |
-| `src/components/auth/` | Sign-in (email code), two-step verification, `FamilyGate` (wrap family pages), profile. |
+| `src/components/auth/` | Sign-in (email + password, reset link), email confirmation, change password, `FamilyGate` (wrap family pages), profile. |
 | `src/styles/app.css` | Shell and shared classes: `.page`, `.page-narrow`, `.page-wide`, `.card`, `.cards`, `.stack`, `.row`, `.spread`, `.form-grid`, `.input`, `.actions`, `.btn-*`, `.notice-*`, `.pill-*`, `.st-<color>` (the six calendar colors), `.legend`, `.table`, `.modal`, `.meta`, `.muted`, `.small`. |
 | `supabase/migrations/` | Schema, privacy (RLS), and every action as a Postgres function. |
 | `supabase/functions/send-outbox/` | Sends queued emails via Resend. |
@@ -27,7 +27,7 @@ Pages are `.astro` files under `src/pages/` that render a Preact island with `cl
 ## Privacy model
 
 - Guests never read tables. They call `SECURITY DEFINER` functions, and anything after the first step takes the unguessable `token` from their private link (`/visits/request/?t=…`, `/meals/signup/?t=…`, `/offer/?t=…`).
-- Family members read tables through RLS policies that require a signed-in account whose email is in `public.family` **and** a two-step-verified (aal2) session. `private.is_family()` / `private.is_admin()`.
+- Family members read tables through RLS policies that require a signed-in account whose email is in `public.family` **and** has been confirmed (a link emailed at sign-up; see `private.is_confirmed()`). Unconfirmed accounts see nothing private and can change nothing. `private.is_family()` / `private.is_admin()`.
 - Guest emails and phones are in `visitor_contacts` (Admins only). Names are in `visitors`. Block notes, outbox, and activity are Admin-only.
 - Public data: settings, rules, booking types, limits, meal dates, offer options, posts, published notes (`published_notes()`), calendar colors (`visit_calendar()`, `meal_calendar()`).
 

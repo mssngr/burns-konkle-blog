@@ -1,8 +1,8 @@
 -- Core: family accounts, settings, visitors & flags, activity log, email outbox.
 -- Every table has RLS on. Guests never read tables directly: they go through
 -- SECURITY DEFINER functions that take an unguessable token. Family members
--- read through RLS policies that require a signed-in, two-step-verified
--- (aal2) account listed in `family`.
+-- read through RLS policies that require a signed-in account with a confirmed
+-- email listed in `family`.
 
 create extension if not exists pgcrypto with schema extensions;
 

@@ -17,7 +17,7 @@ export function FamilyNav({ active }: { active?: string }) {
 
   return (
     <>
-      {family?.verified && (
+      {family?.confirmed && (
         <nav class="nav-group" aria-label="Family">
           <p class="nav-heading">Family</p>
           <ul>

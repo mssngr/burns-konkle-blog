@@ -1,10 +1,10 @@
 import type { ComponentChildren } from 'preact'
-import { TwoStep } from '@/components/auth/sign-in'
+import { ConfirmBanner } from '@/components/auth/confirm-email'
 import { type FamilyStatus, useAuth } from '@/lib/auth'
 import { Loading, Notice, site } from '@/lib/ui'
 
 /**
- * Shows its children only to a signed-in, two-step-verified family member.
+ * Shows its children only to a signed-in family member with a confirmed email.
  * `admin` limits it to Gabriel and Micala. The database enforces the same rules;
  * this just keeps the page friendly.
  */
@@ -38,7 +38,8 @@ export function FamilyGate({
       </Notice>
     )
   }
-  if (!family.verified) return <TwoStep />
+  if (!family.confirmed)
+    return <ConfirmBanner title="Confirm your email to open family pages" />
   if (admin && family.role !== 'admin') {
     return <Notice title="Only Gabriel and Micala can open this page" />
   }

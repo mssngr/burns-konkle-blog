@@ -6,7 +6,7 @@ A private-by-design site for coordinating visits, meals, help, gifts, and update
 
 Everyone: Home, How this works, Visit calendar, Meal Train, Offer help, Baby registry, Baby & Micala updates, Family & friends notes, House rules.
 
-Family (signed in with two-step verification): Dashboard, Visits & blocks, Meal Train, Family schedule, Offers of help, Notes to publish, Visitors & flags. Gabriel and Micala also get Registry thank-yous, Sent emails, Activity log, and Settings.
+Family (signed in with a confirmed email): Dashboard, Visits & blocks, Meal Train, Family schedule, Offers of help, Notes to publish, Visitors & flags. Gabriel and Micala also get Registry thank-yous, Sent emails, Activity log, and Settings.
 
 ## Local development
 
@@ -20,7 +20,7 @@ bun dev                 # http://localhost:4321
 ```
 
 - Sign-in emails and every site email land in Mailpit at http://127.0.0.1:54324 (emails are marked "logged" in the outbox when no Resend key is set).
-- Local family accounts are `gabriel@example.test`, `micala@example.test` (Admins), `vincent@example.test`, `samantha@example.test` (Elevated). Sign in with the emailed code, then set up an authenticator app.
+- Local family accounts are `gabriel@example.test`, `micala@example.test` (Admins), `vincent@example.test`, `samantha@example.test` (Elevated). Make an account at `/signin/` with that email and any password, then open the confirmation link. Emails go through the outbox, which has no mail sender locally, so read the link in Studio: `select body from outbox order by id desc limit 1`.
 - Meal Train dates are open for the next 45 days locally.
 
 ## The registry
@@ -66,8 +66,8 @@ bun dev                 # http://localhost:4321
 5. **Auth settings** in the Supabase dashboard:
    - Authentication → URL Configuration: Site URL `https://burns-konkle.com`.
    - Authentication → Emails → SMTP: use Resend's SMTP (`smtp.resend.com`, port 465, user `resend`, your API key as the password). The built-in sender is limited to a few emails an hour.
-   - Sign-in email templates: the site asks for the emailed code, so both the Magic Link (returning guests) and Confirm signup (first-time guests) templates must show `{{ .Token }}`. Don't paste them by hand; run `SUPABASE_ACCESS_TOKEN=sbp_… scripts/push-auth-templates.sh` (token from supabase.com/dashboard/account/tokens) to copy `supabase/templates/*.html` and their subjects from `supabase/config.toml` to the project and verify them. Re-run it after editing a template. (Not `supabase config push`: it would also overwrite production's Site URL and other auth settings with the local-dev values.)
-   - Authentication → Multi-Factor: enable TOTP (authenticator app).
+   - Authentication → Sign In / Providers → Email: leave "Confirm email" **off**. The site tracks confirmation itself so people can look around before confirming; the confirmation link is sent through the outbox (Resend), not by Supabase. Keep the default password-reset email.
+   - Authentication → Multi-Factor: turn TOTP off. The site no longer uses two-step verification.
 
 6. **GitHub** → Settings → Secrets and variables → Actions → Variables: add `PUBLIC_SUPABASE_URL` (`https://<project-ref>.supabase.co`) and `PUBLIC_SUPABASE_ANON_KEY` (the project's anon/publishable key). Pushing to `main` deploys.
 

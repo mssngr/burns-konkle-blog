@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks'
 import { type FamilyStatus, reloadAuth } from '@/lib/auth'
-import { AppError, query, supabase } from '@/lib/supabase'
+import { AppError, query, rpc, supabase } from '@/lib/supabase'
 import {
   Button,
   ErrorText,
@@ -136,8 +136,8 @@ function MemberRow({
             {cleanEmail ? (
               <>
                 From now on, {isMe ? 'you' : saved.display_name} will sign in
-                with <strong>{cleanEmail}</strong>, then set up two-step
-                verification again for that account.
+                with <strong>{cleanEmail}</strong>. They’ll need to make an
+                account with that email and confirm it first.
               </>
             ) : (
               <>
@@ -187,10 +187,9 @@ export function FamilySettings({ me }: { me: FamilyStatus }) {
       <Notice tone="warn" title="These emails are how each person signs in">
         <p>
           Whoever controls an email here can reach family pages, so only enter
-          an address that person alone uses. Family accounts also need two-step
-          verification with an authenticator app. Never share these emails,
-          sign-in codes, or verification codes, and never put them in the site’s
-          code.
+          an address that person alone uses. Each person makes an account with a
+          password and confirms their email from a link we send. Never share
+          these emails or passwords, and never put them in the site’s code.
         </p>
       </Notice>
       <ul class="set-list">
@@ -203,6 +202,63 @@ export function FamilySettings({ me }: { me: FamilyStatus }) {
               setData(data.map(x => (x.person === n.person ? n : x)))
             }
           />
+        ))}
+      </ul>
+    </Section>
+  )
+}
+
+interface Account {
+  user_id: string
+  email: string
+  name: string | null
+  kind: 'family' | 'guest'
+  role: 'admin' | 'elevated' | null
+  confirmed: boolean
+  created_at: string
+  last_sign_in_at: string | null
+}
+
+const day = (iso: string | null) =>
+  iso ? new Date(iso).toLocaleDateString() : 'never'
+
+/** Every account on the site, family and guests, for Admins. */
+export function AllAccounts() {
+  const { data, error, loading } = useAsync(() =>
+    rpc<Account[]>('admin_accounts'),
+  )
+  if (loading) return <Loading />
+  if (error) return <ErrorText error={error} />
+  return (
+    <Section
+      title="All accounts"
+      lede="Everyone who has made an account, with whether they’ve confirmed their email. Passwords are never visible."
+    >
+      <ul class="set-list">
+        {(data ?? []).map(a => (
+          <li key={a.user_id} class="set-item spread">
+            <span>
+              <strong>{a.name || a.email}</strong>
+              {a.name && <span class="meta"> · {a.email}</span>}
+              <span class="meta">
+                {' '}
+                · joined {day(a.created_at)} · last sign-in{' '}
+                {day(a.last_sign_in_at)}
+              </span>
+            </span>
+            <span>
+              <span
+                class={`pill ${a.kind === 'family' ? 'pill-blue' : 'pill-muted'}`}
+              >
+                {a.kind === 'family' ? ROLE[a.role ?? 'elevated'] : 'Guest'}
+              </span>{' '}
+              <span
+                class={`pill ${a.confirmed ? 'pill-muted' : 'pill-yellow'}`}
+              >
+                {a.confirmed ? 'Confirmed' : 'Not confirmed'}
+              </span>
+            </span>
+          </li>
         ))}
       </ul>
     </Section>
