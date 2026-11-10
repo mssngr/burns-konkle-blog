@@ -70,15 +70,26 @@ insert into private.email_confirmations (user_id, email, confirmed_at)
 select id, lower(email), coalesce(email_confirmed_at, now()) from auth.users where email is not null
 on conflict do nothing;
 
-/** Has the signed-in user confirmed the email they're signed in with? */
+/**
+ * Has the signed-in user confirmed the email they're signed in with?
+ * The session must still exist: deleting sessions (see confirm_email_with_password)
+ * also cuts off access tokens already issued, which would otherwise work until they expire.
+ */
 create function private.is_confirmed() returns boolean
 language sql stable security definer set search_path = '' as $$
   select exists (
     select 1 from private.email_confirmations c
     where c.user_id = auth.uid() and c.confirmed_at is not null
       and c.email = lower(coalesce(auth.jwt() ->> 'email', ''))
+  ) and exists (
+    select 1 from auth.sessions s
+    where s.id = nullif(auth.jwt() ->> 'session_id', '')::uuid and s.user_id = auth.uid()
   )
 $$;
+
+/** How long a confirmation link works after it was sent. */
+create function private.confirmation_fresh(c private.email_confirmations) returns boolean
+language sql stable as $$ select c.last_sent_at > now() - interval '7 days' $$;
 
 /**
  * Open the link from the email. Returns 'confirmed', 'invalid', or 'password_needed'.
@@ -94,7 +105,7 @@ language plpgsql security definer set search_path = '' as $$
 declare c private.email_confirmations;
 begin
   select * into c from private.email_confirmations where token = p_token and p_token <> '';
-  if not found then return 'invalid'; end if;
+  if not found or not private.confirmation_fresh(c) then return 'invalid'; end if;
   if c.confirmed_at is not null then return 'confirmed'; end if;
   if auth.uid() is distinct from c.user_id then return 'password_needed'; end if;
   update private.email_confirmations set confirmed_at = now() where user_id = c.user_id;
@@ -110,8 +121,9 @@ begin
     raise exception 'Use at least 8 characters.' using errcode = 'P0001';
   end if;
   select * into c from private.email_confirmations where token = p_token and p_token <> '';
-  if not found then
-    raise exception 'That link didn''t work. It may be old or mistyped.' using errcode = 'P0001';
+  -- A used or old link must not work: it would otherwise be a standing way to reset the password.
+  if not found or c.confirmed_at is not null or not private.confirmation_fresh(c) then
+    raise exception 'That link didn''t work. It may be old or already used.' using errcode = 'P0001';
   end if;
   update auth.users set encrypted_password = extensions.crypt(p_password, extensions.gen_salt('bf'))
   where id = c.user_id;
@@ -132,7 +144,8 @@ begin
   if c.last_sent_at > now() - interval '1 minute' then
     raise exception 'We just sent a link. Please check your email, or try again in a minute.' using errcode = 'P0001';
   end if;
-  update private.email_confirmations set last_sent_at = now() where user_id = c.user_id returning * into c;
+  update private.email_confirmations set last_sent_at = now(), token = private.random_token()
+  where user_id = c.user_id returning * into c;
   perform private.send_confirmation_email(c);
 end $$;
 
