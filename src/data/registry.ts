@@ -157,7 +157,9 @@ export const stages: Stage[] = [
             qty: '3–4',
             options: [
               'Halo SleepSack Swaddle (organic cotton option)',
-              'Love to Dream Swaddle UP (arms-up "starfish")',
+              "Burt's Bees Baby Beekeeper wearable blanket (100% organic cotton)",
+              'Tiny Kind Organic Cotton Wearable Swaddle',
+              'Small Story Organic Cotton Wearable Swaddle',
             ],
             restriction: 'Store-bought only, please.',
           },
