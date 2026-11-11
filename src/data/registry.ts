@@ -589,9 +589,8 @@ export const stages: Stage[] = [
             name: 'Satin- or silk-lined bonnets',
             qty: '3–4',
             options: [
-              "Grace Eleyae kids' satin-lined cap",
+              'Cosilana mulberry silk baby bonnet',
               'Silk-lined organic cotton bonnets from Etsy',
-              'Mulberry silk baby bonnets',
             ],
             make: 'Silk-lined cotton bonnet',
           },
@@ -942,7 +941,7 @@ export const stages: Stage[] = [
             name: 'Next-size bonnets',
             qty: '2–3',
             options: [
-              "Grace Eleyae kids' satin-lined cap",
+              'Cosilana mulberry silk baby bonnet',
               'Silk-lined bonnets from Etsy',
             ],
             make: 'Silk-lined cotton bonnet',

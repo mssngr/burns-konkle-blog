@@ -358,13 +358,9 @@ const baseLinks: Record<string, ShopLink[]> = {
     l("Burt's Bees Baby", 'https://www.burtsbeesbaby.com/'),
   ],
   'hats-mitts/handmade': [LAMB, etsy('hand knit baby hat mittens')],
-  'bonnets/grace-eleyae-kids-satin-lined-cap': [
-    l('Grace Eleyae', 'https://graceeleyae.com/'),
-  ],
   'bonnets/silk-lined-organic-cotton-bonnets-from-e': [
     etsy('silk lined baby bonnet'),
   ],
-  'bonnets/mulberry-silk-baby-bonnets': [etsy('mulberry silk baby bonnet')],
   'bonnets/handmade': [etsy('baby bonnet sewing pattern')],
 
   // ----- Home & organization -----
@@ -552,9 +548,6 @@ const baseLinks: Record<string, ShopLink[]> = {
     l('Hanna Andersson', 'https://www.hannaandersson.com/'),
   ],
   'bigger-clothes/handmade': [LAMB, etsy('hand knit baby longies')],
-  'next-bonnets/grace-eleyae-kids-satin-lined-cap': [
-    l('Grace Eleyae', 'https://graceeleyae.com/'),
-  ],
   'next-bonnets/silk-lined-bonnets-from-etsy': [etsy('silk lined baby bonnet')],
   'next-bonnets/handmade': [etsy('baby bonnet sewing pattern')],
   'hair-care/wide-tooth-wooden-comb': [etsy('wooden wide tooth comb')],

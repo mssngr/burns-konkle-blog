@@ -34,8 +34,6 @@ export const tags: Record<string, Tag[]> = {
   'onesize-cloth/cultured-diapers-the-cultured-diaper': ['black-owned'],
   'diaper-backpacks/wsel-kobe-expandable-diaper-backpack': ['black-owned'],
   'nursing-station/milky-mama-oatmeal-lactation-cookies': ['black-owned'],
-  'bonnets/grace-eleyae-kids-satin-lined-cap': ['black-owned'],
-  'next-bonnets/grace-eleyae-kids-satin-lined-cap': ['black-owned'],
   'stretchy-wraps/boba-wrap': ['colorado'],
   'bigger-carrier/beco-gemini': ['colorado'],
   'newborn-cloth/thirsties-newborn': ['colorado'],
