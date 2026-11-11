@@ -158,7 +158,6 @@ export const stages: Stage[] = [
             options: [
               'Halo SleepSack Swaddle (organic cotton option)',
               'Love to Dream Swaddle UP (arms-up "starfish")',
-              'Woolino merino swaddle',
             ],
             restriction: 'Store-bought only, please.',
           },
@@ -693,7 +692,7 @@ export const stages: Stage[] = [
             id: 'nursing-wear',
             name: 'Everyday nursing wear',
             qty: '5–10',
-            options: ['Old Navy'],
+            options: ['Old Navy', 'Gap'],
             make: 'Button-front linen dresses or wrap dresses',
           },
           {
@@ -773,8 +772,8 @@ export const stages: Stage[] = [
             qty: '1',
             one: true,
             options: [
-              'Babyletto Hudson or Lolly (Greenguard Gold)',
-              'Oeuf or another solid-wood crib',
+              'IKEA Sniglar (solid beech)',
+              'Ashley solid New Zealand pine crib',
             ],
             restriction: 'Buy only: must meet the federal crib standard.',
           },
@@ -929,9 +928,8 @@ export const stages: Stage[] = [
             qty: '1',
             one: true,
             options: [
-              'Stokke Tripp Trapp with baby set',
-              'Abiie Beyond Junior',
-              'IKEA Antilop (budget, easy to clean)',
+              'Hauck Alpha+ (with the wooden tray)',
+              'Nobodinoz solid wood high chair (with the wooden tray)',
             ],
           },
           {
@@ -1033,7 +1031,7 @@ export const stages: Stage[] = [
             id: 'work-tops',
             name: 'Work-friendly nursing tops',
             qty: '3–4',
-            options: ['Hatch', 'Seraphine', 'Button-front linen shirts'],
+            options: ['Old Navy', 'Gap', 'Button-front linen shirts'],
           },
         ],
       },
