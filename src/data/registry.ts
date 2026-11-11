@@ -121,8 +121,7 @@ export const stages: Stage[] = [
             name: 'Bassinet sheets',
             qty: '4–6',
             options: [
-              "Burt's Bees Baby organic",
-              'Sheets matched to the bassinet brand',
+              'Halo BassiNest fitted sheet (100% organic cotton muslin, 2-pack)',
             ],
             make: 'Organic muslin or flannel fitted sheet, sewn snug',
           },
@@ -534,7 +533,10 @@ export const stages: Stage[] = [
             id: 'caddies',
             name: 'Caddies',
             qty: '2 bath, 2 car, 1 kitchen, 1 living room',
-            options: [],
+            options: [
+              'IKEA UPPRÄMEN basket (with a carrying handle)',
+              'IKEA VÄLVÅRDAD organizer (small steel caddy)',
+            ],
             make: 'Sewn canvas caddies',
           },
           {

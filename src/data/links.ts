@@ -91,12 +91,8 @@ const baseLinks: Record<string, ShopLink[]> = {
   'bassinet-pad/naturepedic-organic-bassinet-pad': [
     l('Naturepedic', 'https://www.naturepedic.com/'),
   ],
-  'bassinet-sheets/burt-s-bees-baby-organic': [
-    l("Burt's Bees Baby", 'https://www.burtsbeesbaby.com/'),
-  ],
-  'bassinet-sheets/kyte-baby-bamboo': [l('Kyte Baby', 'https://kytebaby.com/')],
-  'bassinet-sheets/sheets-matched-to-the-bassinet-brand': [
-    l('Babyletto', 'https://babyletto.com/'),
+  'bassinet-sheets/halo-bassinest-fitted-sheet': [
+    l('HALO', 'https://www.halosleep.com/collections/bassinest-fitted-sheets'),
   ],
   'bassinet-sheets/handmade': [TREELOTTA, OCP('flannel')],
   'zip-swaddles/halo-sleepsack-swaddle': [
@@ -367,10 +363,17 @@ const baseLinks: Record<string, ShopLink[]> = {
   'bonnets/handmade': [etsy('baby bonnet sewing pattern')],
 
   // ----- Home & organization -----
-  'caddies/washable-cotton-rope-baskets': [etsy('cotton rope basket')],
-  'caddies/canvas-caddies': [etsy('canvas caddy organizer')],
-  'caddies/enamel-or-stainless-bath-bins': [
-    l('Crow Canyon Home', 'https://crowcanyonhome.com/'),
+  'caddies/ikea-uppr-men-basket': [
+    l(
+      'IKEA',
+      'https://www.ikea.com/us/en/p/uppraemen-storage-basket-gray-green-60498563',
+    ),
+  ],
+  'caddies/ikea-v-lv-rdad-organizer': [
+    l(
+      'IKEA VÄLVÅRDAD (via Apartment Therapy)',
+      'https://www.apartmenttherapy.com/ikea-valvardad-organizer-37460386',
+    ),
   ],
   'caddies/handmade': [TREELOTTA, OCP('canvas')],
   'splat-blankets/wool-puddle-pads': [etsy('wool puddle pad')],
