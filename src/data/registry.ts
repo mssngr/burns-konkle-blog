@@ -7,7 +7,7 @@ export interface Item {
   name: string
   qty?: string
   options: string[]
-  /** A handmade / Etsy alternative guests can claim instead. */
+  /** A handmade alternative guests can claim instead. */
   make?: string
   /** Shown instead of a handmade option when handmade isn't safe. */
   restriction?: string
@@ -65,7 +65,7 @@ export const stages: Stage[] = [
             name: 'Ring sling or carrier for Gabriel',
             qty: '1–2',
             options: ['Ergobaby Embrace (newborn soft carrier)'],
-            make: 'Linen ring sling from Etsy, or sewn with certified sling rings',
+            make: 'Ring sling sewn with certified sling rings',
           },
           {
             id: 'travel-system',
@@ -84,14 +84,12 @@ export const stages: Stage[] = [
             name: 'Car seat covers, canopy style',
             qty: '2',
             options: ['Milk Snob stretch cover'],
-            make: 'Muslin or wool canopy cover from Etsy',
           },
           {
             id: 'diaper-backpacks',
             name: 'Diaper backpacks',
             qty: '2–3',
             options: ['Pillani (BabbleRoo) diaper backpack'],
-            make: 'Waxed canvas or leather backpack from Etsy',
           },
         ],
         goodToKnow:
@@ -187,13 +185,6 @@ export const stages: Stage[] = [
               'Thirsties Natural One Size All-in-One, snap (8–40 lb, organic cotton and hemp)',
             ],
             make: 'Fitted diapers from a free pattern in hemp and cotton',
-          },
-          {
-            id: 'wet-bags',
-            name: 'Wet bags, clean and dirty',
-            qty: '4 small, 2 large',
-            options: [],
-            make: 'Handmade wet bags from Etsy',
           },
           {
             id: 'disposables',
@@ -313,11 +304,7 @@ export const stages: Stage[] = [
           {
             id: 'grooming',
             name: 'Comb, brush & scrubby',
-            options: [
-              'Frida Baby DermaFrida FlakeFixer',
-              'Redecker goat-hair baby brush',
-              'Wooden wide-tooth comb',
-            ],
+            options: ['Frida Baby DermaFrida FlakeFixer'],
           },
         ],
         goodToKnow: 'Fragrance-free, please, with no essential oils.',
@@ -381,13 +368,6 @@ export const stages: Stage[] = [
             ],
           },
           {
-            id: 'drying-rack',
-            name: 'Drying rack',
-            qty: '1',
-            one: true,
-            options: ['Bamboo or stainless dish rack'],
-          },
-          {
             id: 'nursing-pillows',
             name: 'Nursing pillows',
             qty: '2',
@@ -426,13 +406,6 @@ export const stages: Stage[] = [
             qty: '2',
             options: ['Natursutten or Hevea natural rubber pacifiers'],
           },
-          {
-            id: 'pacifier-clips',
-            name: 'Pacifier clips',
-            qty: '3',
-            options: ['Wooden bead pacifier clips'],
-            make: 'Etsy wooden clips (under 7 inches)',
-          },
         ],
         goodToKnow:
           'For formula, please stick with Kendamil Organic, an FDA-approved brand, and skip imported HiPP or Holle.',
@@ -463,7 +436,7 @@ export const stages: Stage[] = [
           {
             id: 'nail-care',
             name: 'Nail care',
-            options: ['Glass baby nail file', 'Frida Baby NailFrida'],
+            options: ['Frida Baby NailFrida'],
           },
           {
             id: 'vitamin-d',
@@ -522,7 +495,6 @@ export const stages: Stage[] = [
             name: 'Silk-lined bonnets',
             qty: '3–4',
             options: ['Cosilana mulberry silk baby bonnet'],
-            make: 'Silk-lined cotton bonnet',
           },
         ],
         goodToKnow:
@@ -536,10 +508,7 @@ export const stages: Stage[] = [
             id: 'caddies',
             name: 'Caddies',
             qty: '2 bath, 2 car, 1 kitchen, 1 living room',
-            options: [
-              'IKEA UPPRÄMEN basket (with a carrying handle)',
-              'IKEA VÄLVÅRDAD organizer (small steel caddy)',
-            ],
+            options: ['IKEA VÄLVÅRDAD organizer (small steel caddy)'],
             make: 'Sewn canvas caddies',
           },
           {
@@ -553,13 +522,6 @@ export const stages: Stage[] = [
               'Makemake Organics quilted play mat',
             ],
             make: 'Quilted cotton floor mat',
-          },
-          {
-            id: 'nursing-station',
-            name: 'Nursing station basket',
-            options: [
-              'Basket with a straw water bottle, snacks, burp cloths, nipple butter and a charger',
-            ],
           },
           {
             id: 'lactation-cookies',
@@ -589,13 +551,12 @@ export const stages: Stage[] = [
             name: 'Everyday nursing wear',
             qty: '5–10',
             options: ['Old Navy', 'Gap'],
-            make: 'Button-front linen dresses or wrap dresses',
           },
           {
             id: 'nursing-cover',
             name: 'Nursing cover or cape',
             qty: '1–2',
-            options: ['Udder Covers', 'Organic cotton poncho'],
+            options: ['Udder Covers'],
             make: 'Muslin rectangle with a neck strap',
           },
           {
@@ -705,21 +666,6 @@ export const stages: Stage[] = [
             options: ['Infantino Flip Advanced 4-in-1'],
             make: 'Linen ring sling',
           },
-          {
-            id: 'stroller-weather',
-            name: 'Stroller weather gear',
-            options: [
-              'Breathable muslin sun shade (clips open on the sides)',
-            ],
-            make: 'Wool stroller blanket',
-          },
-          {
-            id: 'sun-hats',
-            name: 'Sun hats',
-            qty: '2',
-            options: ['Organic cotton wide-brim hats with a chin strap'],
-            make: 'Sewn from a free bucket hat pattern',
-          },
         ],
       },
       {
@@ -743,7 +689,7 @@ export const stages: Stage[] = [
             qty: '1',
             one: true,
             options: [
-              'Shatterproof baby floor mirror (Lovevery, or wood-framed from Etsy)',
+              'Shatterproof baby floor mirror (Whitney Brothers, birch frame)',
             ],
           },
           {
@@ -756,7 +702,6 @@ export const stages: Stage[] = [
               'Please, Baby, Please (Spike Lee and Tonya Lewis Lee)',
               'Bright Brown Baby by Andrea Davis Pinkney and Brian Pinkney (from Shop at MATTER, Denver)',
             ],
-            make: 'Black-and-white cards printed on cardstock',
           },
           {
             id: 'rattles',
@@ -789,7 +734,7 @@ export const stages: Stage[] = [
             id: 'tag-blanket',
             name: 'Tag blanket',
             qty: '1–2',
-            options: ['Organic tag blanket from Etsy'],
+            options: [],
             make: 'Two flannel squares with ribbon loops sewn flat',
           },
         ],
@@ -824,7 +769,6 @@ export const stages: Stage[] = [
               'Avanchy bamboo and silicone spoons',
               'ezpz Tiny Cup',
             ],
-            make: 'Hand-carved wooden spoons from Etsy',
           },
           {
             id: 'milk-storage',
@@ -854,14 +798,11 @@ export const stages: Stage[] = [
             name: 'Next-size bonnets',
             qty: '2–3',
             options: ['Cosilana mulberry silk baby bonnet'],
-            make: 'Silk-lined cotton bonnet',
           },
           {
             id: 'hair-care',
             name: 'Hair care as curls grow',
             options: [
-              'Wide-tooth wooden comb',
-              'Redecker goat-hair brush',
               'Unscented jojoba oil',
               'Proudly Nourishing Hair & Body Oil (5 ingredients, fragrance-free)',
               'Alaffia Pure Unrefined Shea Butter, Unscented (Single ingredient, fair trade)',
@@ -902,14 +843,13 @@ export const stages: Stage[] = [
             one: true,
             options: [
               'Medela or Lansinoh cooler with ice pack',
-              'Insulated lunch bag',
             ],
           },
           {
             id: 'work-tops',
             name: 'Work-friendly nursing tops',
             qty: '3–4',
-            options: ['Old Navy', 'Gap', 'Button-front linen shirts'],
+            options: ['Old Navy', 'Gap'],
           },
         ],
       },

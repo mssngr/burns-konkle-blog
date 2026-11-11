@@ -545,8 +545,8 @@
   ],
   "other-bottles/comotomo-silicone": [
     {
-      "shop": "Comotomo",
-      "href": "https://comotomo.com/products/baby-bottle-2"
+      "shop": "Babylist",
+      "href": "https://www.babylist.com/gp/comotomo-silicone-baby-bottle-2-0/80469/2927298"
     }
   ],
   "other-bottles/dr-brown-s-options": [
@@ -657,12 +657,8 @@
   ],
   "cloth-bibs/organic-cotton-bandana-bibs": [
     {
-      "shop": "Kyte Baby",
-      "href": "https://kytebaby.com/collections/baby-bibs"
-    },
-    {
-      "shop": "Burt's Bees Baby",
-      "href": "https://www.burtsbeesbaby.com/products/hummus-organic-baby-bandana-bibs-pack-of-3"
+      "shop": "Babylist",
+      "href": "https://www.babylist.com/gp/burt-s-bees-baby-set-of-5-bandana-bibs/55513/2067419"
     }
   ],
   "silicone-bibs/bumkins": [
@@ -807,14 +803,6 @@
   ],
   "hats-mitts/organic-cotton-hat-and-mitt-sets": [
     {
-      "shop": "Kyte Baby (cap)",
-      "href": "https://kytebaby.com/products/knotted-cap-in-oat"
-    },
-    {
-      "shop": "Kyte Baby (mittens)",
-      "href": "https://kytebaby.com/products/scratch-mitten-in-oat"
-    },
-    {
       "shop": "Burt's Bees Baby (mittens)",
       "href": "https://www.burtsbeesbaby.com/products/organic-cotton-baby-mittens-3-pack-cloud"
     },
@@ -921,8 +909,8 @@
   ],
   "hydrogel/medela-hydrogel": [
     {
-      "shop": "Medela (Breast Feeding Supply)",
-      "href": "https://breastfeedingsupply.com/en/breast-care/hydrogel-pads"
+      "shop": "Medela",
+      "href": "https://www.medela.com/en-us/breastfeeding-pumping/products/breast-care/hydrogel-pads"
     }
   ],
   "reusable-pads/bamboobies": [
@@ -1059,12 +1047,8 @@
   ],
   "floor-mirror/shatterproof-baby-floor-mirror": [
     {
-      "shop": "Lovevery (The Charmer Play Kit)",
-      "href": "https://lovevery.com/products/the-play-kits-the-charmer"
-    },
-    {
-      "shop": "Etsy makers",
-      "href": "https://www.etsy.com/search?q=wooden%20baby%20floor%20mirror"
+      "shop": "WebstaurantStore (Whitney Brothers)",
+      "href": "https://www.webstaurantstore.com/low-square-infant-floor-mirror/946WB0206.html"
     }
   ],
   "books-cards/wee-gallery-art-cards": [
@@ -1191,10 +1175,6 @@
     {
       "shop": "Lansinoh",
       "href": "https://lansinoh.com/products/glass-feeding-baby-5oz"
-    },
-    {
-      "shop": "Haakaa",
-      "href": "https://haakaausa.com/products/haakaa-sealed-glass-storage-jar-set-copy"
     }
   ],
   "milk-storage/haakaa-silicone-freezer-tray": [
@@ -1419,6 +1399,234 @@
     {
       "shop": "Milky Mama",
       "href": "https://milky-mama.com/products/oatmeal-lactation-cookies"
+    }
+  ],
+  "ring-sling/handmade": [
+    {
+      "shop": "SlingRings (certified rings)",
+      "href": "https://www.slingrings.com/"
+    }
+  ],
+  "diaper-backpacks/pillani-babbleroo-diaper-backpack": [
+    {
+      "shop": "Babylist",
+      "href": "https://www.babylist.com/gp/babbleroo-travel-diaper-bag-backpack/46340/1879746"
+    }
+  ],
+  "zip-swaddles/burt-s-bees-baby-beekeeper-wearable-blan": [
+    {
+      "shop": "Babylist",
+      "href": "https://www.babylist.com/gp/burt-s-bees-baby-organic-beekeeper-wearable-blanket/14447/2309855"
+    }
+  ],
+  "zip-swaddles/tiny-kind-organic-cotton-wearable-swaddl": [
+    {
+      "shop": "Babylist",
+      "href": "https://www.babylist.com/gp/tiny-kind-organic-cotton-wearable-swaddle-1-0-tog/35705/1345458"
+    }
+  ],
+  "zip-swaddles/small-story-organic-cotton-wearable-swad": [
+    {
+      "shop": "Babylist",
+      "href": "https://www.babylist.com/gp/small-story-organic-cotton-wearable-swaddle-1-0-tog/73908/2458444"
+    }
+  ],
+  "newborn-cloth/thirsties-natural-newborn-all-in-one": [
+    {
+      "shop": "Thirsties",
+      "href": "https://thirstiesbaby.com/products/natural-newborn-all-in-one"
+    }
+  ],
+  "onesize-cloth/thirsties-natural-one-size-all-in-one-sn": [
+    {
+      "shop": "Thirsties",
+      "href": "https://thirstiesbaby.com/products/natural-one-size-all-in-one"
+    }
+  ],
+  "changing-pad-covers/hudson-baby-cotton-changing-pad-covers": [
+    {
+      "shop": "Target",
+      "href": "https://www.target.com/p/hudson-baby-cotton-changing-pad-cover-forest-animals-one-size/-/A-89611445"
+    }
+  ],
+  "changing-pad-covers/munchkin-cotton-changing-pad-covers": [
+    {
+      "shop": "Target",
+      "href": "https://www.target.com/p/munchkin-soft-diaper-changing-pad-covers-warm-white-2pk/-/A-87780997"
+    }
+  ],
+  "changing-pad-covers/cotton-muslin-changing-pad-covers": [
+    {
+      "shop": "Little Unicorn",
+      "href": "https://littleunicorn.com/products/organic-cotton-muslin-changing-pad-cover-rosie"
+    }
+  ],
+  "changing-pad-covers/handmade": [
+    {
+      "shop": "Treelotta",
+      "href": "https://www.treelotta.com/"
+    }
+  ],
+  "zip-footies/colored-organics": [
+    {
+      "shop": "Target",
+      "href": "https://www.target.com/p/colored-organics-peyton-zipper-sleeper-ivory-nb/-/A-1003172676"
+    }
+  ],
+  "kimono-tops/burt-s-bees-baby-organic": [
+    {
+      "shop": "Burt's Bees Baby quilted kimono-style jumpsuit (Babylist)",
+      "href": "https://www.babylist.com/gp/burt-s-bees-baby-organic-quilted-wrap-front-jumpsuit/14437/31032"
+    }
+  ],
+  "merino-layer/quince-100-merino-baby-base-layer-set": [
+    {
+      "shop": "Quince",
+      "href": "https://www.quince.com/unisex/baby-100-merino-wool-all-season-base-layer-long-sleeve-and-legging-set"
+    }
+  ],
+  "merino-layer/handmade": [
+    {
+      "shop": "LambShoppe (Denver yarn)",
+      "href": "https://www.thelambshoppe.com/"
+    }
+  ],
+  "hats-mitts/handmade": [
+    {
+      "shop": "LambShoppe (Denver yarn)",
+      "href": "https://www.thelambshoppe.com/"
+    }
+  ],
+  "caddies/ikea-v-lv-rdad-organizer": [
+    {
+      "shop": "IKEA",
+      "href": "https://www.ikea.com/us/en/p/vaelvardad-organizer-white-70595436"
+    }
+  ],
+  "play-mat/wee-gallery-organic-baby-play-mat": [
+    {
+      "shop": "EasyTot",
+      "href": "https://easytot.com/products/explore-playmat"
+    }
+  ],
+  "play-mat/makemake-organics-quilted-play-mat": [
+    {
+      "shop": "Makemake Organics",
+      "href": "https://makemakeorganics.com/products/blue-stripes-play-mat"
+    }
+  ],
+  "nursing-wear/old-navy": [
+    {
+      "shop": "Old Navy",
+      "href": "https://oldnavy.gap.com/shop/tops-for-breastfeeding-moms"
+    }
+  ],
+  "nursing-wear/gap": [
+    {
+      "shop": "Gap",
+      "href": "https://www.gap.com/browse/maternity/nursing?cid=1023948&cl=true"
+    }
+  ],
+  "crib/ikea-sniglar": [
+    {
+      "shop": "IKEA",
+      "href": "https://www.ikea.com/us/en/p/sniglar-crib-beech-50248541/"
+    }
+  ],
+  "crib/ashley-solid-new-zealand-pine-crib": [
+    {
+      "shop": "Ashley",
+      "href": "https://www.ashleyfurniture.com/c/baby-and-toddler/nursery/cribs/modern-blue/"
+    }
+  ],
+  "crib-mattress/lullaby-earth-healthy-support": [
+    {
+      "shop": "Modern Nursery",
+      "href": "https://www.modernnursery.com/products/lullaby-earth-healthy-support-crib-mattress"
+    }
+  ],
+  "bigger-carrier/infantino-flip-advanced-4-in-1": [
+    {
+      "shop": "Infantino (Flip 4-in-1)",
+      "href": "https://infantino.com/products/flip-4-in-1-convertible-carrier-carbon"
+    }
+  ],
+  "bigger-carrier/handmade": [
+    {
+      "shop": "SlingRings (certified rings)",
+      "href": "https://www.slingrings.com/"
+    }
+  ],
+  "play-gym/plan-toys-wooden-baby-gym": [
+    {
+      "shop": "Gimme the Good Stuff",
+      "href": "https://gimmethegoodstuff.org/products/play-gym-orchard"
+    }
+  ],
+  "play-gym/handmade": [
+    {
+      "shop": "LambShoppe (Denver yarn)",
+      "href": "https://www.thelambshoppe.com/"
+    }
+  ],
+  "rattles/handmade": [
+    {
+      "shop": "LambShoppe (Denver yarn)",
+      "href": "https://www.thelambshoppe.com/"
+    }
+  ],
+  "bouncer/baby-delight-heirloom-aspen-wood-bouncer": [
+    {
+      "shop": "GoodBuy Gear",
+      "href": "https://goodbuygear.com/products/baby-delight-heirloom-aspen-wood-bouncer"
+    }
+  ],
+  "bouncer/avenlur-fir-wooden-bouncer": [
+    {
+      "shop": "Avenlur",
+      "href": "https://avenlur.com/products/avenlur-fir-wooden-baby-bouncer-rocker-play-arch"
+    }
+  ],
+  "high-chair/nobodinoz-solid-wood-high-chair": [
+    {
+      "shop": "Folk Interiors (UK)",
+      "href": "https://www.folkinteriors.co.uk/products/growing-green-evolving-chair"
+    }
+  ],
+  "bigger-clothes/handmade": [
+    {
+      "shop": "LambShoppe (Denver yarn)",
+      "href": "https://www.thelambshoppe.com/"
+    }
+  ],
+  "wool-sweaters/handmade": [
+    {
+      "shop": "LambShoppe (Denver yarn)",
+      "href": "https://www.thelambshoppe.com/"
+    }
+  ],
+  "work-tops/old-navy": [
+    {
+      "shop": "Old Navy",
+      "href": "https://oldnavy.gap.com/browse/maternity/nursing?cid=41578"
+    }
+  ],
+  "work-tops/gap": [
+    {
+      "shop": "Gap",
+      "href": "https://www.gap.com/browse/maternity/nursing?cid=1023948&cl=true"
+    }
+  ],
+  "bigger-clothes/burt-s-bees-baby-organic": [
+    {
+      "shop": "Babylist",
+      "href": "https://www.babylist.com/gp/burt-s-bees-baby-organic-short-sleeve-bodysuit-pant-set-3-pack/79207/2837074"
+    }
+  ],
+  "bigger-clothes/colored-organics": [
+    {
+      "shop": "Colored Organics",
+      "href": "https://coloredorganics.com/products/organic-classic-baby-bodysuit-short-sleeve-101-15"
     }
   ]
 }
