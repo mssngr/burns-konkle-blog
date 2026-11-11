@@ -1,5 +1,6 @@
 ---
 // The family site shell: module sidebar, "How this works" link on every page, status banners.
+import { SetPasswordPrompt } from '@/components/auth/set-password-prompt'
 import {
   FamilyNav,
   Icon,
@@ -52,6 +53,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
       <FamilyNav client:only="preact" active={active} />
     </aside>
     <div class="scrim" data-scrim hidden></div>
+    <SetPasswordPrompt client:only="preact" />
 
     <div class="app-main">
       <div class="app-strip">

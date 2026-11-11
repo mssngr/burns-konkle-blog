@@ -11,7 +11,7 @@ Decisions that differ from the spec:
 
 | Path | What |
 | --- | --- |
-| `src/layouts/app.astro` | Shell: sidebar of modules, "How this works" link, test-mode and pause banners, optional photo notice (`photoNotice` prop). Every page uses it. |
+| `src/layouts/app.astro` | Shell: sidebar of modules, "How this works" link, test-mode and pause banners, optional photo notice (`photoNotice` prop), and the "set a password" pop-up for older accounts (`my_has_password`). Every page uses it. |
 | `src/data/modules.ts` | Sidebar entries and icons. |
 | `src/lib/supabase.ts` | Client, `rpc()`, `query()`, `errorMessage()`, photo URL helpers. |
 | `src/lib/auth.ts` | `useAuth()` → `{ loading, session, family }`; `family` is `{ person, display_name, role, confirmed }`; `confirmed` is also on the state itself for guests. |
