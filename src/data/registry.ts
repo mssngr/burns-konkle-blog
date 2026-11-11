@@ -54,8 +54,9 @@ export const stages: Stage[] = [
         items: [
           {
             id: 'stretchy-wraps',
-            name: 'Stretchy wraps',
+            name: 'Stretchy wrap',
             qty: '1',
+            one: true,
             options: [
               'Moby Fit Hybrid',
               'Solly Baby (lyocell, thin and cool)',
@@ -119,7 +120,6 @@ export const stages: Stage[] = [
             qty: '1',
             one: true,
             options: [
-              'Babyletto Origami Mini (wood, folds, casters)',
               'Chicco Close to You',
               'Halo BassiNest Swivel',
             ],
@@ -147,7 +147,6 @@ export const stages: Stage[] = [
             qty: '4–6',
             options: [
               "Burt's Bees Baby organic",
-              'Kyte Baby bamboo',
               'Sheets matched to the bassinet brand',
             ],
             make: 'Organic muslin or flannel fitted sheet, sewn snug',
@@ -170,7 +169,6 @@ export const stages: Stage[] = [
             options: [
               'aden + anais organic',
               "Burt's Bees Baby",
-              'Kyte Baby',
               'Ade + Ayo Bògò muslin swaddle (Bamboo-cotton muslin, mud-cloth print)',
             ],
             make: '47-inch organic muslin squares, hemmed',
@@ -254,8 +252,6 @@ export const stages: Stage[] = [
             id: 'sensitive-wipes',
             name: 'Sensitive-skin wipes',
             options: [
-              'Huggies Natural Care Sensitive',
-              'Pampers Sensitive',
               'Proudly Gentle Touch Baby Wipes (98% water, fragrance-free)',
             ],
           },
@@ -358,7 +354,6 @@ export const stages: Stage[] = [
             qty: '3',
             options: [
               "Burt's Bees Baby organic",
-              'Kyte Baby bamboo',
               'Turkish cotton hooded towels',
             ],
             make: 'Bath towel with a washcloth hood',
@@ -403,7 +398,6 @@ export const stages: Stage[] = [
             options: [
               'Pura Kiki stainless',
               'Comotomo silicone',
-              "Dr. Brown's Options+ (plastic)",
             ],
           },
           {
@@ -451,12 +445,18 @@ export const stages: Stage[] = [
           },
           {
             id: 'nursing-pillows',
-            name: 'Nursing pillows + covers',
-            qty: '2 + 3',
+            name: 'Nursing pillows',
+            qty: '2',
             options: [
               'My Brest Friend (firm, good for petite torsos)',
-              'Boppy with organic cover',
+              'Boppy',
             ],
+          },
+          {
+            id: 'nursing-pillow-covers',
+            name: 'Nursing pillow covers',
+            qty: '3',
+            options: ['Boppy organic cotton cover'],
             make: 'Covers sewn from organic jersey',
           },
           {
@@ -474,23 +474,26 @@ export const stages: Stage[] = [
             id: 'cloth-bibs',
             name: 'Cloth bibs',
             qty: '6',
-            options: ["Organic cotton bandana bibs (Kyte, Burt's Bees)"],
+            options: ["Organic cotton bandana bibs (Burt's Bees)"],
             make: 'Easy-sew bandana bibs',
           },
           {
             id: 'silicone-bibs',
             name: 'Silicone bibs, for solids later',
             qty: '2',
-            options: ['Bumkins', 'Haakaa'],
+            options: ['Bumkins'],
           },
           {
             id: 'pacifiers',
-            name: 'Pacifiers + clips',
-            qty: '2 + 3',
-            options: [
-              'Natursutten or Hevea natural rubber pacifiers',
-              'Wooden bead pacifier clips',
-            ],
+            name: 'Pacifiers',
+            qty: '2',
+            options: ['Natursutten or Hevea natural rubber pacifiers'],
+          },
+          {
+            id: 'pacifier-clips',
+            name: 'Pacifier clips',
+            qty: '3',
+            options: ['Wooden bead pacifier clips'],
             make: 'Etsy wooden clips (under 7 inches)',
           },
         ],
@@ -586,7 +589,7 @@ export const stages: Stage[] = [
           },
           {
             id: 'bonnets',
-            name: 'Satin- or silk-lined bonnets',
+            name: 'Silk-lined bonnets',
             qty: '3–4',
             options: [
               'Cosilana mulberry silk baby bonnet',
@@ -615,7 +618,7 @@ export const stages: Stage[] = [
           },
           {
             id: 'splat-blankets',
-            name: 'Water-resistant play and eating blankets',
+            name: 'Wool puddle pads for play and eating',
             qty: '2–3',
             options: [
               'Wendy Anne organic wool puddle pad',
@@ -626,7 +629,7 @@ export const stages: Stage[] = [
           },
           {
             id: 'play-mat',
-            name: 'Organic play mat',
+            name: 'Cotton play mat',
             qty: '1',
             one: true,
             options: [
@@ -641,6 +644,12 @@ export const stages: Stage[] = [
             name: 'Nursing station basket',
             options: [
               'Basket with a straw water bottle, snacks, burp cloths, nipple butter and a charger',
+            ],
+          },
+          {
+            id: 'lactation-cookies',
+            name: 'Lactation cookies',
+            options: [
               'Milky Mama Oatmeal Lactation Cookies (Fenugreek-free, 12 individually wrapped)',
             ],
           },
@@ -656,7 +665,6 @@ export const stages: Stage[] = [
             qty: '3–5',
             options: [
               'Kindred Bravely Simply Sublime',
-              'Bravado Body Silk Seamless',
               'Boob Design organic cotton',
             ],
             note: 'Ask Gabriel for sizing.',
@@ -712,7 +720,6 @@ export const stages: Stage[] = [
             name: 'Breast pump',
             options: [
               'Spectra S1 Plus or S2 Plus',
-              'Haakaa silicone collector',
             ],
             note: 'Insurance usually covers one pump.',
           },
@@ -765,7 +772,6 @@ export const stages: Stage[] = [
             qty: '3–4',
             options: [
               "Burt's Bees Baby organic",
-              'Kyte Baby',
               'The Rooted Baby Co. Mali crib sheet (100% organic cotton muslin)',
             ],
             make: 'Sewn fitted sheet',
@@ -908,7 +914,6 @@ export const stages: Stage[] = [
             options: [
               'Avanchy bamboo and silicone spoons',
               'ezpz Tiny Cup',
-              'Haakaa silicone spoon',
             ],
             make: 'Hand-carved wooden spoons from Etsy',
           },
@@ -917,7 +922,6 @@ export const stages: Stage[] = [
             name: 'Milk storage',
             options: [
               'Glass breast milk bottles',
-              'Haakaa silicone freezer tray',
             ],
           },
         ],

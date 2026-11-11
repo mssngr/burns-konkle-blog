@@ -283,10 +283,11 @@ const baseLinks: Record<string, ShopLink[]> = {
   'nursing-pillows/my-brest-friend': [
     l('My Brest Friend', 'https://mybrestfriend.com/'),
   ],
-  'nursing-pillows/boppy-with-organic-cover': [
+  'nursing-pillows/boppy': [l('Boppy', 'https://www.boppy.com/')],
+  'nursing-pillow-covers/boppy-organic-cotton-cover': [
     l('Boppy', 'https://www.boppy.com/'),
   ],
-  'nursing-pillows/handmade': [TREELOTTA, OCP('jersey')],
+  'nursing-pillow-covers/handmade': [TREELOTTA, OCP('jersey')],
   'burp-cloths/organic-cotton-prefolds': [GMD('prefold')],
   'burp-cloths/aden-anais-muslin': [
     l(
@@ -312,8 +313,10 @@ const baseLinks: Record<string, ShopLink[]> = {
     ),
     l('Hevea', 'https://heveaplanet.com/'),
   ],
-  'pacifiers/wooden-bead-pacifier-clips': [etsy('wooden bead pacifier clip')],
-  'pacifiers/handmade': [etsy('wooden pacifier clip')],
+  'pacifier-clips/wooden-bead-pacifier-clips': [
+    etsy('wooden bead pacifier clip'),
+  ],
+  'pacifier-clips/handmade': [etsy('wooden pacifier clip')],
 
   // ----- Health & comfort -----
   'gas-relief/infants-mylicon': [l('Mylicon', 'https://www.mylicon.com/')],

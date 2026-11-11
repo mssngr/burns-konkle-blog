@@ -619,7 +619,13 @@
       "href": "https://www.mybrestfriend.com/products/original-nursing-pillow"
     }
   ],
-  "nursing-pillows/boppy-with-organic-cover": [
+  "nursing-pillows/boppy": [
+    {
+      "shop": "Boppy",
+      "href": "https://www.boppy.com/products/organic-nursing-pillow"
+    }
+  ],
+  "nursing-pillow-covers/boppy-organic-cotton-cover": [
     {
       "shop": "Boppy",
       "href": "https://www.boppy.com/products/organic-nursing-pillow"
@@ -1409,7 +1415,7 @@
       "href": "https://wselbags.com/products/kobe-expandable-diaper-bag"
     }
   ],
-  "nursing-station/milky-mama-oatmeal-lactation-cookies": [
+  "lactation-cookies/milky-mama-oatmeal-lactation-cookies": [
     {
       "shop": "Milky Mama",
       "href": "https://milky-mama.com/products/oatmeal-lactation-cookies"

@@ -33,7 +33,7 @@ export const tags: Record<string, Tag[]> = {
   'teethers/the-rooted-baby-co-esono-the-elephant-te': ['black-owned'],
   'onesize-cloth/cultured-diapers-the-cultured-diaper': ['black-owned'],
   'diaper-backpacks/wsel-kobe-expandable-diaper-backpack': ['black-owned'],
-  'nursing-station/milky-mama-oatmeal-lactation-cookies': ['black-owned'],
+  'lactation-cookies/milky-mama-oatmeal-lactation-cookies': ['black-owned'],
   'stretchy-wraps/boba-wrap': ['colorado'],
   'bigger-carrier/beco-gemini': ['colorado'],
   'newborn-cloth/thirsties-newborn': ['colorado'],
@@ -42,5 +42,6 @@ export const tags: Record<string, Tag[]> = {
   'onesize-cloth/grovia': ['colorado'],
   'nipple-care/motherlove-nipple-cream': ['colorado'],
   'spoons-cup/ezpz-tiny-cup': ['colorado'],
-  'nursing-pillows/boppy-with-organic-cover': ['colorado'],
+  'nursing-pillows/boppy': ['colorado'],
+  'nursing-pillow-covers/boppy-organic-cotton-cover': ['colorado'],
 }
