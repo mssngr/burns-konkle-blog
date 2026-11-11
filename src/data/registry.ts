@@ -57,11 +57,7 @@ export const stages: Stage[] = [
             name: 'Stretchy wrap',
             qty: '1',
             one: true,
-            options: [
-              'Moby Fit Hybrid',
-              'Solly Baby (lyocell, thin and cool)',
-              'Boba Wrap',
-            ],
+            options: ['Moby Fit Hybrid'],
             make: 'Cotton jersey wrap, 5.5 yd, no-sew',
           },
           {
@@ -87,22 +83,14 @@ export const stages: Stage[] = [
             id: 'canopy-covers',
             name: 'Car seat covers, canopy style',
             qty: '2',
-            options: [
-              'Milk Snob stretch cover',
-              'Organic muslin canopy cover',
-              'JJ Cole Bundleme canopy',
-            ],
+            options: ['Milk Snob stretch cover'],
             make: 'Muslin or wool canopy cover from Etsy',
           },
           {
             id: 'diaper-backpacks',
             name: 'Diaper backpacks',
             qty: '2–3',
-            options: [
-              "Carter's diaper backpack",
-              'Eddie Bauer diaper backpack',
-              'Pillani (BabbleRoo) diaper backpack',
-            ],
+            options: ['Pillani (BabbleRoo) diaper backpack'],
             make: 'Waxed canvas or leather backpack from Etsy',
           },
         ],
@@ -114,23 +102,10 @@ export const stages: Stage[] = [
         title: 'Sleep',
         items: [
           {
-            id: 'wheeled-bassinet',
-            group: true,
-            name: 'Wheeled bassinet',
-            qty: '1',
-            one: true,
-            options: [
-              'Chicco Close to You',
-              'Halo BassiNest Swivel',
-            ],
-            restriction: 'Buy only: must meet the federal bassinet standard.',
-          },
-          {
             id: 'stationary-bassinet',
             group: true,
             name: 'Stationary bassinet',
-            qty: '1',
-            one: true,
+            qty: '2',
             options: ['HALO BassiNest Essential Sleeper'],
             restriction: 'Buy only: must meet the federal bassinet standard.',
           },
@@ -167,7 +142,6 @@ export const stages: Stage[] = [
             name: 'Muslin swaddle blankets',
             qty: '4–6',
             options: [
-              'aden + anais organic',
               "Burt's Bees Baby",
               'Ade + Ayo Bògò muslin swaddle (Bamboo-cotton muslin, mud-cloth print)',
             ],
@@ -209,16 +183,8 @@ export const stages: Stage[] = [
             qty: '18–24',
             options: [
               'Thirsties Natural One Size All-in-One, snap (8–40 lb, organic cotton and hemp)',
-              'Thirsties Natural One Size All-in-One, hook & loop (8–40 lb, organic cotton and hemp)',
             ],
             make: 'Fitted diapers from a free pattern in hemp and cotton',
-          },
-          {
-            id: 'wool-covers',
-            name: 'Wool diaper covers (plastic-free)',
-            qty: '3–4',
-            options: ['Disana', 'Sloomb'],
-            make: 'Upcycled wool sweater "soakers"',
           },
           {
             id: 'wet-bags',
@@ -230,11 +196,7 @@ export const stages: Stage[] = [
           {
             id: 'disposables',
             name: 'Disposable diapers for outings',
-            options: [
-              'Kudos (cotton liner)',
-              'Eco by Naty BioEmbrace',
-              'Dyper',
-            ],
+            options: ['Kudos (cotton liner)'],
           },
           {
             id: 'cloth-wipes',
@@ -246,7 +208,7 @@ export const stages: Stage[] = [
           {
             id: 'compostable-wipes',
             name: 'Compostable wipes',
-            options: ['WaterWipes', 'Eco by Naty', 'Coterie'],
+            options: ['WaterWipes', 'Coterie'],
           },
           {
             id: 'sensitive-wipes',
@@ -272,22 +234,10 @@ export const stages: Stage[] = [
             name: 'Portable changing pads',
             qty: '2',
             options: [
-              'Wool puddle pad + organic cover',
               'Itzy Ritzy changing pad',
               'Skip Hop Pronto',
             ],
             make: 'Quilted cotton pad over a wool puddle pad',
-          },
-          {
-            id: 'home-changing-pad',
-            name: 'Home changing pad',
-            qty: '1',
-            one: true,
-            options: [
-              'Delta Children contoured changing pad',
-              'Summer Infant 4-Sided Contour Changing Pad',
-              'Munchkin Secure Grip Contoured Changing Pad',
-            ],
           },
           {
             id: 'changing-pad-covers',
@@ -305,11 +255,11 @@ export const stages: Stage[] = [
             name: 'Wipe warmer',
             qty: 'optional',
             one: true,
-            options: ['Prince Lionheart', 'Munchkin'],
+            options: ['Munchkin'],
           },
         ],
         goodToKnow:
-          "We're mostly cloth diapering. Wool covers are the plastic-free choice; most other covers and wet bags use PUL, a plastic laminate.",
+          "We're mostly cloth diapering. Disposables are just for outings.",
       },
       {
         id: 'bath',
@@ -320,11 +270,7 @@ export const stages: Stage[] = [
             name: 'Baby bath',
             qty: '1',
             one: true,
-            options: [
-              'Stokke Flexi Bath with newborn support',
-              'Frida Baby 4-in-1',
-              'Angelcare mesh bath support',
-            ],
+            options: ['Frida Baby 4-in-1'],
           },
           {
             id: 'cleanser',
@@ -352,17 +298,14 @@ export const stages: Stage[] = [
             id: 'hooded-towels',
             name: 'Hooded towels',
             qty: '3',
-            options: [
-              "Burt's Bees Baby organic",
-              'Turkish cotton hooded towels',
-            ],
+            options: ["Burt's Bees Baby organic"],
             make: 'Bath towel with a washcloth hood',
           },
           {
             id: 'washcloths',
             name: 'Washcloths',
             qty: '10',
-            options: ['Organic cotton washcloth pack', 'Bamboo washcloth pack'],
+            options: ["Organic cotton washcloth pack (Burt's Bees Baby)"],
             make: 'Flannel or terry squares',
           },
           {
@@ -431,7 +374,6 @@ export const stages: Stage[] = [
             name: 'Bottle brushes',
             qty: '2 sets',
             options: [
-              'Redecker natural-bristle bottle brush',
               'Full Circle bamboo brush',
               'Straw and lid cleaning brush',
             ],
@@ -447,10 +389,7 @@ export const stages: Stage[] = [
             id: 'nursing-pillows',
             name: 'Nursing pillows',
             qty: '2',
-            options: [
-              'My Brest Friend (firm, good for petite torsos)',
-              'Boppy',
-            ],
+            options: ['Boppy'],
           },
           {
             id: 'nursing-pillow-covers',
@@ -463,11 +402,7 @@ export const stages: Stage[] = [
             id: 'burp-cloths',
             name: 'Burp cloths',
             qty: '10–12',
-            options: [
-              'Organic cotton prefolds (double as diapers)',
-              'aden + anais muslin',
-              "Burt's Bees Baby",
-            ],
+            options: ["Burt's Bees Baby"],
             make: 'Flannel and terry burp cloths',
           },
           {
@@ -521,14 +456,7 @@ export const stages: Stage[] = [
           {
             id: 'nose-aspirator',
             name: 'Booger sucker',
-            options: ['NoseFrida', 'Oogiebear scoop'],
-          },
-          {
-            id: 'thermometer',
-            name: 'Thermometer',
-            qty: '1',
-            one: true,
-            options: ['Vicks ComfortFlex digital', 'Frida Baby rectal digital'],
+            options: ['NoseFrida'],
           },
           {
             id: 'nail-care',
@@ -538,7 +466,7 @@ export const stages: Stage[] = [
           {
             id: 'vitamin-d',
             name: 'Vitamin D drops',
-            options: ["Carlson Baby's Super Daily D3", "Mommy's Bliss"],
+            options: ["Carlson Baby's Super Daily D3"],
           },
         ],
         goodToKnow:
@@ -591,10 +519,7 @@ export const stages: Stage[] = [
             id: 'bonnets',
             name: 'Silk-lined bonnets',
             qty: '3–4',
-            options: [
-              'Cosilana mulberry silk baby bonnet',
-              'Silk-lined organic cotton bonnets from Etsy',
-            ],
+            options: ['Cosilana mulberry silk baby bonnet'],
             make: 'Silk-lined cotton bonnet',
           },
         ],
@@ -609,23 +534,8 @@ export const stages: Stage[] = [
             id: 'caddies',
             name: 'Caddies',
             qty: '2 bath, 2 car, 1 kitchen, 1 living room',
-            options: [
-              'Washable cotton rope baskets',
-              'Canvas caddies',
-              'Enamel or stainless bath bins',
-            ],
+            options: [],
             make: 'Sewn canvas caddies',
-          },
-          {
-            id: 'splat-blankets',
-            name: 'Wool puddle pads for play and eating',
-            qty: '2–3',
-            options: [
-              'Wendy Anne organic wool puddle pad',
-              'EasyTot merino wool changing/puddle pad',
-              "Shepherd's Dream washable wool pad",
-            ],
-            make: 'Felted wool blanket',
           },
           {
             id: 'play-mat',
@@ -794,7 +704,6 @@ export const stages: Stage[] = [
             id: 'stroller-weather',
             name: 'Stroller weather gear',
             options: [
-              'Merino stroller footmuff',
               'Breathable muslin sun shade (clips open on the sides)',
             ],
             make: 'Wool stroller blanket',
@@ -820,7 +729,6 @@ export const stages: Stage[] = [
             options: [
               'Lovevery The Play Gym',
               'Plan Toys wooden baby gym (rubberwood)',
-              'Wooden A-frame gym from Etsy',
             ],
             make: 'Wooden A-frame with crocheted hanging toys',
           },
@@ -849,10 +757,7 @@ export const stages: Stage[] = [
             id: 'rattles',
             name: 'Rattles and grasping toys',
             qty: '3–4',
-            options: [
-              "Haba or Grimm's wooden rattles",
-              'Crocheted organic cotton rattles from Etsy',
-            ],
+            options: ["Haba or Grimm's wooden rattles"],
             make: 'Crocheted cotton rattle, firmly stitched, no buttons',
           },
           {
@@ -862,7 +767,6 @@ export const stages: Stage[] = [
             options: [
               'Sophie la girafe (natural rubber)',
               'Natursutten natural rubber teether',
-              'Untreated maple teething ring',
               'The Rooted Baby Co. Esono the Elephant teether (Food-grade silicone + beechwood)',
             ],
           },
@@ -966,7 +870,7 @@ export const stages: Stage[] = [
             id: 'wool-sweaters',
             name: 'Wool sweaters and booties for winter',
             qty: '2 + 2',
-            options: ['Ruskovilla or Reima merino', 'Etsy hand-knits'],
+            options: ['Ruskovilla or Reima merino'],
             make: 'Hand-knit wool sweater',
           },
         ],

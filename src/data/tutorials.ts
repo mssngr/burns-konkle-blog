@@ -127,17 +127,6 @@ export const tutorials: Tutorial[] = [
     makes: ['nursing-cover'],
   },
   {
-    id: 'wool-soakers',
-    title: 'Wool covers from a thrifted sweater',
-    group: 'sew',
-    steps: [
-      'Start with a 100% wool sweater: the sleeves become leggings and the body becomes a soaker.',
-      'Search “upcycled sweater soaker pattern” for free patterns.',
-      'Lanolize when done: dissolve a pea-sized bit of pure lanolin in hot water with a drop of wool wash, add lukewarm water, soak 15 minutes, then press dry in a towel.',
-    ],
-    makes: ['wool-covers'],
-  },
-  {
     id: 'canvas-caddies',
     title: 'Washable canvas caddies',
     group: 'sew',
