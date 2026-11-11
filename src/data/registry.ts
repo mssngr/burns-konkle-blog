@@ -156,7 +156,6 @@ export const stages: Stage[] = [
             name: 'Zip swaddles',
             qty: '3–4',
             options: [
-              'Halo SleepSack Swaddle (organic cotton option)',
               "Burt's Bees Baby Beekeeper wearable blanket (100% organic cotton)",
               'Tiny Kind Organic Cotton Wearable Swaddle',
               'Small Story Organic Cotton Wearable Swaddle',
