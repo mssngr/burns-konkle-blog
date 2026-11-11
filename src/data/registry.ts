@@ -474,10 +474,7 @@ export const stages: Stage[] = [
             id: 'merino-layer',
             name: 'Merino layers for December',
             qty: '2',
-            options: [
-              'Woolbabe merino and organic cotton pajamas',
-              'Quince 100% merino baby base layer set',
-            ],
+            options: ['Quince 100% merino baby base layer set'],
             make: 'Hand-knit wool soakers and longies',
           },
           {
@@ -508,7 +505,10 @@ export const stages: Stage[] = [
             id: 'caddies',
             name: 'Caddies',
             qty: '2 bath, 2 car, 1 kitchen, 1 living room',
-            options: ['IKEA VÄLVÅRDAD organizer (small steel caddy)'],
+            options: [
+              'IKEA VÄLVÅRDAD organizer (small steel caddy)',
+              'IKEA RISATORP basket with compartments (white wire)',
+            ],
             make: 'Sewn canvas caddies',
           },
           {
@@ -517,7 +517,6 @@ export const stages: Stage[] = [
             qty: '1',
             one: true,
             options: [
-              'Finch & Folk organic cotton play mat',
               'Wee Gallery Organic Baby Play Mat',
               'Makemake Organics quilted play mat',
             ],
@@ -750,17 +749,6 @@ export const stages: Stage[] = [
             name: 'Next-flow bottle nipples',
             qty: '2 packs',
             options: ['Matched to our bottles'],
-          },
-          {
-            id: 'high-chair',
-            group: true,
-            name: 'High chair',
-            qty: '1',
-            one: true,
-            options: [
-              'Hauck Alpha+ (with the wooden tray)',
-              'Nobodinoz solid wood high chair (with the wooden tray)',
-            ],
           },
           {
             id: 'spoons-cup',

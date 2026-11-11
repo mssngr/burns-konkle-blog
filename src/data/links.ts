@@ -369,6 +369,12 @@ const baseLinks: Record<string, ShopLink[]> = {
       'https://www.ikea.com/us/en/p/uppraemen-storage-basket-gray-green-60498563',
     ),
   ],
+  'caddies/ikea-risatorp-basket-with-compartments': [
+    l(
+      'IKEA',
+      'https://www.ikea.com/us/en/p/risatorp-basket-with-compartments-white-00527634/',
+    ),
+  ],
   'caddies/ikea-v-lv-rdad-organizer': [
     l(
       'IKEA VÄLVÅRDAD (via Apartment Therapy)',
