@@ -106,7 +106,10 @@ export const stages: Stage[] = [
             group: true,
             name: 'Stationary bassinet',
             qty: '2',
-            options: ['HALO BassiNest Essential Sleeper'],
+            options: [
+              'HALO BassiNest Essential Sleeper',
+              'Second HALO BassiNest Essential Sleeper',
+            ],
             restriction: 'Buy only: must meet the federal bassinet standard.',
           },
           {
@@ -850,10 +853,7 @@ export const stages: Stage[] = [
             id: 'next-bonnets',
             name: 'Next-size bonnets',
             qty: '2–3',
-            options: [
-              'Cosilana mulberry silk baby bonnet',
-              'Silk-lined bonnets from Etsy',
-            ],
+            options: ['Cosilana mulberry silk baby bonnet'],
             make: 'Silk-lined cotton bonnet',
           },
           {
