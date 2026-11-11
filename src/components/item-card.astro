@@ -9,7 +9,7 @@ interface Props {
   item: Item
 }
 const { item } = Astro.props
-const search = [item.name, ...item.options, item.make ?? '']
+const search = [item.name, ...item.options, item.make ?? '', item.group ? 'group gift' : '']
   .join(' ')
   .toLowerCase()
 const makeKey = handmadeKey(item.id)
@@ -20,8 +20,10 @@ const tutorial = tutorialForItem[item.id]
   <header class="item-head">
     <h4 class="item-name">{item.name}</h4>
     {item.qty && <span class="qty">Need {item.qty}</span>}
+    {item.group && <span class="group-tag">Group gift</span>}
     <span class="item-status" data-status hidden></span>
   </header>
+  {item.group && <p class="group-note">Over $100, so a great one to go in on together. Claim it for your group.</p>}
   {item.note && <p class="item-note">{item.note}</p>}
   <ul class="opts">
     {

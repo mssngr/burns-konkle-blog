@@ -651,6 +651,22 @@ main {
   white-space: nowrap;
 }
 
+.group-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sage);
+  background: var(--sage-soft);
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.group-note {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .item-note {
   margin: 6px 0 0;
   font-size: 0.85rem;

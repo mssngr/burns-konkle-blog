@@ -12,6 +12,8 @@ export interface Item {
   /** Shown instead of a handmade option when handmade isn't safe. */
   restriction?: string
   one?: boolean
+  /** Over about $100: flagged so guests know it's a good one to go in on together. */
+  group?: boolean
   note?: string
 }
 
@@ -65,15 +67,12 @@ export const stages: Stage[] = [
             id: 'ring-sling',
             name: 'Ring sling or carrier for Gabriel',
             qty: '1–2',
-            options: [
-              'Ergobaby Embrace (newborn soft carrier)',
-              'Baby Tula Explore',
-              'Wildbird linen ring sling',
-            ],
+            options: ['Ergobaby Embrace (newborn soft carrier)'],
             make: 'Linen ring sling from Etsy, or sewn with certified sling rings',
           },
           {
             id: 'travel-system',
+            group: true,
             name: 'Car seat + stroller system',
             qty: '1',
             one: true,
@@ -115,6 +114,7 @@ export const stages: Stage[] = [
         items: [
           {
             id: 'wheeled-bassinet',
+            group: true,
             name: 'Wheeled bassinet',
             qty: '1',
             one: true,
@@ -127,6 +127,7 @@ export const stages: Stage[] = [
           },
           {
             id: 'stationary-bassinet',
+            group: true,
             name: 'Stationary bassinet',
             qty: '1',
             one: true,
@@ -202,10 +203,8 @@ export const stages: Stage[] = [
             name: 'Newborn cloth diapers: prefolds + covers',
             qty: '24 + 4',
             options: [
-              'Green Mountain Diapers organic Cloth-eez',
-              'Esembly organic system',
-              'Thirsties newborn',
-              'Kanga Care Rumparooz Newborn Cover (4–15 lb, over prefolds)',
+              'Thirsties prefolds + Duo Wrap covers',
+              'Thirsties Natural Newborn All-in-One (5–14 lb)',
             ],
             make: 'Flat diapers hemmed from organic birdseye cotton',
           },
@@ -214,11 +213,10 @@ export const stages: Stage[] = [
             name: 'One-size or sized-up cloth diapers',
             qty: '18–24 + 6 covers',
             options: [
-              'GroVia',
-              'Esembly',
-              'Sloomb fitteds',
-              'Kanga Care Rumparooz OBV One Size Pocket Diaper (Organic cotton-bamboo velour, Aspenglow print)',
-              'Cultured Diapers The Cultured Diaper (Kente cover + bamboo insert; newborn or one size)',
+              'Thirsties Natural One Size All-in-One (8–40 lb, organic cotton)',
+              'Thirsties One Size All-in-One (8–40 lb)',
+              'Thirsties One Size Pocket Diaper (8–40 lb)',
+              'Thirsties Duo Fab Fitted',
             ],
             make: 'Fitted diapers from a free pattern in hemp and cotton',
           },
@@ -233,12 +231,7 @@ export const stages: Stage[] = [
             id: 'wet-bags',
             name: 'Wet bags, clean and dirty',
             qty: '4 small, 2 large',
-            options: [
-              'Planet Wise',
-              'Esembly',
-              'Thirsties',
-              'Kanga Care Wet Bag (Holds 15–18 diapers)',
-            ],
+            options: ['Thirsties Deluxe Wet Bag'],
             make: 'Handmade wet bags from Etsy',
           },
           {
@@ -254,7 +247,7 @@ export const stages: Stage[] = [
             id: 'cloth-wipes',
             name: 'Cloth wipes',
             qty: '48–60',
-            options: ['Esembly', 'Thirsties'],
+            options: ['Thirsties Fab Wipes'],
             make: 'Flannel squares, the easiest first sewing project',
           },
           {
@@ -423,8 +416,6 @@ export const stages: Stage[] = [
             name: 'Formula, small cans to test',
             options: [
               'Kendamil Organic (UK-made, FDA-approved, palm oil free)',
-              'Bobbie Organic (US-made, European-style)',
-              'Kabrita (goat milk, FDA-approved)',
             ],
             restriction: 'Never homemade.',
           },
@@ -509,7 +500,7 @@ export const stages: Stage[] = [
           },
         ],
         goodToKnow:
-          'For formula, please choose an FDA-approved brand like Kendamil, Bobbie or Kabrita, and skip imported HiPP or Holle.',
+          'For formula, please stick with Kendamil Organic, an FDA-approved brand, and skip imported HiPP or Holle.',
       },
       {
         id: 'health',
@@ -764,6 +755,7 @@ export const stages: Stage[] = [
           },
           {
             id: 'crib',
+            group: true,
             name: 'Crib',
             qty: '1',
             one: true,
@@ -775,6 +767,7 @@ export const stages: Stage[] = [
           },
           {
             id: 'crib-mattress',
+            group: true,
             name: 'Organic crib mattress',
             qty: '1',
             one: true,
@@ -803,12 +796,7 @@ export const stages: Stage[] = [
             id: 'bigger-carrier',
             name: 'Bigger soft carrier',
             qty: '1–2',
-            options: [
-              'Infantino Flip Advanced 4-in-1',
-              'Infantino Cuddle Up Ergonomic Hoodie',
-              'Baby Tula Explore',
-              'Boba X Linen Carrier (7–45 lb, adjustable panel)',
-            ],
+            options: ['Infantino Flip Advanced 4-in-1'],
             make: 'Linen ring sling',
           },
           {
@@ -920,6 +908,7 @@ export const stages: Stage[] = [
           },
           {
             id: 'high-chair',
+            group: true,
             name: 'High chair',
             qty: '1',
             one: true,
