@@ -99,10 +99,9 @@ export const stages: Stage[] = [
             name: 'Diaper backpacks',
             qty: '2–3',
             options: [
-              'Itzy Ritzy Boss Plus (built-in changing pad)',
-              'Freshly Picked Classic City Diaper Bag',
-              'A fold-out changing-station backpack',
-              'WSEL Kobe Expandable Diaper Backpack (Built for dads; insulated bottle pockets)',
+              "Carter's diaper backpack",
+              'Eddie Bauer diaper backpack',
+              'Pillani (BabbleRoo) diaper backpack',
             ],
             make: 'Waxed canvas or leather backpack from Etsy',
           },
@@ -298,11 +297,23 @@ export const stages: Stage[] = [
           },
           {
             id: 'home-changing-pad',
-            name: 'Home changing pad + covers',
-            qty: '1 + 3',
+            name: 'Home changing pad',
+            qty: '1',
+            one: true,
             options: [
-              'Naturepedic organic contoured pad',
-              'Keekaroo Peanut (wipe clean, no cover needed)',
+              'Delta Children contoured changing pad',
+              'Summer Infant 4-Sided Contour Changing Pad',
+              'Munchkin Secure Grip Contoured Changing Pad',
+            ],
+          },
+          {
+            id: 'changing-pad-covers',
+            name: 'Changing pad covers',
+            qty: '3',
+            options: [
+              'Hudson Baby cotton changing pad covers',
+              'Munchkin cotton changing pad covers (2-pack)',
+              'Cotton muslin changing pad covers',
             ],
             make: 'Organic cotton or bamboo terry covers',
           },
@@ -646,7 +657,11 @@ export const stages: Stage[] = [
             name: 'Organic play mat',
             qty: '1',
             one: true,
-            options: ['Lorena Canals washable cotton rug', 'Lovevery play gym'],
+            options: [
+              'Finch & Folk organic cotton play mat',
+              'Wee Gallery Organic Baby Play Mat',
+              'Makemake Organics quilted play mat',
+            ],
             make: 'Quilted cotton floor mat',
           },
           {
@@ -749,9 +764,7 @@ export const stages: Stage[] = [
             name: 'Sleep sacks for after swaddling',
             qty: '3',
             options: [
-              'Halo SleepSack wearable blanket (organic cotton)',
-              'Kyte Baby bamboo sleep bag',
-              'Woolino 4-season merino',
+              'Halo SleepSack wearable blanket (cotton, not the fleece version)',
             ],
           },
           {
@@ -770,7 +783,7 @@ export const stages: Stage[] = [
             name: 'Organic crib mattress',
             qty: '1',
             one: true,
-            options: ['Naturepedic', 'Avocado Green'],
+            options: ['Lullaby Earth Healthy Support'],
           },
           {
             id: 'crib-sheets',
@@ -830,7 +843,11 @@ export const stages: Stage[] = [
             name: 'Play gym',
             qty: '1',
             one: true,
-            options: ['Lovevery The Play Gym', 'Wooden A-frame gym from Etsy'],
+            options: [
+              'Lovevery The Play Gym',
+              'Plan Toys wooden baby gym (rubberwood)',
+              'Wooden A-frame gym from Etsy',
+            ],
             make: 'Wooden A-frame with crocheted hanging toys',
           },
           {
@@ -881,8 +898,8 @@ export const stages: Stage[] = [
             qty: '1',
             one: true,
             options: [
-              'BabyBjörn Bouncer Bliss (woven cotton)',
-              'Nuna LEAF Grow',
+              'Baby Delight Heirloom Aspen Wood Bouncer',
+              'Avenlur Fir Wooden Bouncer (foldable, with play arch)',
             ],
           },
           {
