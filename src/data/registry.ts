@@ -79,8 +79,6 @@ export const stages: Stage[] = [
             one: true,
             options: [
               'Chicco KeyFit 35 ClearTex + Corso or Bravo (no added flame-retardant chemicals)',
-              'UPPAbaby Mesa V3 + Vista V3 or Cruz V3',
-              'Nuna Pipa + Mixx or TRVL',
             ],
             restriction: 'Buy new only, never secondhand or handmade.',
             note: 'Please check with us first: our existing car seat base only fits seats from the same brand.',
@@ -182,13 +180,6 @@ export const stages: Stage[] = [
             name: 'Sound machines',
             qty: '1 home, 1 portable',
             options: ['Hatch Baby', 'Hatch Go', 'Yogasleep Hushh'],
-          },
-          {
-            id: 'humidifier',
-            name: 'Cool-mist humidifier',
-            qty: '1',
-            one: true,
-            options: ['Canopy (no mist, easy to clean)', 'Levoit', 'Crane'],
           },
           {
             id: 'monitors',
@@ -687,14 +678,7 @@ export const stages: Stage[] = [
             id: 'nursing-wear',
             name: 'Everyday nursing wear',
             qty: '5–10',
-            options: [
-              'Hatch',
-              'Kindred Bravely',
-              'Seraphine',
-              'Boob Design',
-              'Nom Maternity',
-              'Morrison Outdoors Merino Nursing Long Sleeve (100% merino, XS–XXL)',
-            ],
+            options: ['Old Navy'],
             make: 'Button-front linen dresses or wrap dresses',
           },
           {
@@ -812,9 +796,9 @@ export const stages: Stage[] = [
             name: 'Bigger soft carrier',
             qty: '1–2',
             options: [
-              'Ergobaby Omni Deluxe (mesh)',
+              'Infantino Flip Advanced 4-in-1',
+              'Infantino Cuddle Up Ergonomic Hoodie',
               'Baby Tula Explore',
-              'Beco Gemini',
               'Boba X Linen Carrier (7–45 lb, adjustable panel)',
             ],
             make: 'Linen ring sling',
@@ -942,16 +926,6 @@ export const stages: Stage[] = [
               'Haakaa silicone spoon',
             ],
             make: 'Hand-carved wooden spoons from Etsy',
-          },
-          {
-            id: 'food-prep',
-            name: 'Baby food prep',
-            qty: '1',
-            one: true,
-            options: [
-              'Beaba Babycook',
-              'Blender with glass jars or silicone freezer trays',
-            ],
           },
           {
             id: 'milk-storage',
