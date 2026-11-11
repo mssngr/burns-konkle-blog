@@ -33,8 +33,7 @@ jobs:
       - name: Build
         run: bun run build
       - name: Type check
-        # typescript isn't a project dependency, so pin the version bunx fetches.
-        run: bunx --bun --package typescript@6.0.2 tsc --noEmit -p .
+        run: bunx --bun tsc --noEmit -p .
 
   database:
     name: Database tests (pgTAP)
