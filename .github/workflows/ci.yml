@@ -1,0 +1,53 @@
+name: CI
+
+# Checks for every pull request. Deploys stay in astro.yml (push to main only).
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, types and build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Lint and format (Biome)
+        run: bunx biome check src
+      # The build also generates .astro/types.d.ts, which the type check needs
+      # (without it, import.meta.env has no type), so it runs before tsc.
+      - name: Build
+        run: bun run build
+      - name: Type check
+        # typescript isn't a project dependency, so pin the version bunx fetches.
+        run: bunx --bun --package typescript@6.0.2 tsc --noEmit -p .
+
+  database:
+    name: Database tests (pgTAP)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 3.1.0
+      # Starts the local stack (applies every migration) without the services these tests don't touch.
+      - name: Start local Supabase
+        run: supabase start -x studio,imgproxy,mailpit,edge-runtime,logflare,vector,postgres-meta,realtime
+      - name: Run pgTAP tests
+        run: supabase test db
