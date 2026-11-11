@@ -751,6 +751,14 @@ export const stages: Stage[] = [
             options: ['Matched to our bottles'],
           },
           {
+            id: 'high-chair',
+            group: true,
+            name: 'High chair',
+            qty: '1',
+            one: true,
+            options: ['Hauck Alpha+ high chair (natural)'],
+          },
+          {
             id: 'spoons-cup',
             name: 'First spoons and open cup',
             options: [

@@ -369,6 +369,12 @@ const baseLinks: Record<string, ShopLink[]> = {
       'https://www.ikea.com/us/en/p/uppraemen-storage-basket-gray-green-60498563',
     ),
   ],
+  'high-chair/hauck-alpha-high-chair': [
+    l(
+      'Walmart',
+      'https://www.walmart.com/ip/Hauck-Alpha-Highchair-Set-Natural/8249207045',
+    ),
+  ],
   'caddies/ikea-risatorp-basket-with-compartments': [
     l(
       'IKEA',
