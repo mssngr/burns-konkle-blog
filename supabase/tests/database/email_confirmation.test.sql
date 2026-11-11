@@ -8,7 +8,7 @@
 -- can't reach the private schema.
 
 begin;
-select plan(57);
+select plan(62);
 
 -- ------------------------------------------------------------------- setup
 
@@ -44,7 +44,8 @@ $$;
 create function tests.id(n int) returns uuid language sql immutable as
   $$ select ('00000000-0000-0000-0000-00000000000' || n)::uuid $$;
 
--- Family members are matched by email, so give each one an address.
+-- Family members are matched by email, so give each one an address. seed.sql
+-- does the same, but don't rely on a seed having run.
 update public.family set email = person || '@example.test';
 
 select tests.make_user(tests.id(1), 'gabriel@example.test');   -- admin, unconfirmed
@@ -167,8 +168,8 @@ select is(
      and encrypted_password = extensions.crypt('old password', encrypted_password)),
   1, 'the refused attempts left the old password in place');
 
--- A second session for the account being reset, and one for somebody else.
-insert into auth.sessions (user_id) values (tests.id(6));
+-- A second session for the account being reset (the first is made in make_user).
+insert into auth.sessions (id, user_id) values (gen_random_uuid(), tests.id(6));
 
 set local role anon;
 select is(
@@ -217,8 +218,11 @@ select is(private.is_confirmed(), false, 'a token for a different email than the
 set local request.jwt.claims = '{"sub": "00000000-0000-0000-0000-000000000002", "email": "micala@example.test"}';
 select is(private.is_confirmed(), false, 'a token with no session_id is not confirmed');
 
-select tests.claims(tests.id(2), 'micala@example.test', tests.id(2));
-delete from auth.sessions where id = tests.id(2);
+-- A throwaway session, so the account's other session stays for later tests.
+insert into auth.sessions (id, user_id) values (tests.id(0), tests.id(2));
+select tests.claims(tests.id(2), 'micala@example.test', tests.id(0));
+select is(private.is_confirmed(), true, 'the throwaway session is live to begin with');
+delete from auth.sessions where id = tests.id(0);
 select is(private.is_confirmed(), false, 'an access token stops working once its session is deleted');
 
 -- --------------------------------------------------- changing the email
@@ -262,7 +266,6 @@ select throws_ok(
   'an unconfirmed admin cannot list accounts');
 
 reset role;
-insert into auth.sessions (id, user_id) values (tests.id(2), tests.id(2)); -- the one deleted above
 select tests.claims(tests.id(2), 'micala@example.test', tests.id(2));
 set local role authenticated;
 select lives_ok($$ select * from public.admin_accounts() $$, 'a confirmed admin can list accounts');
@@ -351,6 +354,25 @@ set local role anon;
 select throws_ok(
   $$ select public.resend_confirmation() $$, 'P0001', 'Please sign in first',
   'resending needs a signed-in account');
+
+-- A confirmed account has nothing to resend, so it succeeds quietly.
+select tests.claims(tests.id(2), 'micala@example.test', tests.id(2));
+set local role authenticated;
+select lives_ok($$ select public.resend_confirmation() $$, 'a confirmed account can ask to resend without error');
+reset role;
+select is(
+  (select count(*)::int from public.outbox where template = 'email_confirmation' and to_email = 'micala@example.test'),
+  1, 'and no extra email is queued for it (only the one sent at sign-up)');
+
+-- ----------------------------------------------------- my_email_confirmed
+
+select tests.claims(tests.id(2), 'micala@example.test', tests.id(2));
+set local role authenticated;
+select is(public.my_email_confirmed(), true, 'my_email_confirmed is true for a confirmed account');
+select tests.claims(tests.id(1), 'gabriel@example.test', tests.id(1));
+set local role authenticated;
+select is(public.my_email_confirmed(), false, 'my_email_confirmed is false for an unconfirmed account');
+reset role;
 
 select * from finish();
 rollback;

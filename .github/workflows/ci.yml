@@ -33,7 +33,8 @@ jobs:
       - name: Build
         run: bun run build
       - name: Type check
-        run: bunx --bun tsc --noEmit -p .
+        # typescript isn't a project dependency, so pin the version bunx fetches.
+        run: bunx --bun --package typescript@6.0.2 tsc --noEmit -p .
 
   database:
     name: Database tests (pgTAP)
@@ -44,7 +45,7 @@ jobs:
       - name: Setup Supabase CLI
         uses: supabase/setup-cli@v1
         with:
-          version: latest
+          version: 3.1.0
       # Starts the local stack (applies every migration) without the services these tests don't touch.
       - name: Start local Supabase
         run: supabase start -x studio,imgproxy,mailpit,edge-runtime,logflare,vector,postgres-meta,realtime
