@@ -595,13 +595,6 @@ export const stages: Stage[] = [
             ],
             make: 'Silk-lined cotton bonnet',
           },
-          {
-            id: 'silk-sheet',
-            name: 'Hair-friendly bassinet sheet',
-            qty: '1–2',
-            options: ['Mulberry silk or satin fitted bassinet sheet'],
-            make: 'Sewn fitted sheet in silk charmeuse',
-          },
         ],
         goodToKnow:
           'Please skip puffy snowsuits. They aren’t safe in a car seat.',
@@ -774,7 +767,6 @@ export const stages: Stage[] = [
             options: [
               "Burt's Bees Baby organic",
               'Kyte Baby',
-              'Mulberry silk fitted sheet (for hair)',
               'The Rooted Baby Co. Mali crib sheet (100% organic cotton muslin)',
             ],
             make: 'Sewn fitted sheet',

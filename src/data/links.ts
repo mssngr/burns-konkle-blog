@@ -366,10 +366,6 @@ const baseLinks: Record<string, ShopLink[]> = {
   ],
   'bonnets/mulberry-silk-baby-bonnets': [etsy('mulberry silk baby bonnet')],
   'bonnets/handmade': [etsy('baby bonnet sewing pattern')],
-  'silk-sheet/mulberry-silk-or-satin-fitted-bassinet-s': [
-    etsy('silk bassinet fitted sheet'),
-  ],
-  'silk-sheet/handmade': [etsy('silk charmeuse fabric')],
 
   // ----- Home & organization -----
   'caddies/washable-cotton-rope-baskets': [etsy('cotton rope basket')],
@@ -466,7 +462,6 @@ const baseLinks: Record<string, ShopLink[]> = {
     l("Burt's Bees Baby", 'https://www.burtsbeesbaby.com/'),
   ],
   'crib-sheets/kyte-baby': [l('Kyte Baby', 'https://kytebaby.com/')],
-  'crib-sheets/mulberry-silk-fitted-sheet': [etsy('silk crib sheet')],
   'crib-sheets/handmade': [TREELOTTA, OCP('flannel')],
   'bigger-carrier/baby-tula-explore': [l('Baby Tula', 'https://babytula.com/')],
   'bigger-carrier/beco-gemini': [l('Beco', 'https://becobabycarrier.com/')],

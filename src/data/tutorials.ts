@@ -79,7 +79,7 @@ export const tutorials: Tutorial[] = [
     ],
     safety:
       'The sheet must pull tight on the mattress with no slack. If it slides or bunches, please don’t gift it.',
-    makes: ['bassinet-sheets', 'crib-sheets', 'silk-sheet'],
+    makes: ['bassinet-sheets', 'crib-sheets'],
   },
   {
     id: 'muslin-swaddles',
