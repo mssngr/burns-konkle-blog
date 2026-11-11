@@ -1,4 +1,5 @@
 ---
+import OptionTitle from '@/components/option-title.astro'
 import ShopLinks from '@/components/shop-links.astro'
 import { links } from '@/data/links'
 import { handmadeKey, type Item, optionKey, splitOption } from '@/data/registry'
@@ -34,13 +35,13 @@ const tutorial = tutorialForItem[item.id]
           <li class="opt" data-key={key} data-item={item.id} data-label={label}>
             <div class="opt-text">
               <span class="opt-label">
-                {label}
+                <OptionTitle label={label} links={links[key]} />
                 {tags[key]?.map(t => (
                   <span class={`badge badge-${t}`}>{tagLabels[t]}</span>
                 ))}
               </span>
               {detail && <span class="opt-detail">{detail}</span>}
-              <ShopLinks links={links[key]} />
+              <ShopLinks label="Also at" links={links[key]?.slice(1)} />
             </div>
             <div class="opt-action" data-action-slot>
               <span class="skeleton" aria-hidden="true" />
@@ -54,8 +55,10 @@ const tutorial = tutorialForItem[item.id]
         <li class="opt opt-make" data-key={makeKey} data-item={item.id} data-label={`Handmade: ${item.make}`}>
           <div class="opt-text">
             <span class="make-tag">Make it</span>
-            <span class="opt-label">{item.make}</span>
-            <ShopLinks links={links[makeKey]} />
+            <span class="opt-label">
+              <OptionTitle label={item.make} links={links[makeKey]} />
+            </span>
+            <ShopLinks label="Also at" links={links[makeKey]?.slice(1)} />
             {tutorial && (
               <a class="how-to" href={`#tut-${tutorial}`}>
                 How to make it

@@ -1112,6 +1112,36 @@ main {
   text-underline-offset: 2px;
 }
 
+.opt-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--clay) 35%, transparent);
+  text-underline-offset: 3px;
+}
+
+.opt-link:hover {
+  color: var(--clay);
+  text-decoration-color: currentColor;
+}
+
+.ext-icon {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-left: 0.3em;
+  vertical-align: -0.05em;
+  fill: none;
+  stroke: var(--clay);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.opt[data-state="taken"] .opt-link,
+.opt[data-state="covered"] .opt-link {
+  color: var(--muted);
+}
+
 .shop-links a:hover,
 .steps a:hover,
 .local a:hover {
