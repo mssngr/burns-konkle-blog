@@ -53,7 +53,7 @@ export const stages: Stage[] = [
           {
             id: 'stretchy-wraps',
             name: 'Stretchy wraps',
-            qty: '2',
+            qty: '1',
             options: [
               'Moby Fit Hybrid',
               'Solly Baby (lyocell, thin and cool)',
@@ -178,7 +178,7 @@ export const stages: Stage[] = [
             id: 'sound-machine',
             name: 'Sound machines',
             qty: '1 home, 1 portable',
-            options: ['Hatch Baby', 'Hatch Go', 'Yogasleep Hushh'],
+            options: ['Hatch Go', 'Yogasleep Hushh'],
           },
           {
             id: 'monitors',
@@ -186,7 +186,6 @@ export const stages: Stage[] = [
             qty: '2',
             options: [
               'eufy Baby Monitor C10 (works without Wi-Fi)',
-              'Infant Optics DXR-8 Pro (no Wi-Fi)',
             ],
             note: 'Please skip monitors with AI features. App-connected is fine.',
           },
@@ -435,7 +434,6 @@ export const stages: Stage[] = [
             qty: '1',
             one: true,
             options: [
-              'Baby Brezza Bottle Washer Pro (washes, sterilizes, dries)',
               'Papablic sterilizer-dryer',
             ],
           },
@@ -567,9 +565,7 @@ export const stages: Stage[] = [
             qty: '6 newborn + 6 0–3 mo',
             options: [
               "Burt's Bees Baby organic",
-              'Kyte Baby bamboo',
-              'Hanna Andersson',
-              'Lucy Lue Organics waffle 2-way zip romper (Organic cotton waffle; fold-over feet and mitts)',
+              'Colored Organics',
             ],
           },
           {
@@ -578,8 +574,7 @@ export const stages: Stage[] = [
             qty: '6 + 6',
             options: [
               'Colored Organics',
-              'Monica + Andy',
-              'Lucy Lue Organics newborn kimono set with footed pants (GOTS organic cotton, undyed, NB–3 mo)',
+              "Burt's Bees Baby organic",
             ],
             make: 'Kimono top from a free pattern',
           },
@@ -962,10 +957,8 @@ export const stages: Stage[] = [
             name: '3–6 and 6–9 month clothes',
             qty: '8–10 each',
             options: [
-              "Burt's Bees Baby",
-              'Kyte Baby',
-              'Hanna Andersson',
-              'Kaba Baby Zip-Up Sleep & Play One-Piece (GOTS organic cotton, 3–18 mo)',
+              "Burt's Bees Baby organic",
+              'Colored Organics',
             ],
             make: 'Hand-knit wool longies',
           },
