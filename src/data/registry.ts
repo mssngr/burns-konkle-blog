@@ -200,23 +200,18 @@ export const stages: Stage[] = [
         items: [
           {
             id: 'newborn-cloth',
-            name: 'Newborn cloth diapers: prefolds + covers',
-            qty: '24 + 4',
-            options: [
-              'Thirsties prefolds + Duo Wrap covers',
-              'Thirsties Natural Newborn All-in-One (5–14 lb)',
-            ],
+            name: 'Newborn cloth diapers (all-in-one)',
+            qty: '24',
+            options: ['Thirsties Natural Newborn All-in-One (5–14 lb)'],
             make: 'Flat diapers hemmed from organic birdseye cotton',
           },
           {
             id: 'onesize-cloth',
-            name: 'One-size or sized-up cloth diapers',
-            qty: '18–24 + 6 covers',
+            name: 'One-size cloth diapers (all-in-one)',
+            qty: '18–24',
             options: [
-              'Thirsties Natural One Size All-in-One (8–40 lb, organic cotton)',
-              'Thirsties One Size All-in-One (8–40 lb)',
-              'Thirsties One Size Pocket Diaper (8–40 lb)',
-              'Thirsties Duo Fab Fitted',
+              'Thirsties Natural One Size All-in-One, snap (8–40 lb, organic cotton and hemp)',
+              'Thirsties Natural One Size All-in-One, hook & loop (8–40 lb, organic cotton and hemp)',
             ],
             make: 'Fitted diapers from a free pattern in hemp and cotton',
           },
@@ -231,7 +226,7 @@ export const stages: Stage[] = [
             id: 'wet-bags',
             name: 'Wet bags, clean and dirty',
             qty: '4 small, 2 large',
-            options: ['Thirsties Deluxe Wet Bag'],
+            options: [],
             make: 'Handmade wet bags from Etsy',
           },
           {
@@ -247,7 +242,7 @@ export const stages: Stage[] = [
             id: 'cloth-wipes',
             name: 'Cloth wipes',
             qty: '48–60',
-            options: ['Thirsties Fab Wipes'],
+            options: [],
             make: 'Flannel squares, the easiest first sewing project',
           },
           {
@@ -574,9 +569,8 @@ export const stages: Stage[] = [
             name: 'Merino layers for December',
             qty: '2',
             options: [
-              'Woolino sleeper',
-              'Ruskovilla or Reima merino',
-              'Morrison Outdoors Baby Merino Bodysuit (100% merino, 0–18 mo)',
+              'Woolbabe merino and organic cotton pajamas',
+              'Quince 100% merino baby base layer set',
             ],
             make: 'Hand-knit wool soakers and longies',
           },
@@ -632,9 +626,9 @@ export const stages: Stage[] = [
             name: 'Water-resistant play and eating blankets',
             qty: '2–3',
             options: [
-              'Wool puddle pads',
-              'Laminated cotton splat mats',
-              'Linen quick-dry blankets',
+              'Wendy Anne organic wool puddle pad',
+              'EasyTot merino wool changing/puddle pad',
+              "Shepherd's Dream washable wool pad",
             ],
             make: 'Felted wool blanket',
           },
