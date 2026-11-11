@@ -26,6 +26,8 @@ jobs:
         uses: oven-sh/setup-bun@v2
       - name: Install dependencies
         run: bun install --frozen-lockfile
+      - name: Unit tests
+        run: bun test
       - name: Lint and format (Biome)
         run: bunx biome check src
       # The build also generates .astro/types.d.ts, which the type check needs
