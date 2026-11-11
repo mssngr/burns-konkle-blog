@@ -354,7 +354,6 @@ export const stages: Stage[] = [
             name: 'Bottle soap',
             options: [
               'Dapple fragrance-free',
-              'Seventh Generation Free & Clear',
               "Dr. Bronner's Sal Suds",
             ],
           },
@@ -549,7 +548,7 @@ export const stages: Stage[] = [
             id: 'nursing-wear',
             name: 'Everyday nursing wear',
             qty: '5–10',
-            options: ['Old Navy', 'Gap'],
+            options: ['Gap'],
           },
           {
             id: 'nursing-cover',
@@ -627,10 +626,7 @@ export const stages: Stage[] = [
             name: 'Crib',
             qty: '1',
             one: true,
-            options: [
-              'IKEA Sniglar (solid beech)',
-              'Ashley solid New Zealand pine crib',
-            ],
+            options: ['IKEA Sniglar (solid beech)'],
             restriction: 'Buy only: must meet the federal crib standard.',
           },
           {
