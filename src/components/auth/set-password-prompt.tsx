@@ -27,7 +27,11 @@ export function SetPasswordPrompt() {
   }
 
   return (
-    <Modal open={open} onClose={notNow} title="Set a password">
+    <Modal
+      open={open} // Modal also fires onClose when we close it ourselves (password saved); only a user's close counts as "Not now".
+      onClose={() => open && notNow()}
+      title="Set a password"
+    >
       <div class="stack">
         <p>
           Set a password so you can sign in without an emailed link. It only

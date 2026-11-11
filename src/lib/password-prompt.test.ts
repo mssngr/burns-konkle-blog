@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test } from 'bun:test'
+import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
 import {
   dismissPasswordPrompt,
   isPasswordPromptDismissed,
@@ -40,6 +40,10 @@ describe('dismissal memory', () => {
   beforeEach(() => {
     // biome-ignore lint/suspicious/noExplicitAny: minimal browser stub for bun
     ;(globalThis as any).sessionStorage = makeStorage()
+  })
+  afterEach(() => {
+    // biome-ignore lint/suspicious/noExplicitAny: minimal browser stub for bun
+    delete (globalThis as any).sessionStorage
   })
   test('is not dismissed at first, then is after dismissing', () => {
     expect(isPasswordPromptDismissed()).toBe(false)
