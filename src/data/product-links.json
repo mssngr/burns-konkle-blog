@@ -801,16 +801,6 @@
       "href": "https://us.reima.com/products/overall-moomin-mysig-1"
     }
   ],
-  "hats-mitts/organic-cotton-hat-and-mitt-sets": [
-    {
-      "shop": "Burt's Bees Baby (mittens)",
-      "href": "https://www.burtsbeesbaby.com/products/organic-cotton-baby-mittens-3-pack-cloud"
-    },
-    {
-      "shop": "Colored Organics (hat)",
-      "href": "https://coloredorganics.com/products/organic-knotted-baby-hat-newborn-essential-205-15"
-    }
-  ],
   "bonnets/cosilana-mulberry-silk-baby-bonnet": [
     {
       "shop": "Little Spruce Organics",
@@ -1171,12 +1161,6 @@
       "href": "https://beaba.us/products/set-of-6-glass-portion-jars-150ml"
     }
   ],
-  "milk-storage/glass-breast-milk-bottles": [
-    {
-      "shop": "Lansinoh",
-      "href": "https://lansinoh.com/products/glass-feeding-baby-5oz"
-    }
-  ],
   "milk-storage/haakaa-silicone-freezer-tray": [
     {
       "shop": "Haakaa",
@@ -1473,12 +1457,6 @@
       "href": "https://www.target.com/p/colored-organics-peyton-zipper-sleeper-ivory-nb/-/A-1003172676"
     }
   ],
-  "kimono-tops/burt-s-bees-baby-organic": [
-    {
-      "shop": "Burt's Bees Baby quilted kimono-style jumpsuit (Babylist)",
-      "href": "https://www.babylist.com/gp/burt-s-bees-baby-organic-quilted-wrap-front-jumpsuit/14437/31032"
-    }
-  ],
   "merino-layer/quince-100-merino-baby-base-layer-set": [
     {
       "shop": "Quince",
@@ -1543,12 +1521,6 @@
     {
       "shop": "Modern Nursery",
       "href": "https://www.modernnursery.com/products/lullaby-earth-healthy-support-crib-mattress"
-    }
-  ],
-  "bigger-carrier/infantino-flip-advanced-4-in-1": [
-    {
-      "shop": "Infantino (Flip 4-in-1)",
-      "href": "https://infantino.com/products/flip-4-in-1-convertible-carrier-carbon"
     }
   ],
   "bigger-carrier/handmade": [
@@ -1627,6 +1599,36 @@
     {
       "shop": "Colored Organics",
       "href": "https://coloredorganics.com/products/organic-classic-baby-bodysuit-short-sleeve-101-15"
+    }
+  ],
+  "bigger-carrier/infantino-flip-4-in-1-convertible-carrie": [
+    {
+      "shop": "Infantino (Flip 4-in-1)",
+      "href": "https://infantino.com/products/flip-4-in-1-convertible-carrier-carbon"
+    }
+  ],
+  "kimono-tops/burt-s-bees-baby-organic-quilted-kimono-": [
+    {
+      "shop": "Burt's Bees Baby quilted kimono-style jumpsuit (Babylist)",
+      "href": "https://www.babylist.com/gp/burt-s-bees-baby-organic-quilted-wrap-front-jumpsuit/14437/31032"
+    }
+  ],
+  "hats-mitts/burt-s-bees-baby-organic-cotton-mittens": [
+    {
+      "shop": "Burt's Bees Baby (mittens)",
+      "href": "https://www.burtsbeesbaby.com/products/organic-cotton-baby-mittens-3-pack-cloud"
+    }
+  ],
+  "hats-mitts/colored-organics-organic-knotted-newborn": [
+    {
+      "shop": "Colored Organics (hat)",
+      "href": "https://coloredorganics.com/products/organic-knotted-baby-hat-newborn-essential-205-15"
+    }
+  ],
+  "milk-storage/lansinoh-glass-baby-bottles-with-natural": [
+    {
+      "shop": "Lansinoh",
+      "href": "https://lansinoh.com/products/glass-feeding-baby-5oz"
     }
   ]
 }

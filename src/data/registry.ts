@@ -465,7 +465,7 @@ export const stages: Stage[] = [
             qty: '6 + 6',
             options: [
               'Colored Organics',
-              "Burt's Bees Baby organic",
+              "Burt's Bees Baby organic quilted kimono-style wrap-front jumpsuit",
             ],
             make: 'Kimono top from a free pattern',
           },
@@ -481,7 +481,8 @@ export const stages: Stage[] = [
             name: 'Hats and mitts',
             qty: '4 + 4',
             options: [
-              'Organic cotton hat-and-mitt sets',
+              "Burt's Bees Baby organic cotton mittens (3-pack)",
+              'Colored Organics organic knotted newborn hat',
               'Lucy Lue Organics organic baby hat (Organic cotton, 0–3 mo)',
             ],
             make: 'Hand-knit or sewn',
@@ -658,7 +659,7 @@ export const stages: Stage[] = [
             id: 'bigger-carrier',
             name: 'Bigger soft carrier',
             qty: '1–2',
-            options: ['Infantino Flip Advanced 4-in-1'],
+            options: ['Infantino Flip 4-in-1 Convertible Carrier'],
             make: 'Linen ring sling',
           },
         ],
@@ -766,7 +767,7 @@ export const stages: Stage[] = [
             id: 'milk-storage',
             name: 'Milk storage',
             options: [
-              'Glass breast milk bottles',
+              'Lansinoh glass baby bottles with NaturalWave nipple (5 oz)',
             ],
           },
         ],
