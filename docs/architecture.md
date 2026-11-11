@@ -11,10 +11,10 @@ Decisions that differ from the spec:
 
 | Path | What |
 | --- | --- |
-| `src/layouts/app.astro` | Shell: sidebar of modules, "How this works" link, test-mode and pause banners, optional photo notice (`photoNotice` prop). Every page uses it. |
+| `src/layouts/app.astro` | Shell: sidebar of modules, "How this works" link, test-mode and pause banners, optional photo notice (`photoNotice` prop), and the "set a password" pop-up for older accounts (`my_has_password`). Every page uses it. |
 | `src/data/modules.ts` | Sidebar entries and icons. |
 | `src/lib/supabase.ts` | Client, `rpc()`, `query()`, `errorMessage()`, photo URL helpers. |
-| `src/lib/auth.ts` | `useAuth()` → `{ loading, session, family }`; `family` is `{ person, display_name, role, confirmed }`; `confirmed` is also on the state itself for guests. |
+| `src/lib/auth.ts` | `useAuth()` → `{ loading, session, confirmed, recovering, hasPassword, family }`; `family` is `{ person, display_name, role, confirmed }`; `confirmed` is also on the state itself for guests; `hasPassword` is false only for accounts that never set one (drives the "set a password" pop-up). |
 | `src/lib/time.ts` | Mountain Time helpers. **Always** use these: `fromMT(date, time)` builds an instant; `mtDate`, `mtTime`, `fmtDate`, `fmtTime`, `fmtRange`, `addDays`, `weekStart`, `clockSteps`. |
 | `src/lib/ui.tsx` | `Button`, `Field`, `Input`, `TextArea`, `Select`, `Check`, `Notice`, `ErrorText`, `Loading`, `Empty`, `toast`, `Legend`, `StatusPill`, `Modal`, `useAsync`, `useAction`, `useQueryParam`, `ContactFields` + `useContact`, `PageHead`, `site(path)`. |
 | `src/components/auth/` | Sign-in (email + password, reset link), email confirmation, change password, `FamilyGate` (wrap family pages), profile. |

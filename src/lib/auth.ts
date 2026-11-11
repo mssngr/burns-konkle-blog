@@ -20,6 +20,11 @@ export interface AuthState {
   confirmed: boolean
   /** Arrived from a password-reset link: ask for a new password. */
   recovering: boolean
+  /**
+   * The account has a password. People who signed up before passwords existed don't.
+   * True when signed out or when we can't tell, so nobody is nagged by mistake.
+   */
+  hasPassword: boolean
   /** Set when the signed-in email belongs to Gabriel, Micala, Vincent or Samantha. */
   family: FamilyStatus | null
 }
@@ -29,6 +34,7 @@ let state: AuthState = {
   session: null,
   confirmed: false,
   recovering: false,
+  hasPassword: true,
   family: null,
 }
 const listeners = new Set<(s: AuthState) => void>()
@@ -41,15 +47,19 @@ function emit(next: AuthState) {
 async function refresh(session: Session | null) {
   let family: FamilyStatus | null = null
   let confirmed = false
+  let hasPassword = true
   if (session) {
-    const [status, mine] = await Promise.all([
+    const [status, mine, password] = await Promise.all([
       supabase.rpc('my_family_status'),
       supabase.rpc('my_email_confirmed'),
+      supabase.rpc('my_has_password'),
     ])
     family = (status.data as FamilyStatus | null) ?? null
     confirmed = mine.data === true
+    // Only an explicit "no" counts: an error must not tell people with passwords to set one.
+    hasPassword = password.data !== false
   }
-  emit({ loading: false, session, confirmed, recovering, family })
+  emit({ loading: false, session, confirmed, recovering, hasPassword, family })
 }
 
 /** Set while the person is on a password-reset link and needs to choose a new password. */
@@ -66,6 +76,7 @@ function start() {
       session: null,
       confirmed: false,
       recovering: false,
+      hasPassword: true,
       family: null,
     })
     return
